@@ -71,11 +71,22 @@ nav.crumbs a:hover { color: var(--text); }
 
 main { padding: 48px 0 64px; }
 
+.hero-logo {
+  display: block;
+  margin: 4px auto 28px;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+}
+
 h1 {
   font-size: 2rem;
   line-height: 1.25;
   margin: 0 0 8px;
 }
+
+/* Hub page only (sub-pages set data-app and lay their h1 out in .hero) */
+body:not([data-app]) h1 { text-align: center; }
 
 .tagline {
   color: var(--text-dim);
