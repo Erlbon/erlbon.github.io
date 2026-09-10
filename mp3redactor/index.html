@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MP3 Redactor — Bulk MP3 Tag &amp; Integrity Checker for Windows</title>
+<meta name="description" content="The ɯP3 Redactor is a free Windows app for bulk MP3 tag editing, file integrity checks, BPM and key detection, and loudness measurement.">
+<link rel="canonical" href="https://erlbon.github.io/mp3redactor/">
+<link rel="icon" href="../assets/img/mp3redactor.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="The ɯP3 Redactor — Bulk MP3 Tag &amp; Integrity Checker">
+<meta property="og:description" content="Free Windows app for bulk MP3 tag editing, integrity checks, BPM/key detection, and loudness measurement.">
+<meta property="og:url" content="https://erlbon.github.io/mp3redactor/">
+<meta property="og:image" content="https://erlbon.github.io/assets/img/mp3redactor.png">
+<meta name="twitter:card" content="summary">
+
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "The ɯP3 Redactor",
+  "alternateName": "MP3 Redactor",
+  "description": "A Windows GUI utility for bulk-checking and bulk-editing MP3 metadata, with mp3tag-inspired UX: integrity checks, BPM and key detection, loudness measurement, and tag editing.",
+  "url": "https://erlbon.github.io/mp3redactor/",
+  "downloadUrl": "https://github.com/Erlbon/mp3redactor/releases/latest",
+  "operatingSystem": "Windows",
+  "applicationCategory": "UtilitiesApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" },
+  "isPartOf": { "@type": "WebSite", "name": "The Redactor Tools", "url": "https://erlbon.github.io/" }
+}
+</script>
+</head>
+<body data-app="mp3">
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/"><span class="bar" aria-hidden="true"></span> The Redactor Tools</a>
+    <nav class="crumbs"><a href="/">Home</a> / The ɯP3 Redactor</nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <img class="icon" src="../assets/img/mp3redactor.png" alt="The ɯP3 Redactor icon" width="72" height="72">
+    <div>
+      <h1>The ɯP3 Redactor</h1>
+      <p class="tagline" style="margin-bottom:0">A free Windows utility for bulk-checking and bulk-editing MP3 metadata, mp3tag-inspired.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn primary" href="https://github.com/Erlbon/mp3redactor/releases/latest">Download latest release</a>
+    <a class="btn secondary" href="https://github.com/Erlbon/mp3redactor">View source on GitHub</a>
+  </div>
+
+  <h2>What it does</h2>
+  <p>Load a folder of MP3s into a sortable table, select any number of them, and run checks or edits across the whole selection at once — the same batch-first workflow as the rest of the Redactor family.</p>
+
+  <h2>Features</h2>
+  <ul class="feature-list">
+    <li><strong>File integrity check</strong> via <code>mp3val</code>, plus a <strong>Deep Check Integrity</strong> pass that does a real full decode, catching corrupt or truncated audio a header-only scan can miss.</li>
+    <li><strong>BPM detection</strong> (in-process, via <code>aubio</code>) and <strong>musical key detection</strong> (via <code>keyfinder-cli</code>, run concurrently across files for a large speedup on multi-core machines).</li>
+    <li><strong>Bulk tag editing</strong> — Title/Artist/Album/Track/Year/Genre/Language via a tag panel, undoable, with Genre/Language quick-pick lists and fully manageable columns.</li>
+    <li><strong>Measure Loudness</strong> — single-pass <code>loudnorm</code> measurement written as a standard ReplayGain tag, picked up by any ReplayGain-aware player.</li>
+    <li><strong>Import &amp; Convert to MP3</strong> — brings FLAC/WAV/OGG/M4A and other formats into the library via <code>libmp3lame</code> at a chosen bitrate.</li>
+    <li><strong>Rename / Export Files</strong> and <strong>Parse Filename → Metadata</strong>, pattern-based (<code>%track% - %artist% - %title%</code> by default) and previewed before committing.</li>
+    <li>Quick single-file rename by double-clicking a filename, without the full pattern tool.</li>
+  </ul>
+
+  <h2>Requirements</h2>
+  <p>Windows, no separate Python install needed. Deep integrity checks, loudness measurement, and format conversion use <code>ffmpeg</code>; key detection uses a small companion binary from <a href="https://github.com/Erlbon/keyfinder-cli-windows">keyfinder-cli-windows</a> (no prebuilt Windows build exists upstream, so it's built and shipped separately). Full details and the changelog are in the <a href="https://github.com/Erlbon/mp3redactor">GitHub repository</a>.</p>
+
+  <h2>The rest of the family</h2>
+  <p>The ɯP3 Redactor shares its UI and core editing patterns with three sibling tools, via <a href="https://github.com/Erlbon/redactor_common">redactor_common</a>:</p>
+  <div class="sibling-list">
+    <a href="../cbzredactor/"><img src="../assets/img/cbzredactor.png" alt="">The ƆBZ Redactor</a>
+    <a href="../epubredactor/"><img src="../assets/img/epubredactor.png" alt="">The ƎPUB Redactor</a>
+    <a href="../videoredactor/"><img src="../assets/img/videoredactor.png" alt="">The Ʌideo Redactor</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><a href="/">← Back to The Redactor Tools</a> · Source on <a href="https://github.com/Erlbon/mp3redactor">GitHub</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

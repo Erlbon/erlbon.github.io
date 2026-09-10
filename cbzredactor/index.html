@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CBZ Redactor — ComicInfo.xml Metadata Editor for Windows</title>
+<meta name="description" content="The ƆBZ Redactor is a free Windows app for editing ComicInfo.xml metadata in CBZ comic archives, with lookups against Comic Vine, the Grand Comics Database, and Bedetheque.">
+<link rel="canonical" href="https://erlbon.github.io/cbzredactor/">
+<link rel="icon" href="../assets/img/cbzredactor.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="The ƆBZ Redactor — CBZ / ComicInfo.xml Metadata Editor">
+<meta property="og:description" content="Free Windows app for editing ComicInfo.xml metadata in CBZ comic archives, with Comic Vine, GCD, and Bedetheque lookups.">
+<meta property="og:url" content="https://erlbon.github.io/cbzredactor/">
+<meta property="og:image" content="https://erlbon.github.io/assets/img/cbzredactor.png">
+<meta name="twitter:card" content="summary">
+
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "The ƆBZ Redactor",
+  "alternateName": "CBZ Redactor",
+  "description": "A Windows desktop tool for viewing and editing the ComicInfo.xml metadata embedded in CBZ comic book archives, with lookups against Comic Vine, the Grand Comics Database, and Bedetheque.",
+  "url": "https://erlbon.github.io/cbzredactor/",
+  "downloadUrl": "https://github.com/Erlbon/cbzredactor/releases/latest",
+  "operatingSystem": "Windows",
+  "applicationCategory": "UtilitiesApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" },
+  "isPartOf": { "@type": "WebSite", "name": "The Redactor Tools", "url": "https://erlbon.github.io/" }
+}
+</script>
+</head>
+<body data-app="cbz">
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/"><span class="bar" aria-hidden="true"></span> The Redactor Tools</a>
+    <nav class="crumbs"><a href="/">Home</a> / The ƆBZ Redactor</nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <img class="icon" src="../assets/img/cbzredactor.png" alt="The ƆBZ Redactor icon" width="72" height="72">
+    <div>
+      <h1>The ƆBZ Redactor</h1>
+      <p class="tagline" style="margin-bottom:0">A free CBZ metadata editor for Windows — read and write <code>ComicInfo.xml</code> without touching the page images.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn primary" href="https://github.com/Erlbon/cbzredactor/releases/latest">Download latest release</a>
+    <a class="btn secondary" href="https://github.com/Erlbon/cbzredactor">View source on GitHub</a>
+  </div>
+
+  <h2>What a CBZ is</h2>
+  <p>A CBZ file is a plain ZIP archive of sequentially-named comic page images, optionally with a <code>ComicInfo.xml</code> metadata file at its root — the de facto standard originating from ComicRack and documented by the <a href="https://anansi-project.github.io/docs/comicinfo/intro">Anansi Project</a>. Not every CBZ has one; the ƆBZ Redactor creates one on save if it's missing, rather than requiring it up front. Its field handling was checked directly against ComicTagger's own source to stay compatible with what readers like Kavita actually expect.</p>
+
+  <h2>Features</h2>
+  <ul class="feature-list">
+    <li>Load one or many <code>.cbz</code> files (or a whole folder) into a sortable, column-configurable table; multi-select for editing, saving, or looking up several issues at once.</li>
+    <li><strong>Bulk edit</strong> the full ComicInfo.xml v2.0 field set, plus draft v2.1 fields already understood by ComicTagger and Kavita (Translator, Tags, StoryArcNumber, GTIN) — a field left blank is left untouched, not cleared.</li>
+    <li><strong>Metadata lookups</strong> against Comic Vine, the Grand Comics Database, and Bedetheque, each with a cover preview and a confirm-before-write review step.</li>
+    <li><strong>Overwrite review</strong>: any import that would replace metadata you already have shows old vs. new side by side, per field, per file, with a checkbox for exactly what to keep.</li>
+    <li><strong>Rename / Export Files</strong> and its reverse, <strong>Parse Filename → Metadata</strong>, both built on a <code>%series% %number% - %title%</code>-style pattern using any ComicInfo field.</li>
+    <li><strong>Search/Replace</strong> and <strong>Case Conversion</strong> across any field, with a before/after preview and a per-row apply checkbox.</li>
+    <li><strong>Undo</strong> (up to 5 steps) for in-memory metadata edits — bulk edits, lookups, renames, search/replace, and case conversion.</li>
+    <li>Genre and Language quick-pick lists, drag-to-reorder and hideable columns, and a resizable cover-image panel — all persisted across restarts.</li>
+    <li>Optional CBR → CBZ conversion on import.</li>
+  </ul>
+
+  <h2>Requirements</h2>
+  <p>Windows, no separate Python install needed — the release is a standalone <code>.exe</code>. Full details, screenshots, and the changelog are in the <a href="https://github.com/Erlbon/cbzredactor">GitHub repository</a>.</p>
+
+  <h2>The rest of the family</h2>
+  <p>The ƆBZ Redactor shares its UI and core editing patterns with three sibling tools, via <a href="https://github.com/Erlbon/redactor_common">redactor_common</a>:</p>
+  <div class="sibling-list">
+    <a href="../epubredactor/"><img src="../assets/img/epubredactor.png" alt="">The ƎPUB Redactor</a>
+    <a href="../mp3redactor/"><img src="../assets/img/mp3redactor.png" alt="">The ɯP3 Redactor</a>
+    <a href="../videoredactor/"><img src="../assets/img/videoredactor.png" alt="">The Ʌideo Redactor</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><a href="/">← Back to The Redactor Tools</a> · Source on <a href="https://github.com/Erlbon/cbzredactor">GitHub</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

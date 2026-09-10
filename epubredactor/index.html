@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EPUB Redactor — Bulk EPUB Metadata Editor for Windows &amp; Kobo</title>
+<meta name="description" content="The ƎPUB Redactor is a free Windows app for bulk-editing EPUB ebook metadata, with Google Books and Open Library lookups, cover generation, and Calibre-based format conversion.">
+<link rel="canonical" href="https://erlbon.github.io/epubredactor/">
+<link rel="icon" href="../assets/img/epubredactor.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="The ƎPUB Redactor — Bulk EPUB Metadata Editor">
+<meta property="og:description" content="Free Windows app for bulk-editing EPUB ebook metadata, with Google Books / Open Library lookups and Calibre-based conversion.">
+<meta property="og:url" content="https://erlbon.github.io/epubredactor/">
+<meta property="og:image" content="https://erlbon.github.io/assets/img/epubredactor.png">
+<meta name="twitter:card" content="summary">
+
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "The ƎPUB Redactor",
+  "alternateName": "EPUB Redactor",
+  "description": "A Windows GUI tool for bulk-editing EPUB metadata, modeled on mp3tag, with lookups against Google Books and Open Library, offline cover generation, and format conversion via Calibre.",
+  "url": "https://erlbon.github.io/epubredactor/",
+  "downloadUrl": "https://github.com/Erlbon/epubredactor/releases/latest",
+  "operatingSystem": "Windows",
+  "applicationCategory": "UtilitiesApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" },
+  "isPartOf": { "@type": "WebSite", "name": "The Redactor Tools", "url": "https://erlbon.github.io/" }
+}
+</script>
+</head>
+<body data-app="epub">
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/"><span class="bar" aria-hidden="true"></span> The Redactor Tools</a>
+    <nav class="crumbs"><a href="/">Home</a> / The ƎPUB Redactor</nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <img class="icon" src="../assets/img/epubredactor.png" alt="The ƎPUB Redactor icon" width="72" height="72">
+    <div>
+      <h1>The ƎPUB Redactor</h1>
+      <p class="tagline" style="margin-bottom:0">A free bulk EPUB metadata editor for Windows, built for prepping ebooks for Kobo and other e-readers.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn primary" href="https://github.com/Erlbon/epubredactor/releases/latest">Download latest release</a>
+    <a class="btn secondary" href="https://github.com/Erlbon/epubredactor">View source on GitHub</a>
+  </div>
+
+  <h2>What it does</h2>
+  <p>The UX is modeled on <strong>mp3tag</strong>: load a folder of EPUB books into a table, select several at once, and apply the same field changes to all of them in one go — no opening files one at a time.</p>
+
+  <h2>Features</h2>
+  <ul class="feature-list">
+    <li><strong>Bulk-edit panel</strong> that mirrors whichever table columns are visible, in whatever order you've dragged them to — no separate field-management screen.</li>
+    <li><strong>Import Metadata from Google Books</strong> and <strong>Open Library</strong> — searches by title/author and brings back title, authors, publisher, year, ISBN, genre, language, description, and cover art in one review-and-apply step.</li>
+    <li><strong>Import to EPUB</strong> — converts MOBI, AZW/AZW3, DOCX, RTF, TXT, FB2, and more to EPUB via your Calibre installation, then adds the results straight into the working list.</li>
+    <li><strong>Generate Cover from Metadata</strong> — creates a placeholder cover (title, author, series) entirely offline, for books missing one.</li>
+    <li><strong>Case Conversion</strong> (UPPERCASE / lowercase / Title Case / Sentence case) and <strong>Number Series</strong> (sequential Series # across a batch, fractional steps supported), both with a live preview before applying.</li>
+    <li><strong>Rename / Export Files</strong> and <strong>Parse Filename → Metadata</strong>, pattern-based and previewed before committing.</li>
+    <li>Drag-to-reorder, hideable columns; a resizable cover-image panel; Genre and Language quick-pick lists — all persisted across restarts.</li>
+  </ul>
+
+  <h2>Requirements</h2>
+  <p>Windows, no separate Python install needed. Google Books / Open Library import and cover generation work standalone; format conversion via Import to EPUB requires a local <a href="https://calibre-ebook.com/">Calibre</a> installation. Full details, screenshots, and the changelog are in the <a href="https://github.com/Erlbon/epubredactor">GitHub repository</a>.</p>
+
+  <h2>The rest of the family</h2>
+  <p>The ƎPUB Redactor shares its UI and core editing patterns with three sibling tools, via <a href="https://github.com/Erlbon/redactor_common">redactor_common</a>:</p>
+  <div class="sibling-list">
+    <a href="../cbzredactor/"><img src="../assets/img/cbzredactor.png" alt="">The ƆBZ Redactor</a>
+    <a href="../mp3redactor/"><img src="../assets/img/mp3redactor.png" alt="">The ɯP3 Redactor</a>
+    <a href="../videoredactor/"><img src="../assets/img/videoredactor.png" alt="">The Ʌideo Redactor</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><a href="/">← Back to The Redactor Tools</a> · Source on <a href="https://github.com/Erlbon/epubredactor">GitHub</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

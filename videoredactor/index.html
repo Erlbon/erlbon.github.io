@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video Redactor — Bulk MKV/MP4 Metadata Editor for Windows</title>
+<meta name="description" content="The Ʌideo Redactor is a free Windows app for bulk-editing MKV/MP4 metadata, with TMDB lookups, season/episode matching, subtitle fetching, and poster art.">
+<link rel="canonical" href="https://erlbon.github.io/videoredactor/">
+<link rel="icon" href="../assets/img/videoredactor.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Ʌideo Redactor — Bulk MKV/MP4 Metadata Editor">
+<meta property="og:description" content="Free Windows app for bulk-editing MKV/MP4 metadata, with TMDB lookups, subtitle fetching, and poster art.">
+<meta property="og:url" content="https://erlbon.github.io/videoredactor/">
+<meta property="og:image" content="https://erlbon.github.io/assets/img/videoredactor.png">
+<meta name="twitter:card" content="summary">
+
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "The Ʌideo Redactor",
+  "alternateName": "Video Redactor",
+  "description": "A bulk metadata editor for MKV and MP4 video files, with TMDB lookups, season/episode matching, OpenSubtitles fetching, MKV-to-MP4 remuxing, and poster art.",
+  "url": "https://erlbon.github.io/videoredactor/",
+  "downloadUrl": "https://github.com/Erlbon/videoredactor/releases/latest",
+  "operatingSystem": "Windows",
+  "applicationCategory": "UtilitiesApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" },
+  "isPartOf": { "@type": "WebSite", "name": "The Redactor Tools", "url": "https://erlbon.github.io/" }
+}
+</script>
+</head>
+<body data-app="video">
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/"><span class="bar" aria-hidden="true"></span> The Redactor Tools</a>
+    <nav class="crumbs"><a href="/">Home</a> / The Ʌideo Redactor</nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <img class="icon" src="../assets/img/videoredactor.png" alt="The Ʌideo Redactor icon" width="72" height="72">
+    <div>
+      <h1>The Ʌideo Redactor</h1>
+      <p class="tagline" style="margin-bottom:0">A free bulk metadata editor for MKV and MP4 video files — movies, TV, music videos, and everything else in a mixed library.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn primary" href="https://github.com/Erlbon/videoredactor/releases/latest">Download latest release</a>
+    <a class="btn secondary" href="https://github.com/Erlbon/videoredactor">View source on GitHub</a>
+  </div>
+
+  <h2>What it does</h2>
+  <p>Built for people managing a mixed library of movies, TV episodes, music videos, and oddball clips who want mp3tag-style batch editing instead of clicking into files one at a time.</p>
+
+  <h2>Features</h2>
+  <ul class="feature-list">
+    <li><strong>Bulk-edit metadata</strong> across MP4 and MKV files from one panel: title, description, genre, cast, director, season/episode numbering, and more — with a Content Type filter (Movie / TV / Music Video / Clip / Misc) that shows only the fields relevant to your selection.</li>
+    <li><strong>TMDB lookup</strong> — search and match a file against The Movie Database, pulling in cast, crew, synopsis, and poster art. Every match is confirmed by hand; nothing is auto-applied.</li>
+    <li><strong>Season &amp; episode picker</strong> for TV — pick the exact episode after matching a show, so per-episode titles and air dates land correctly.</li>
+    <li><strong>Subtitle fetching</strong> via OpenSubtitles, hash-matched against the exact file first (guaranteed sync), with a title-search fallback clearly flagged as sync-not-guaranteed.</li>
+    <li><strong>Remux to MP4</strong> for MKV files — a fast, lossless container swap, not a re-encode.</li>
+    <li><strong>Poster art</strong> saved as a sidecar image, the convention Plex/Jellyfin/Kodi already expect, plus a <strong>thumbnail preview</strong> pulled from a real frame of the video.</li>
+  </ul>
+
+  <h2>Design principles</h2>
+  <p>Never write metadata you didn't confirm — TMDB and subtitle matches always go through a picker, never an auto-applied "confident" guess. A file that can't load, save, or match shows a clear error instead of being silently skipped. Metadata reads/writes go through <code>mutagen</code> and <code>mkvpropedit</code>/<code>mkvmerge</code> rather than reimplementing container formats by hand.</p>
+
+  <h2>Requirements</h2>
+  <p>Windows, no separate Python install needed. Remuxing and thumbnail extraction need <code>ffmpeg</code>; MKV metadata read/write needs <a href="https://mkvtoolnix.download/">MKVToolNix</a> — the app warns on first launch if either is missing from PATH. Full details and the changelog are in the <a href="https://github.com/Erlbon/videoredactor">GitHub repository</a>.</p>
+
+  <h2>The rest of the family</h2>
+  <p>The Ʌideo Redactor shares its UI and core editing patterns with three sibling tools, via <a href="https://github.com/Erlbon/redactor_common">redactor_common</a>:</p>
+  <div class="sibling-list">
+    <a href="../cbzredactor/"><img src="../assets/img/cbzredactor.png" alt="">The ƆBZ Redactor</a>
+    <a href="../epubredactor/"><img src="../assets/img/epubredactor.png" alt="">The ƎPUB Redactor</a>
+    <a href="../mp3redactor/"><img src="../assets/img/mp3redactor.png" alt="">The ɯP3 Redactor</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><a href="/">← Back to The Redactor Tools</a> · Source on <a href="https://github.com/Erlbon/videoredactor">GitHub</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

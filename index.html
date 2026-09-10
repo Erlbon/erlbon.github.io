@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Redactor Tools — Free Windows Metadata Editors for Comics, Ebooks, MP3s &amp; Video</title>
+<meta name="description" content="Four free, open-source Windows apps for bulk-editing file metadata: CBZ Redactor for comic ComicInfo.xml, EPUB Redactor for ebooks, MP3 Redactor for audio tags, and Video Redactor for MKV/MP4.">
+<link rel="canonical" href="https://erlbon.github.io/">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Redactor Tools — Free Windows Metadata Editors">
+<meta property="og:description" content="Four free, open-source Windows apps for bulk-editing file metadata: comics, ebooks, MP3s, and video.">
+<meta property="og:url" content="https://erlbon.github.io/">
+<meta property="og:image" content="https://erlbon.github.io/assets/img/cbzredactor.png">
+<meta name="twitter:card" content="summary">
+
+<link rel="stylesheet" href="assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "The Redactor Tools",
+  "url": "https://erlbon.github.io/",
+  "description": "A family of free, open-source Windows desktop apps for bulk-editing metadata in comics, ebooks, MP3s, and video files.",
+  "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "url": "https://erlbon.github.io/cbzredactor/", "name": "The ƆBZ Redactor" },
+    { "@type": "ListItem", "position": 2, "url": "https://erlbon.github.io/epubredactor/", "name": "The ƎPUB Redactor" },
+    { "@type": "ListItem", "position": 3, "url": "https://erlbon.github.io/mp3redactor/", "name": "The ɯP3 Redactor" },
+    { "@type": "ListItem", "position": 4, "url": "https://erlbon.github.io/videoredactor/", "name": "The Ʌideo Redactor" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/"><span class="bar" aria-hidden="true"></span> The Redactor Tools</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Bulk metadata editors, one file type each</h1>
+  <p class="tagline">Four free, open-source Windows apps built around the same idea: load a batch of files, review every change before it's written, and never touch data you didn't ask it to touch.</p>
+
+  <div class="grid">
+    <a class="card" data-app="cbz" href="cbzredactor/">
+      <img class="icon" src="assets/img/cbzredactor.png" alt="The ƆBZ Redactor icon" width="56" height="56">
+      <div>
+        <h3>The ƆBZ Redactor</h3>
+        <p>Edit <code>ComicInfo.xml</code> metadata in CBZ comic archives — title, series, credits, and more — plus lookups against Comic Vine, the Grand Comics Database, and Bedetheque.</p>
+      </div>
+    </a>
+
+    <a class="card" data-app="epub" href="epubredactor/">
+      <img class="icon" src="assets/img/epubredactor.png" alt="The ƎPUB Redactor icon" width="56" height="56">
+      <div>
+        <h3>The ƎPUB Redactor</h3>
+        <p>Bulk-edit EPUB ebook metadata for Kobo and other e-readers, with Google Books / Open Library lookups, cover generation, and format conversion via Calibre.</p>
+      </div>
+    </a>
+
+    <a class="card" data-app="mp3" href="mp3redactor/">
+      <img class="icon" src="assets/img/mp3redactor.png" alt="The ɯP3 Redactor icon" width="56" height="56">
+      <div>
+        <h3>The ɯP3 Redactor</h3>
+        <p>Check MP3 file integrity, detect BPM and musical key, measure loudness, and bulk-edit tags across a whole library at once.</p>
+      </div>
+    </a>
+
+    <a class="card" data-app="video" href="videoredactor/">
+      <img class="icon" src="assets/img/videoredactor.png" alt="The Ʌideo Redactor icon" width="56" height="56">
+      <div>
+        <h3>The Ʌideo Redactor</h3>
+        <p>Bulk-edit MKV/MP4 metadata with TMDB lookups, season/episode matching, subtitle fetching, and poster art — for movies, TV, and everything in between.</p>
+      </div>
+    </a>
+  </div>
+
+  <h2>Why these exist</h2>
+  <p>Each app targets one file type and does the batch-editing job an mp3tag user would expect, with a review-before-write habit borrowed across the whole family: bulk edits, lookups, and renames all show a before/after preview with a per-item checkbox before anything actually gets written to disk.</p>
+  <p>They share a common UI/core library, <a href="https://github.com/Erlbon/redactor_common">redactor_common</a>, so a fix or feature built for one tends to show up in the others.</p>
+
+  <h2>Get the tools</h2>
+  <p>All four are free, open-source, and built for Windows. Each app's page below has its full feature list and a link to the latest release:</p>
+  <ul class="feature-list">
+    <li><a href="cbzredactor/">The ƆBZ Redactor</a> — CBZ / ComicInfo.xml metadata editor</li>
+    <li><a href="epubredactor/">The ƎPUB Redactor</a> — EPUB ebook metadata editor</li>
+    <li><a href="mp3redactor/">The ɯP3 Redactor</a> — MP3 tag &amp; integrity tool</li>
+    <li><a href="videoredactor/">The Ʌideo Redactor</a> — MKV/MP4 metadata editor</li>
+  </ul>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Source code for every app, plus <a href="https://github.com/Erlbon/redactor_common">redactor_common</a>, the shared library behind them, is on <a href="https://github.com/Erlbon">GitHub</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>
