@@ -163,6 +163,11 @@ ul.feature-list {
 }
 ul.feature-list li { margin-bottom: 10px; }
 
+.note {
+  color: var(--text-dim);
+  font-size: 0.9em;
+}
+
 /* App cards on the hub page */
 .grid {
   display: grid;
