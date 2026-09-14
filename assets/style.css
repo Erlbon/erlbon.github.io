@@ -79,6 +79,61 @@ main { padding: 48px 0 64px; }
   height: auto;
 }
 
+/* Epigraph: old, obsolete senses of "redact" quoted from Wiktionary */
+.dict-entry {
+  margin: 0 0 36px;
+  padding: 20px 22px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  font-style: normal;
+}
+
+.dict-headword {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.dict-headword .dict-pos {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-dim);
+  margin-left: 4px;
+}
+
+.dict-defs {
+  margin: 0;
+  padding-left: 1.6em;
+  color: var(--text-dim);
+  font-size: 0.97rem;
+}
+.dict-defs li { margin-bottom: 8px; }
+.dict-defs li:last-child { margin-bottom: 0; }
+.dict-defs li::marker { color: var(--text-dim); }
+
+.dict-tag {
+  font-size: 0.82em;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-dim);
+  opacity: 0.8;
+}
+.dict-date {
+  font-size: 0.9em;
+  color: var(--text-dim);
+  opacity: 0.7;
+}
+
+.dict-cite {
+  margin: 12px 0 0;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+.dict-cite a { color: var(--text-dim); }
+.dict-cite a:hover { color: var(--text); }
+
 h1 {
   font-size: 2rem;
   line-height: 1.25;
