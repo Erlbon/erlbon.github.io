@@ -109,6 +109,47 @@
   </ul>
   <p>They all share the <a href="https://github.com/Erlbon/redactor_common">redactor_common</a> repo for a unified appearance and functionality. There are enough format-specific differences to keep them as four separate apps rather than one big one.</p>
 
+  <h2>Formats</h2>
+  <p>Each app edits one native format in place, and can also pull in other formats by converting them first — via the same well-known external tools an mp3tag/Calibre/ffmpeg user would already recognize:</p>
+  <div class="table-wrap">
+    <table class="format-table">
+      <thead>
+        <tr>
+          <th>App</th>
+          <th>Reads &amp; writes</th>
+          <th>Also imports from</th>
+          <th>Converter(s)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><a href="cbzredactor/">ƆBZ Redactor</a></th>
+          <td>CBZ</td>
+          <td>CBR <span class="note">read-only, converted to CBZ first</span></td>
+          <td>rarfile + system unrar/unar</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="epubredactor/">ƎPUB Redactor</a></th>
+          <td>EPUB</td>
+          <td>MOBI, AZW/AZW3/AZW4, KFX, DOCX, ODT, RTF, TXT, FB2/FBZ, LIT, LRF, PDB, PML, CBZ/CBR/CBC, HTML/HTMLZ, CHM, SNB</td>
+          <td>Calibre <span class="note">ebook-convert, ebook-polish</span></td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="mp3redactor/">ɯP3 Redactor</a></th>
+          <td>MP3 <span class="note">ID3v2 tags</span></td>
+          <td>FLAC, WAV, OGG, M4A, AAC, WMA, Opus, AIFF</td>
+          <td>FFmpeg <span class="note">also mp3val, keyfinder-cli, aubio for integrity/key/BPM</span></td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="videoredactor/">Ʌideo Redactor</a></th>
+          <td>MP4, M4V, MKV</td>
+          <td>MKV → MP4 remux, or any source → H.264/AAC MP4</td>
+          <td>FFmpeg, MKVToolNix</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <h2>Get the tools</h2>
   <p>All four are free, open-source, and built for Windows. Each app's page below has its full feature list and a link to the latest release:</p>
   <ul class="feature-list">

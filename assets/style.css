@@ -168,6 +168,52 @@ ul.feature-list li { margin-bottom: 10px; }
   font-size: 0.9em;
 }
 
+/* Format-support table */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+}
+
+.format-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+  background: var(--panel);
+}
+
+.format-table th,
+.format-table td {
+  padding: 12px 16px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.format-table thead th {
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.format-table tbody th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.format-table tbody tr:last-child th,
+.format-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.format-table .note {
+  display: block;
+  margin-top: 2px;
+}
+
 /* App cards on the hub page */
 .grid {
   display: grid;
