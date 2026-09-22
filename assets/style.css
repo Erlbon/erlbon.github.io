@@ -288,6 +288,23 @@ ul.feature-list li { margin-bottom: 10px; }
 .sibling-list a:hover { border-color: var(--text-dim); }
 .sibling-list img { width: 20px; height: 20px; border-radius: 5px; }
 
+.screenshots { display: flex; flex-direction: column; gap: 18px; margin: 16px 0 8px; }
+.screenshots figure { margin: 0; }
+.screenshots img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  background: var(--panel);
+}
+.screenshots figcaption {
+  margin-top: 8px;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 footer {
   border-top: 1px solid var(--panel-border);
   padding: 28px 0 40px;
