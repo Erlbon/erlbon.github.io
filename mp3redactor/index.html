@@ -72,7 +72,9 @@
   <ul class="feature-list">
     <li><strong>File integrity check</strong> via <code>mp3val</code>, plus a <strong>Deep Check Integrity</strong> pass that does a real full decode, catching corrupt or truncated audio a header-only scan can miss.</li>
     <li><strong>BPM detection</strong> (in-process, via <code>aubio</code>) and <strong>musical key detection</strong> (via <code>keyfinder-cli</code>, run concurrently across files for a large speedup on multi-core machines).</li>
-    <li><strong>Bulk tag editing</strong> — Title/Artist/Album/Track/Year/Genre/Language via a tag panel, undoable, with Genre/Language quick-pick lists and fully manageable columns.</li>
+    <li><strong>Bulk tag editing</strong> — Title/Artist/Album Artist/Album/Track/Disc/Year/Genre/Composer/Comment/Language via a tag panel, undoable, with Genre/Language quick-pick lists and fully manageable columns.</li>
+    <li><strong>Cover art</strong> — a Cover column with thumbnails and a preview in the side panel. Set a cover from an image file, or from each file's own <code>cover.jpg</code>/<code>folder.jpg</code> so a selection spanning several albums gets each album's art at once. Remove or export covers too.</li>
+    <li><strong>Lyrics</strong> — fetch lyrics from <a href="https://lrclib.net">LRCLIB</a> (free, no API key) for one file or a whole selection, and edit them in a dedicated lyrics editor. Saved as a standard ID3v2 lyrics frame.</li>
     <li><strong>Measure Loudness</strong> — single-pass <code>loudnorm</code> measurement written as a standard ReplayGain tag, picked up by any ReplayGain-aware player.</li>
     <li><strong>Import &amp; Convert to MP3</strong> — brings FLAC/WAV/OGG/M4A and other formats into the library via <code>libmp3lame</code> at a chosen bitrate.</li>
     <li><strong>Rename / Export Files</strong> and <strong>Parse Filename → Metadata</strong>, pattern-based (<code>%track% - %artist% - %title%</code> by default) and previewed before committing.</li>
