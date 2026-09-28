@@ -49,7 +49,7 @@
     <img class="icon" src="../assets/img/cbzredactor.png" alt="The ƆBZ Redactor icon" width="72" height="72">
     <div>
       <h1>The ƆBZ Redactor</h1>
-      <p class="tagline" style="margin-bottom:0">A free CBZ metadata editor for Windows — read and write <code>ComicInfo.xml</code> without touching the page images.</p>
+      <p class="tagline" style="margin-bottom:0">A free CBZ metadata editor for Windows — read and write <code>ComicInfo.xml</code> without touching the page images, plus opt-in tools for oversized scans and CBR/CBT/CB7 conversion.</p>
     </div>
   </div>
 
@@ -70,7 +70,7 @@
 
   <h2>Features</h2>
   <ul class="feature-list">
-    <li>Load one or many <code>.cbz</code> files (or a whole folder) into a sortable, column-configurable table; multi-select for editing, saving, or looking up several issues at once.</li>
+    <li>Load one or many <code>.cbz</code> (or <code>.cbr</code>/<code>.cbt</code>/<code>.cb7</code>) files, or a whole folder, into a sortable, column-configurable table; multi-select for editing, saving, or looking up several issues at once.</li>
     <li><strong>Bulk edit</strong> the full ComicInfo.xml v2.0 field set, plus draft v2.1 fields already understood by ComicTagger and Kavita (Translator, Tags, StoryArcNumber, GTIN) — a field left blank is left untouched, not cleared.</li>
     <li><strong>Metadata lookups</strong> against Comic Vine, the Grand Comics Database, and Bedetheque, each with a cover preview and a confirm-before-write review step.</li>
     <li><strong>Overwrite review</strong>: any import that would replace metadata you already have shows old vs. new side by side, per field, per file, with a checkbox for exactly what to keep.</li>
@@ -78,7 +78,10 @@
     <li><strong>Search/Replace</strong> and <strong>Case Conversion</strong> across any field, with a before/after preview and a per-row apply checkbox.</li>
     <li><strong>Undo</strong> (up to 5 steps) for in-memory metadata edits — bulk edits, lookups, renames, search/replace, and case conversion.</li>
     <li>Genre and Language quick-pick lists, drag-to-reorder and hideable columns, and a resizable cover-image panel — all persisted across restarts.</li>
-    <li>Optional CBR → CBZ conversion on import.</li>
+    <li><strong>Size column</strong>: each comic's typical page width, color-coded — yellow for low-res (under 1000px), green for acceptable (1000–1599px), orange for oversized (1600px and up). Double-page spreads and a single huge cover don't skew it. A File Size column is available too.</li>
+    <li><strong>Resize Images</strong>: shrink oversized pages to a target width (1440px by default), with double-page spreads kept at double width. Optional height limit, optional JPEG or WebP output, and a one-click "only oversized files" mode. Never upscales; export copies or resize in place.</li>
+    <li><strong>Tag Low-Res Scans</strong>: marks low-res comics with a <code>Low-res scan</code> tag in ComicInfo.xml so you can find and replace them later — here, or in a comic server like Komga or Kavita.</li>
+    <li><strong>CBR, CBT and CB7 support</strong>: list them unconverted and convert from the table, convert automatically on load, or be asked each time. An <strong>Ext</strong> column shows each file's real format, so a ZIP renamed to <code>.cbr</code> is caught (and converted by a simple copy). Every conversion is verified before anything else happens, and originals are kept or moved to the Recycle Bin — never permanently deleted.</li>
   </ul>
 
   <h2>Requirements</h2>
