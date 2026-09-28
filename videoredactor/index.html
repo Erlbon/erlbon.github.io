@@ -75,6 +75,7 @@
     <li><strong>Season &amp; episode picker</strong> for TV — pick the exact episode after matching a show, so per-episode titles and air dates land correctly.</li>
     <li><strong>Subtitle fetching</strong> via OpenSubtitles, hash-matched against the exact file first (guaranteed sync), with a title-search fallback clearly flagged as sync-not-guaranteed.</li>
     <li><strong>Remux to MP4</strong> for MKV files — a fast, lossless container swap, not a re-encode.</li>
+    <li><strong>Check &amp; repair files</strong> — a quick health check (seconds per file, nothing decoded) finds read errors, files that end early from an interrupted download or copy, MKVs without a seek index, MP4s that can't start playing until fully loaded, and default-audio-track mix-ups. Repair rewrites the file losslessly, keeps its tags and cover, checks the result, and sends the original to the Recycle Bin.</li>
     <li><strong>Poster art</strong> saved as a sidecar image, the convention Plex/Jellyfin/Kodi already expect, plus a <strong>thumbnail preview</strong> pulled from a real frame of the video.</li>
   </ul>
 
