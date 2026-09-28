@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MP3 Redactor — Bulk MP3 Tag &amp; Integrity Checker for Windows</title>
-<meta name="description" content="The ɯP3 Redactor is a free Windows app for bulk MP3 tag editing, file integrity checks, BPM and key detection, and loudness measurement.">
+<title>MP3 Redactor — Bulk MP3 Tag &amp; Integrity Checker for Windows &amp; Linux</title>
+<meta name="description" content="The ɯP3 Redactor is a free Windows and Linux app for bulk MP3 tag editing, file integrity checks, BPM and key detection, and loudness measurement.">
 <link rel="canonical" href="https://erlbon.github.io/mp3redactor/">
 <link rel="icon" href="../assets/img/mp3redactor.png" type="image/png">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="The ɯP3 Redactor — Bulk MP3 Tag &amp; Integrity Checker">
-<meta property="og:description" content="Free Windows app for bulk MP3 tag editing, integrity checks, BPM/key detection, and loudness measurement.">
+<meta property="og:description" content="Free Windows and Linux app for bulk MP3 tag editing, integrity checks, BPM/key detection, and loudness measurement.">
 <meta property="og:url" content="https://erlbon.github.io/mp3redactor/">
 <meta property="og:image" content="https://erlbon.github.io/assets/img/screenshots/mp3redactor-1.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -23,10 +23,10 @@
   "@type": "SoftwareApplication",
   "name": "The ɯP3 Redactor",
   "alternateName": "MP3 Redactor",
-  "description": "A Windows GUI utility for bulk-checking and bulk-editing MP3 metadata, with mp3tag-inspired UX: integrity checks, BPM and key detection, loudness measurement, and tag editing.",
+  "description": "A Windows and Linux GUI utility for bulk-checking and bulk-editing MP3 metadata, with mp3tag-inspired UX: integrity checks, BPM and key detection, loudness measurement, and tag editing.",
   "url": "https://erlbon.github.io/mp3redactor/",
   "downloadUrl": "https://github.com/Erlbon/mp3redactor/releases/latest",
-  "operatingSystem": "Windows",
+  "operatingSystem": "Windows, Linux",
   "applicationCategory": "UtilitiesApplication",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -49,7 +49,7 @@
     <img class="icon" src="../assets/img/mp3redactor.png" alt="The ɯP3 Redactor icon" width="72" height="72">
     <div>
       <h1>The ɯP3 Redactor</h1>
-      <p class="tagline" style="margin-bottom:0">A free Windows utility for bulk-checking and bulk-editing MP3 metadata, mp3tag-inspired.</p>
+      <p class="tagline" style="margin-bottom:0">A free Windows and Linux utility for bulk-checking and bulk-editing MP3 metadata, mp3tag-inspired.</p>
     </div>
   </div>
 
@@ -82,7 +82,7 @@
   </ul>
 
   <h2>Requirements</h2>
-  <p>Windows, no separate Python install needed. Deep integrity checks, loudness measurement, and format conversion use <code>ffmpeg</code>; key detection uses a small companion binary from <a href="https://github.com/Erlbon/keyfinder-cli-windows">keyfinder-cli-windows</a> (no prebuilt Windows build exists upstream, so it's built and shipped separately). Full details and the changelog are in the <a href="https://github.com/Erlbon/mp3redactor">GitHub repository</a>.</p>
+  <p>Two downloads on each release: a standalone <code>.exe</code> for Windows, and <code>mp3redactor-linux-x86_64.tar.gz</code> for 64-bit Linux (Ubuntu 22.04+, Debian 12+, Fedora 36+, Mint 21+ and the like — unpack and run; settings live in <code>~/.config/mp3redactor/</code>). No separate Python install needed on either. Deep integrity checks, loudness measurement, and format conversion use <code>ffmpeg</code>; key detection uses <code>keyfinder-cli</code> — on Windows a small companion binary from <a href="https://github.com/Erlbon/keyfinder-cli-windows">keyfinder-cli-windows</a> (no prebuilt Windows build exists upstream, so it's built and shipped separately), on Linux the upstream <a href="https://github.com/EvanPurkhiser/keyfinder-cli">keyfinder-cli</a> on your PATH. The app never downloads or bundles these tools; point it at them with Settings &gt; Locate External Tools... if they aren't on PATH. Full details and the changelog are in the <a href="https://github.com/Erlbon/mp3redactor">GitHub repository</a>.</p>
 
   <h2>The rest of the family</h2>
   <p>The ɯP3 Redactor shares its UI and core editing patterns with three sibling tools, via <a href="https://github.com/Erlbon/redactor_common">redactor_common</a>:</p>
