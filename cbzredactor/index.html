@@ -87,6 +87,13 @@
   <h2>Requirements</h2>
   <p>Two downloads on each release: a standalone <code>.exe</code> for Windows, and <code>cbzredactor-linux-x86_64.tar.gz</code> for 64-bit Linux (Ubuntu 22.04+, Debian 12+, Fedora 36+, Mint 21+ and the like — unpack and run; settings live in <code>~/.config/cbzredactor/</code>). No separate Python install needed on either. Full details and the changelog are in the <a href="https://github.com/Erlbon/cbzredactor">GitHub repository</a>.</p>
 
+  <h2>Inspirations</h2>
+  <p>Two older tools shaped parts of this one — no code from either is used:</p>
+  <ul class="feature-list">
+    <li><strong><a href="https://zentastic.subcutis.net/blog/2012/01/30/zencbr-comic-book-archive-maintenance-utility/">ZenCBR</a></strong> by the late Shannon Larratt — the scene-tag handling behind Read Filename Tags (matching whole bracketed phrases against a learned list of release groups) and its name-cleaning rules. The built-in tag list was seeded from a ZenCBR training list.</li>
+    <li><strong><a href="https://github.com/tomek-o/CbxConverter">CbxConverter</a></strong> by tomek-o — the Size column and the Resize Images options (height limit, output format, width presets), done here in-process with Pillow instead of ImageMagick.</li>
+  </ul>
+
   <h2>The rest of the family</h2>
   <p>The ƆBZ Redactor shares its UI and core editing patterns with three sibling tools, via <a href="https://github.com/Erlbon/redactor_common">redactor_common</a>:</p>
   <div class="sibling-list">
