@@ -28,7 +28,21 @@
   "downloadUrl": "https://github.com/Erlbon/mp3redactor/releases/latest",
   "operatingSystem": "Windows, Linux",
   "applicationCategory": "UtilitiesApplication",
+  "softwareVersion": "2026-09-30#19",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "featureList": [
+    "Integrity check (mp3val) and full-decode Deep Check",
+    "BPM, musical key and loudness detection",
+    "Bulk ID3 tag editing with cover art and lyrics",
+    "MusicBrainz lookup and AcoustID identification by sound",
+    "Discogs lookup (needs your own free Discogs token)",
+    "Redact: check, fix and fill in a folder in one click",
+    "Scan results stamped into the MP3 file",
+    "Move into folders and tags from the folder path",
+    "Search and Replace and Change Case",
+    "Export and Import Settings",
+    "Discogs token in the operating system's credential store"
+  ],
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" },
   "isPartOf": { "@type": "WebSite", "name": "The Redactor Tools", "url": "https://erlbon.github.io/" }
@@ -78,12 +92,28 @@
     <li><strong>Lyrics</strong> — fetch lyrics from <a href="https://lrclib.net">LRCLIB</a> (free, no API key) for one file or a whole selection, and edit them in a dedicated lyrics editor. Saved as a standard ID3v2 lyrics frame.</li>
     <li><strong>Measure Loudness</strong> — single-pass <code>loudnorm</code> measurement written as a standard ReplayGain tag, picked up by any ReplayGain-aware player.</li>
     <li><strong>Import &amp; Convert to MP3</strong> — brings FLAC/WAV/OGG/M4A and other formats into the library via <code>libmp3lame</code> at a chosen bitrate.</li>
-    <li><strong>Rename / Export Files</strong> and <strong>Parse Filename → Metadata</strong>, pattern-based (<code>%track% - %artist% - %title%</code> by default) and previewed before committing. An optional <strong>ASCII-safe filenames</strong> option turns accented letters and typographic punctuation into plain ASCII (é→e, æ→ae, ß→ss). Renames can be taken back with <strong>File &gt; Undo Last Rename</strong>, even after a restart.</li>
+    <li><strong>Rename / Export / Move</strong> and <strong>Parse Filename → Metadata</strong>, pattern-based (<code>%track% - %artist% - %title%</code> by default) and previewed before committing. An optional <strong>ASCII-safe filenames</strong> option turns accented letters and typographic punctuation into plain ASCII (é→e, æ→ae, ß→ss). Renames can be taken back with <strong>File &gt; Undo Last Rename</strong>, even after a restart.</li>
     <li>Quick single-file rename by double-clicking a filename, without the full pattern tool.</li>
   </ul>
 
+  <h2>Redact, and everything since</h2>
+  <p>Everything below is in the current release. Redact is the one-click path; the individual tools above remain available.</p>
+  <p><strong>Redact steps:</strong> integrity check (mp3val) and fix what it can, BPM, key, loudness (ReplayGain), fill empty tags from the folder path, fill missing tags from MusicBrainz / AcoustID, fill empty tags from Discogs (only when a token is stored), and add a missing cover (folder image, or the Cover Art Archive). Existing tag values are never replaced unless the recipe says so. Optional, off by default: Deep Check (slow), rename by pattern (on once you have used Rename / Export) and move into library folders. Each new file is verified (it opens, same audio length, tags read back) before it replaces the original.</p>
+  <ul class="feature-list">
+    <li><strong>Redact</strong>: one click on the toolbar (or Edit &gt; Redact, Ctrl+Shift+E) runs an editable recipe of steps on the selected files, or on all loaded files after asking. Each changed file is saved in place and its original goes to the Recycle Bin, so the Recycle Bin is the undo. Guesses are applied only at or above a confidence threshold (90% by default); weaker ones are listed under <strong>Needs review</strong> and never written. Files with unsaved edits or that failed to load are skipped and named in the report. A saved recipe keeps the patterns it was saved with (the editor shows a <strong>pattern trail</strong> of where each pattern comes from), so changing the Rename / Export pattern later does not silently change what Redact does.</li>
+    <li><strong>Move into folders</strong>: Rename / Export / Move has a third mode that files each item into a folder tree under a library root, using a pattern with <code>/</code> in it. The preview shows each new path, nothing is overwritten (a taken name gets &ldquo;(2)&rdquo;), and <strong>File &gt; Undo Last Rename</strong> puts everything back and offers to remove the folders the move created.</li>
+    <li><strong>Metadata from the folder path</strong>: Parse Filename also reads folders. A pattern containing <code>/</code> is matched against the file name and the folders above it, counted from your library root, with a confidence shown per file. Redact has a matching step that fills only empty fields.</li>
+    <li><strong>Export / Import Settings</strong> (File menu): your recipe, pattern history, column layout and defaults in one JSON file for a new install or a second computer. Import shows every change before applying anything. Passwords, API keys and tokens are never included; tool paths and folders are offered unticked as &ldquo;this computer only&rdquo;.</li>
+    <li><strong>Command palette</strong> (Ctrl+K): type part of any menu command to find and run it. The menus follow one layout in all four apps: File, Edit, View, Metadata, Analyze, Tools, Help. <strong>Open in Default App</strong> is in the right-click menu, and <strong>Ctrl+S saves every changed file</strong> (Save All).</li>
+    <li><strong>Discogs lookup</strong> (Metadata &gt; Look Up &gt; Discogs, also in the right-click menu): finds the release each folder belongs to, shows its cover next to yours, lists other pressings (label, catalogue number, year, country) and sends every change through the per-field overwrite review. It needs <strong>your own free Discogs token</strong> (Tools &gt; API Keys), stored in your operating system&rsquo;s credential store, never in the settings file or a log. Publisher (label), Catalog Number and Release Country are editable fields, hidden in the table until you show them.</li>
+    <li><strong>Scan results stay in the file</strong>: Integrity and Deep Check results are saved inside the MP3 as ID3 frames (<code>REDACTOR_INTEGRITY</code> and <code>REDACTOR_DEEP_CHECK</code>: the result and a UTC timestamp), written when you Save, so the record survives copying. The columns show <code>OK &middot; date time</code>; files never scanned still say UNCHECKED.</li>
+    <li><strong>A failed tool is not a bad file</strong>: if mp3val or ffmpeg times out, crashes or cannot start, the status is <strong>TOOL ERROR</strong> (shown in orange), nothing is stamped and nothing is &ldquo;fixed&rdquo;.</li>
+    <li><strong>Search and Replace</strong> (Ctrl+H) and <strong>Change Case</strong> work on the selected files in memory (Undo reverts, Save writes), and <strong>Remove from List</strong> drops files from the list without touching them on disk.</li>
+    <li><strong>Saving no longer damages tags</strong>: only the fields you changed are rewritten, multi-valued frames are kept, the file&rsquo;s ID3v2.3 or v2.4 version is kept, and the write goes through a temporary copy that replaces the file.</li>
+  </ul>
+
   <h2>Requirements</h2>
-  <p>Two downloads on each release: a standalone <code>.exe</code> for Windows, and <code>mp3redactor-linux-x86_64.tar.gz</code> for 64-bit Linux (Ubuntu 22.04+, Debian 12+, Fedora 36+, Mint 21+ and the like — unpack and run; settings live in <code>~/.config/mp3redactor/</code>). No separate Python install needed on either. Deep integrity checks, loudness measurement, and format conversion use <code>ffmpeg</code>; key detection uses <code>keyfinder-cli</code> — on Windows a small companion binary from <a href="https://github.com/Erlbon/keyfinder-cli-windows">keyfinder-cli-windows</a> (no prebuilt Windows build exists upstream, so it's built and shipped separately), on Linux the upstream <a href="https://github.com/EvanPurkhiser/keyfinder-cli">keyfinder-cli</a> on your PATH. The app never downloads or bundles these tools; point it at them with Settings &gt; Locate External Tools... if they aren't on PATH. Full details and the changelog are in the <a href="https://github.com/Erlbon/mp3redactor">GitHub repository</a>.</p>
+  <p>Two downloads on each release: a standalone <code>.exe</code> for Windows, and <code>mp3redactor-linux-x86_64.tar.gz</code> for 64-bit Linux (Ubuntu 22.04+, Debian 12+, Fedora 36+, Mint 21+ and the like — unpack and run; settings live in <code>~/.config/mp3redactor/</code>). No separate Python install needed on either. Deep integrity checks, loudness measurement, and format conversion use <code>ffmpeg</code>; key detection uses <code>keyfinder-cli</code> — on Windows a small companion binary from <a href="https://github.com/Erlbon/keyfinder-cli-windows">keyfinder-cli-windows</a> (no prebuilt Windows build exists upstream, so it's built and shipped separately), on Linux the upstream <a href="https://github.com/EvanPurkhiser/keyfinder-cli">keyfinder-cli</a> on your PATH. The app never downloads or bundles these tools; point it at them with Tools &gt; External Tools... if they aren't on PATH. Full details and the changelog are in the <a href="https://github.com/Erlbon/mp3redactor">GitHub repository</a>.</p>
 
   <h2>The rest of the family</h2>
   <p>The ɯP3 Redactor shares its UI and core editing patterns with three sibling tools, via <a href="https://github.com/Erlbon/redactor_common">redactor_common</a>:</p>

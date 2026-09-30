@@ -28,7 +28,21 @@
   "downloadUrl": "https://github.com/Erlbon/cbzredactor/releases/latest",
   "operatingSystem": "Windows, Linux",
   "applicationCategory": "UtilitiesApplication",
+  "softwareVersion": "2026-09-30#19",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "featureList": [
+    "Edit ComicInfo.xml in CBZ archives in bulk",
+    "Lookups against Comic Vine, the Grand Comics Database and Bedetheque",
+    "Offline lookups in a local GCD database and a ComicRack library",
+    "Redact: convert, clean, fill in and fix in one click",
+    "Convert CBR, CB7 and CBT to CBZ",
+    "Validate / Fix Issues with a validation stamp in the file",
+    "Collection scan and report",
+    "Resize Images and Tag Low-Res Scans",
+    "Move into folders and metadata from the folder path",
+    "Export and Import Settings",
+    "Comic Vine key and GCD password in the operating system's credential store"
+  ],
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" },
   "isPartOf": { "@type": "WebSite", "name": "The Redactor Tools", "url": "https://erlbon.github.io/" }
@@ -77,7 +91,7 @@
     <li><strong>Compare your ComicRack library with the GCD</strong>: series and issues the GCD doesn't have, and GCD issues missing credits, characters or a summary your library has — saved as spreadsheets, ready to contribute back.</li>
     <li><strong>Read Filename Tags</strong>: scene-style filenames parsed into series, number, year and title, with bracketed tags sorted into Scan Information, Format and Notes — using pattern rules and a list of ~350 release groups. Only whole bracketed phrases count, so title words are never stripped.</li>
     <li><strong>Overwrite review</strong>: any import that would replace metadata you already have shows old vs. new side by side, per field, per file, with a checkbox for exactly what to keep.</li>
-    <li><strong>Rename / Export Files</strong> and its reverse, <strong>Parse Filename → Metadata</strong>, both built on a <code>%series% %number% - %title%</code>-style pattern using any ComicInfo field. An optional <strong>ASCII-safe filenames</strong> option turns accented letters and typographic punctuation into plain ASCII (é→e, æ→ae, ß→ss).</li>
+    <li><strong>Rename / Export / Move</strong> and its reverse, <strong>Parse Filename → Metadata</strong>, both built on a <code>%series% %number% - %title%</code>-style pattern using any ComicInfo field. An optional <strong>ASCII-safe filenames</strong> option turns accented letters and typographic punctuation into plain ASCII (é→e, æ→ae, ß→ss).</li>
     <li><strong>Search/Replace</strong> and <strong>Case Conversion</strong> across any field, with a before/after preview and a per-row apply checkbox.</li>
     <li><strong>Undo</strong> (up to 5 steps) for in-memory metadata edits — bulk edits, lookups, search/replace, case conversion and fixes — and <strong>File &gt; Undo Last Rename</strong> for renames, even after a restart.</li>
     <li><strong>Validate / Fix Issues</strong>: checks each ComicInfo.xml and proposes a fix per problem — page count out of step with the archive, impossible dates, scene tags or file extensions left in the series or title, <code>[nn]</code>/<code>#007</code> issue numbers, stray spaces, language codes — reviewed per finding, applied as one undoable step.</li>
@@ -90,6 +104,21 @@
     <li><strong>Find Duplicates</strong>: the same comic loaded more than once, matched by its pages rather than its name, with the best copy suggested (highest resolution, most pages, best-tagged).</li>
     <li><strong>Clean Up Archive Contents</strong>: pages inside each archive renamed to plain numbers in reading order and taken out of folders — removing release-group names and over-long paths — and junk files (Thumbs.db, .DS_Store, __MACOSX, .nfo, .sfv ...) removed. Pages and ComicInfo.xml untouched.</li>
     <li><strong>CBR, CBT and CB7 support</strong>: list them unconverted and convert from the table, convert automatically on load, or be asked each time. An <strong>Ext</strong> column shows each file's real format, so a ZIP renamed to <code>.cbr</code> is caught (and converted by a simple copy). Every conversion is verified before anything else happens, and originals are kept or moved to the Recycle Bin — never permanently deleted.</li>
+  </ul>
+
+  <h2>Redact, and everything since</h2>
+  <p>Everything below is in the current release. Redact is the one-click path; the individual tools above remain available.</p>
+  <p><strong>Redact steps:</strong> convert CBR/CB7/CBT to CBZ, clean up archive contents, fill empty fields from the filename, the folder path and a database (local GCD or ComicRack first, then Comic Vine when a key is saved), fix ComicInfo issues, tag low-res scans, and rename by pattern once you have used one. Optional, off by default: remove known credit pages, resize oversized pages to 1440 px, and move into folders.</p>
+  <ul class="feature-list">
+    <li><strong>Redact</strong>: one click on the toolbar (or Edit &gt; Redact, Ctrl+Shift+E) runs an editable recipe of steps on the selected files, or on all loaded files after asking. Each changed file is saved in place and its original goes to the Recycle Bin, so the Recycle Bin is the undo. Guesses are applied only at or above a confidence threshold (90% by default); weaker ones are listed under <strong>Needs review</strong> and never written. Files with unsaved edits or that failed to load are skipped and named in the report. A saved recipe keeps the patterns it was saved with (the editor shows a <strong>pattern trail</strong> of where each pattern comes from), so changing the Rename / Export pattern later does not silently change what Redact does.</li>
+    <li><strong>Move into folders</strong>: Rename / Export / Move has a third mode that files each item into a folder tree under a library root, using a pattern with <code>/</code> in it. The preview shows each new path, nothing is overwritten (a taken name gets &ldquo;(2)&rdquo;), and <strong>File &gt; Undo Last Rename</strong> puts everything back and offers to remove the folders the move created.</li>
+    <li><strong>Metadata from the folder path</strong>: Parse Filename also reads folders. A pattern containing <code>/</code> is matched against the file name and the folders above it, counted from your library root, with a confidence shown per file. Redact has a matching step that fills only empty fields.</li>
+    <li><strong>Export / Import Settings</strong> (File menu): your recipe, pattern history, column layout and defaults in one JSON file for a new install or a second computer. Import shows every change before applying anything. Passwords, API keys and tokens are never included; tool paths and folders are offered unticked as &ldquo;this computer only&rdquo;.</li>
+    <li><strong>Command palette</strong> (Ctrl+K): type part of any menu command to find and run it. The menus follow one layout in all four apps: File, Edit, View, Metadata, Repair, Tools, Help. <strong>Open in Default App</strong> is in the right-click menu, and <strong>Ctrl+S saves every changed file</strong> (Save All).</li>
+    <li><strong>API keys stay out of the settings file</strong>: the Comic Vine key and the GCD account are stored in your operating system&rsquo;s credential store (Windows Credential Manager, macOS Keychain or the Linux keyring), entered in one <strong>Tools &gt; API Keys&hellip;</strong> dialog that never shows the stored value. Where there is no credential store, the app asks before falling back to an unencrypted file.</li>
+    <li><strong>Validation stamp</strong>: Validate / Fix Issues records the result (OK, or ISSUES while something is left to fix) and the time inside the CBZ, in a small <code>&lt;RedactorScan&gt;</code> element in ComicInfo.xml, written when you Save. Other readers such as ComicRack, Kavita and ComicTagger skip it. If the pages change afterwards, the Status column says &ldquo;(changed since)&rdquo;.</li>
+    <li><strong>Collection tools</strong> (Scan Collection Folder, Collection Report, Compare Library with GCD) live in a <strong>Collection</strong> submenu under Tools.</li>
+    <li><strong>Safer saves</strong>: Save and Resize replace the original atomically, temp files are cleaned up after any failure, a failed conversion fails just that file instead of stopping the batch, and CBT archives are extracted without following <code>../</code> names, absolute paths or links.</li>
   </ul>
 
   <h2>Requirements</h2>

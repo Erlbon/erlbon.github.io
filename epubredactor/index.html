@@ -28,7 +28,21 @@
   "downloadUrl": "https://github.com/Erlbon/epubredactor/releases/latest",
   "operatingSystem": "Windows, Linux",
   "applicationCategory": "UtilitiesApplication",
+  "softwareVersion": "2026-09-30#16",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "featureList": [
+    "Bulk-edit EPUB metadata",
+    "Lookups against Google Books and Open Library",
+    "Redact: repair, fill in and file books in one click",
+    "Generate Table of Contents for books that have none",
+    "Multilingual content scan (English, Norwegian, German, French, Italian)",
+    "Validate / Fix Issues with a validation stamp in the OPF",
+    "Cover generation and cover quality checks",
+    "Import to EPUB via Calibre",
+    "Move into folders and metadata from the folder path",
+    "Export and Import Settings",
+    "Send to Kobo"
+  ],
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" },
   "isPartOf": { "@type": "WebSite", "name": "The Redactor Tools", "url": "https://erlbon.github.io/" }
@@ -75,9 +89,25 @@
     <li><strong>Import to EPUB</strong> — converts MOBI, AZW/AZW3, DOCX, RTF, TXT, FB2, and more to EPUB via your Calibre installation, then adds the results straight into the working list.</li>
     <li><strong>Generate Cover from Metadata</strong> — creates a placeholder cover (title, author, series) entirely offline, for books missing one.</li>
     <li><strong>Cover quality</strong>: a Cover column shows each cover's size — yellow for low-resolution, red when missing — and <strong>Find Better Covers</strong> looks up Open Library's cover by ISBN, offering only larger ones, side by side before anything changes.</li>
-    <li><strong>Case Conversion</strong> (UPPERCASE / lowercase / Title Case / Sentence case) and <strong>Number Series</strong> (sequential Series # across a batch, fractional steps supported), both with a live preview before applying.</li>
-    <li><strong>Rename / Export Files</strong> and <strong>Parse Filename → Metadata</strong>, pattern-based and previewed before committing. An optional <strong>ASCII-safe filenames</strong> option turns accented letters and typographic punctuation into plain ASCII (é→e, æ→ae, ß→ss). Renames can be taken back with <strong>File &gt; Undo Last Rename</strong>, even after a restart.</li>
+    <li><strong>Change Case</strong> (UPPERCASE / lowercase / Title Case / Sentence case) and <strong>Number Series</strong> (sequential Series # across a batch, fractional steps supported), both with a live preview before applying.</li>
+    <li><strong>Rename / Export / Move</strong> and <strong>Parse Filename → Metadata</strong>, pattern-based and previewed before committing. An optional <strong>ASCII-safe filenames</strong> option turns accented letters and typographic punctuation into plain ASCII (é→e, æ→ae, ß→ss). Renames can be taken back with <strong>File &gt; Undo Last Rename</strong>, even after a restart.</li>
     <li>Drag-to-reorder, hideable columns; a resizable cover-image panel; Genre and Language quick-pick lists — all persisted across restarts.</li>
+  </ul>
+
+  <h2>Redact, and everything since</h2>
+  <p>Everything below is in the current release. Redact is the one-click path; the individual tools above remain available.</p>
+  <p><strong>Redact steps:</strong> fix validation issues, deduplicate manifest ids, rebuild the manifest, repair navigation, generate a table of contents (a real one from headings is applied; a generic &ldquo;Section N&rdquo; one goes to review), strip HTML from the description, detect a blank language, read ISBN, publisher, year and series from the front matter, fill empty fields online by ISBN (Google Books, Open Library), cover (by ISBN for a missing or junk-flagged one, else a generated cover when there is none), fill empty fields from the folder path, and rename by your latest pattern once you have used one. Optional, off by default: remove orphan files and move into folders. Each changed book is written to a temp file, checked (it reopens, nothing lost, no new errors) and only then swapped in.</p>
+  <ul class="feature-list">
+    <li><strong>Redact</strong>: one click on the toolbar (or Edit &gt; Redact, Ctrl+Shift+E) runs an editable recipe of steps on the selected files, or on all loaded files after asking. Each changed file is saved in place and its original goes to the Recycle Bin, so the Recycle Bin is the undo. Guesses are applied only at or above a confidence threshold (90% by default); weaker ones are listed under <strong>Needs review</strong> and never written. Files with unsaved edits or that failed to load are skipped and named in the report. A saved recipe keeps the patterns it was saved with (the editor shows a <strong>pattern trail</strong> of where each pattern comes from), so changing the Rename / Export pattern later does not silently change what Redact does.</li>
+    <li><strong>Move into folders</strong>: Rename / Export / Move has a third mode that files each item into a folder tree under a library root, using a pattern with <code>/</code> in it. The preview shows each new path, nothing is overwritten (a taken name gets &ldquo;(2)&rdquo;), and <strong>File &gt; Undo Last Rename</strong> puts everything back and offers to remove the folders the move created.</li>
+    <li><strong>Metadata from the folder path</strong>: Parse Filename also reads folders. A pattern containing <code>/</code> is matched against the file name and the folders above it, counted from your library root, with a confidence shown per file. Redact has a matching step that fills only empty fields.</li>
+    <li><strong>Export / Import Settings</strong> (File menu): your recipe, pattern history, column layout and defaults in one JSON file for a new install or a second computer. Import shows every change before applying anything. Passwords, API keys and tokens are never included; tool paths and folders are offered unticked as &ldquo;this computer only&rdquo;.</li>
+    <li><strong>Command palette</strong> (Ctrl+K): type part of any menu command to find and run it. The menus follow one layout in all four apps: File, Edit, View, Metadata, Repair, Send, Tools, Help. <strong>Open in Default App</strong> is in the right-click menu, and <strong>Ctrl+S saves every changed file</strong> (Save All).</li>
+    <li><strong>Generate Table of Contents</strong> (Repair menu): books with no table of contents at all, typical of badly converted scanned-PDF EPUBs, get one built from their h1&ndash;h3 headings (or page titles) in reading order. You tick which books to touch and preview the entries first. An NCX is written for every book, plus an EPUB3 nav document for EPUB3 books; chapter files are never modified.</li>
+    <li><strong>Scan Content for Metadata in five languages</strong>: front matter and the last pages (colophon) are read in English, Norwegian, German, French and Italian, suggesting publisher, year, edition, the book&rsquo;s language, and series and volume, each with a confidence. Translator, editor and illustrator are shown for information only, since the app has no field to store them. Nothing is applied without review.</li>
+    <li><strong>Validation stamp</strong>: Validate / Fix Issues records when a book was checked and the result in the EPUB&rsquo;s OPF (<code>redactor:validation</code>), written when you Save, so it follows the file when you copy it. The Status column shows the time, and &ldquo;(changed since)&rdquo; if the book&rsquo;s files changed afterwards. DRM-protected and unreadable books are never stamped.</li>
+    <li><strong>DRM-aware and safer</strong>: a cover that is DRM-encrypted is kept (Replace Cover, Generate Cover and Compress Images skip it); manifests that use percent-encoded file names (<code>ch%201.xhtml</code>, accented names) are read correctly, so files are no longer wrongly reported missing or removed; saving replaces the original atomically and leaves no temp file after a failure; and one unreadable book cannot abort loading a batch.</li>
+    <li><strong>Send to Kobo</strong> finds the reader on Linux (<code>/media/$USER</code>, <code>/run/media/$USER</code>) and macOS (<code>/Volumes</code>) as well as on Windows drives.</li>
   </ul>
 
   <h2>Requirements</h2>

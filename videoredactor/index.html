@@ -28,7 +28,20 @@
   "downloadUrl": "https://github.com/Erlbon/videoredactor/releases/latest",
   "operatingSystem": "Windows, Linux",
   "applicationCategory": "UtilitiesApplication",
+  "softwareVersion": "2026-09-30#18",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "featureList": [
+    "Bulk-edit MP4 and MKV metadata",
+    "TMDB and TheTVDB lookups with season and episode matching",
+    "Subtitle fetching from OpenSubtitles",
+    "Remux MKV to MP4 keeping every track, verified before the original is offered for deletion",
+    "Check and repair files, with a check stamp in the file",
+    "Find Duplicates by perceptual frame hash (review only)",
+    "Redact: check, fill in and look up in one click",
+    "Move into folders and metadata from the folder path",
+    "Export and Import Settings",
+    "TMDB, TheTVDB and OpenSubtitles keys in the operating system's credential store"
+  ],
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" },
   "isPartOf": { "@type": "WebSite", "name": "The Redactor Tools", "url": "https://erlbon.github.io/" }
@@ -71,17 +84,34 @@
   <h2>Features</h2>
   <ul class="feature-list">
     <li><strong>Bulk-edit metadata</strong> across MP4 and MKV files from one panel: title, description, genre, cast, director, season/episode numbering, and more — with a Content Type filter (Movie / TV / Music Video / Clip / Misc) that shows only the fields relevant to your selection.</li>
-    <li><strong>TMDB lookup</strong> — search and match a file against The Movie Database, pulling in cast, crew, synopsis, and poster art. Every match is confirmed by hand; nothing is auto-applied.</li>
+    <li><strong>TMDB lookup</strong> — search and match a file against The Movie Database, pulling in cast, crew, synopsis, and poster art. Every match in the lookup dialogs is confirmed by hand.</li>
     <li><strong>Season &amp; episode picker</strong> for TV — pick the exact episode after matching a show, so per-episode titles and air dates land correctly.</li>
     <li><strong>Subtitle fetching</strong> via OpenSubtitles, hash-matched against the exact file first (guaranteed sync), with a title-search fallback clearly flagged as sync-not-guaranteed.</li>
-    <li><strong>Remux to MP4</strong> for MKV files — a fast, lossless container swap, not a re-encode.</li>
-    <li><strong>Rename / Export by Pattern</strong>, previewed before committing. An optional <strong>ASCII-safe filenames</strong> option turns accented letters and typographic punctuation into plain ASCII (é→e, æ→ae, ß→ss). Renames can be taken back with <strong>File &gt; Undo Last Rename</strong>, even after a restart.</li>
+    <li><strong>Remux to MP4</strong> for MKV files — a fast, lossless container swap, not a re-encode, with every track kept and the result verified (details below).</li>
+    <li><strong>Rename / Export / Move</strong>, previewed before committing. An optional <strong>ASCII-safe filenames</strong> option turns accented letters and typographic punctuation into plain ASCII (é→e, æ→ae, ß→ss). Renames can be taken back with <strong>File &gt; Undo Last Rename</strong>, even after a restart.</li>
     <li><strong>Check &amp; repair files</strong> — a quick health check (seconds per file, nothing decoded) finds read errors, files that end early from an interrupted download or copy, MKVs without a seek index, MP4s that can't start playing until fully loaded, and default-audio-track mix-ups. Repair rewrites the file losslessly, keeps its tags and cover, checks the result, and sends the original to the Recycle Bin.</li>
     <li><strong>Poster art</strong> saved as a sidecar image, the convention Plex/Jellyfin/Kodi already expect, plus a <strong>thumbnail preview</strong> pulled from a real frame of the video.</li>
   </ul>
 
+  <h2>Redact, and everything since</h2>
+  <p>Everything below is in the current release. Redact is the one-click path; the individual tools above remain available.</p>
+  <p><strong>Redact steps:</strong> check and repair (stamped into the file; a file that a lossless remux fully fixes is repaired, a damaged one is only reported), fill empty tags from the filename, fill empty tags from the folder path, and look up metadata (TMDB, TheTVDB as the TV fallback; empty fields only). Optional, off by default: download a missing subtitle (hash match applied, title match reviewed), remux MKV to MP4 (verified) and move into folders. A guess such as a title-only match is listed under Needs review, not applied. Each changed file is rewritten on a scratch copy, verified (tags read back, same streams and duration) and swapped in.</p>
+  <ul class="feature-list">
+    <li><strong>Redact</strong>: one click on the toolbar (or Edit &gt; Redact, Ctrl+Shift+E) runs an editable recipe of steps on the selected files, or on all loaded files after asking. Each changed file is saved in place and its original goes to the Recycle Bin, so the Recycle Bin is the undo. Guesses are applied only at or above a confidence threshold (90% by default); weaker ones are listed under <strong>Needs review</strong> and never written. Files with unsaved edits or that failed to load are skipped and named in the report. A saved recipe keeps the patterns it was saved with (the editor shows a <strong>pattern trail</strong> of where each pattern comes from), so changing the Rename / Export pattern later does not silently change what Redact does.</li>
+    <li><strong>Move into folders</strong>: Rename / Export / Move has a third mode that files each item into a folder tree under a library root, using a pattern with <code>/</code> in it. The preview shows each new path, nothing is overwritten (a taken name gets &ldquo;(2)&rdquo;), and <strong>File &gt; Undo Last Rename</strong> puts everything back and offers to remove the folders the move created.</li>
+    <li><strong>Metadata from the folder path</strong>: Parse Filename also reads folders. A pattern containing <code>/</code> is matched against the file name and the folders above it, counted from your library root, with a confidence shown per file. Redact has a matching step that fills only empty fields.</li>
+    <li><strong>Export / Import Settings</strong> (File menu): your recipe, pattern history, column layout and defaults in one JSON file for a new install or a second computer. Import shows every change before applying anything. Passwords, API keys and tokens are never included; tool paths and folders are offered unticked as &ldquo;this computer only&rdquo;.</li>
+    <li><strong>Command palette</strong> (Ctrl+K): type part of any menu command to find and run it. The menus follow one layout in all four apps: File, Edit, View, Metadata, Media, Tools, Help. <strong>Open in Default App</strong> is in the right-click menu, and <strong>Ctrl+S saves every changed file</strong> (Save All).</li>
+    <li><strong>Remux you can trust</strong>: Remux to MP4 keeps every audio, subtitle and attachment track it can (falling back to fewer streams only where MP4 refuses some), compares the result with the original (tracks and length), and only offers to delete the original when nothing is missing; otherwise the original is kept and you are told why. The original goes to the Recycle Bin, and the work runs in the background with a working Cancel.</li>
+    <li><strong>Clearing a field sticks</strong>: emptying a value and saving now removes it from the file (MKV and MP4), and save verification checks that cleared fields read back empty. Global MKV tags written by other tools are carried over.</li>
+    <li><strong>Find Duplicates</strong> (review only): groups loaded videos that are probably the same by length and then a 64-bit perceptual hash of one frame, so a re-encode or another resolution still matches. Nothing changes automatically: reveal in folder, open, select in the list, or move to the Recycle Bin after asking.</li>
+    <li><strong>Check stamp in the file</strong>: Check Files records the result and time inside the video (MKV global tag or MP4 freeform atom <code>REDACTOR_CHECK</code>), written when you Save, with a fingerprint so the Status column can say &ldquo;(changed since)&rdquo; after a truncation or re-encode.</li>
+    <li><strong>API keys</strong> for TMDB, TheTVDB and OpenSubtitles are stored in your operating system&rsquo;s credential store, entered under <strong>Tools &gt; API Keys&hellip;</strong> with the stored value never shown. The environment variables (<code>TMDB_API_KEY</code> and so on) still take priority.</li>
+    <li><strong>Open Files and Remove from List</strong>: add individual videos with Open Files, and drop files from the list (Delete key) without touching them on disk. Lookups run in the background instead of freezing the window.</li>
+  </ul>
+
   <h2>Design principles</h2>
-  <p>Never write metadata you didn't confirm — TMDB and subtitle matches always go through a picker, never an auto-applied "confident" guess. A file that can't load, save, or match shows a clear error instead of being silently skipped. Metadata reads/writes go through <code>mutagen</code> and <code>mkvpropedit</code>/<code>mkvmerge</code> rather than reimplementing container formats by hand.</p>
+  <p>Never write metadata by surprise — in the lookup dialogs, TMDB and subtitle matches always go through a picker. The one exception is Redact, which you start yourself: it applies only matches at or above your confidence threshold (and only to empty fields), lists everything else under Needs review, and sends each original to the Recycle Bin. A file that can't load, save, or match shows a clear error instead of being silently skipped. Metadata reads/writes go through <code>mutagen</code> and <code>mkvpropedit</code>/<code>mkvmerge</code> rather than reimplementing container formats by hand.</p>
 
   <h2>Requirements</h2>
   <p>Two downloads on each release: a standalone <code>.exe</code> for Windows, and <code>videoredactor-linux-x86_64.tar.gz</code> for 64-bit Linux (Ubuntu 22.04+, Debian 12+, Fedora 36+, Mint 21+ and the like — unpack and run; settings live in <code>~/.config/videoredactor/</code>). No separate Python install needed on either. Remuxing and thumbnail extraction need <code>ffmpeg</code>; MKV metadata read/write needs <a href="https://mkvtoolnix.download/">MKVToolNix</a> — the app warns on first launch if either is missing from PATH. Full details and the changelog are in the <a href="https://github.com/Erlbon/videoredactor">GitHub repository</a>.</p>

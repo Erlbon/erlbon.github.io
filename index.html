@@ -69,7 +69,7 @@
       <img class="icon" src="assets/img/cbzredactor.png" alt="The ƆBZ Redactor icon" width="56" height="56">
       <div>
         <h3>The ƆBZ Redactor</h3>
-        <p>Edit <code>ComicInfo.xml</code> metadata in CBZ comic archives — title, series, credits, and more — plus lookups against Comic Vine, the Grand Comics Database, and Bedetheque, spotting and shrinking oversized scans, and CBR/CBT/CB7 conversion.</p>
+        <p>Edit <code>ComicInfo.xml</code> metadata in CBZ comic archives — title, series, credits, and more — plus lookups against Comic Vine, the Grand Comics Database, and Bedetheque, spotting and shrinking oversized scans, CBR/CBT/CB7 conversion, and a one-click Redact.</p>
       </div>
     </a>
 
@@ -77,7 +77,7 @@
       <img class="icon" src="assets/img/epubredactor.png" alt="The ƎPUB Redactor icon" width="56" height="56">
       <div>
         <h3>The ƎPUB Redactor</h3>
-        <p>Bulk-edit EPUB ebook metadata for Kobo and other e-readers, with Google Books / Open Library lookups, cover generation, and format conversion via Calibre.</p>
+        <p>Bulk-edit EPUB ebook metadata for Kobo and other e-readers, with Google Books / Open Library lookups, cover generation, Table of Contents generation, and format conversion via Calibre.</p>
       </div>
     </a>
 
@@ -85,7 +85,7 @@
       <img class="icon" src="assets/img/mp3redactor.png" alt="The ɯP3 Redactor icon" width="56" height="56">
       <div>
         <h3>The ɯP3 Redactor</h3>
-        <p>Check MP3 file integrity, detect BPM and musical key, measure loudness, and bulk-edit tags across a whole library at once.</p>
+        <p>Check MP3 file integrity, detect BPM and musical key, measure loudness, look albums up on MusicBrainz and Discogs, and bulk-edit tags across a whole library at once.</p>
       </div>
     </a>
 
@@ -93,7 +93,7 @@
       <img class="icon" src="assets/img/videoredactor.png" alt="The Ʌideo Redactor icon" width="56" height="56">
       <div>
         <h3>The Ʌideo Redactor</h3>
-        <p>Bulk-edit MKV/MP4 metadata with TMDB lookups, season/episode matching, subtitle fetching, and poster art — for movies, TV, and everything in between.</p>
+        <p>Bulk-edit MKV/MP4 metadata with TMDB lookups, season/episode matching, subtitle fetching, file checks and repair, duplicate finding, and poster art — for movies, TV, and everything in between.</p>
       </div>
     </a>
   </div>
@@ -150,6 +150,17 @@
     </table>
   </div>
 
+  <h2>What all four share</h2>
+  <p>Because they share <a href="https://github.com/Erlbon/redactor_common">redactor_common</a>, the same things work the same way in every app:</p>
+  <ul class="feature-list">
+    <li><strong>Redact</strong>: one click runs an editable recipe on the selected files. Each changed file is saved in place and its original goes to the Recycle Bin. Guesses are applied only above a confidence threshold; the rest is listed under Needs review.</li>
+    <li><strong>Move into folders</strong> in Rename / Export / Move, under a library root, with undo; and <strong>metadata from the folder path</strong>, the same kind of pattern read in reverse.</li>
+    <li><strong>Export / Import Settings</strong> to carry your setup to another computer. Secrets are never included.</li>
+    <li><strong>Command palette</strong> (Ctrl+K), one standard menu layout (File, Edit, View, the app&rsquo;s own menus, Tools, Help), Open in Default App, and Ctrl+S to save every changed file.</li>
+    <li><strong>Keys and tokens in the credential store</strong>: where an app uses an online service key (Comic Vine and GCD in the ƆBZ Redactor; TMDB, TheTVDB and OpenSubtitles in the Ʌideo Redactor; a Discogs token in the ɯP3 Redactor), it is stored in your operating system&rsquo;s credential store, not in a settings file.</li>
+    <li><strong>Safe in-place saves</strong>: a file is replaced only after the new copy is written and verified, so a failed save never loses the original.</li>
+  </ul>
+
   <h2>Get the tools</h2>
   <p>All four are free, open-source, and run on Windows and Linux (each release has a standalone <code>.exe</code> and a Linux download). Each app's page below has its full feature list and a link to the latest release:</p>
   <ul class="feature-list">
@@ -157,6 +168,13 @@
     <li><a href="epubredactor/">The ƎPUB Redactor</a> — EPUB ebook metadata editor</li>
     <li><a href="mp3redactor/">The ɯP3 Redactor</a> — MP3 tag &amp; integrity tool</li>
     <li><a href="videoredactor/">The Ʌideo Redactor</a> — MKV/MP4 metadata editor</li>
+  </ul>
+
+  <h2>Credits</h2>
+  <p>The ƆBZ Redactor was inspired by two older comic-archive tools. ZenCBR&rsquo;s behavior was studied; its code was never copied, and no code from either tool is used.</p>
+  <ul class="feature-list">
+    <li><a href="https://zentastic.subcutis.net/blog/2012/01/30/zencbr-comic-book-archive-maintenance-utility/">ZenCBR</a> by Shannon Larratt (2012), for scene-tag handling and name cleaning.</li>
+    <li><a href="https://github.com/tomek-o/CbxConverter">CbxConverter</a> by tomek-o, for the Size column and the Resize Images options.</li>
   </ul>
 </main>
 
