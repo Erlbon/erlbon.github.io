@@ -161,6 +161,63 @@
     <li><strong>Safe in-place saves</strong>: a file is replaced only after the new copy is written and verified, so a failed save never loses the original.</li>
   </ul>
 
+  <h2 id="sources">Sources at a glance</h2>
+  <p>None of the four apps needs an outside source to edit, check or convert files. Where an app can look metadata up, it does so in three ways: from an <strong>online</strong> service, from a <strong>local</strong> database built from files you download yourself, or from the <strong>file itself</strong> (its name, folder, tags or text). Nothing is bundled and nothing is downloaded automatically; online sources are asked only when you run a lookup. Where a service needs a key or token, you register for it yourself and the app keeps it in your operating system&rsquo;s credential store. Each app&rsquo;s page has the full detail under &ldquo;Where the metadata comes from&rdquo;.</p>
+  <div class="table-wrap">
+    <table class="format-table">
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th><a href="cbzredactor/#sources">ƆBZ</a></th>
+          <th><a href="epubredactor/#sources">ƎPUB</a></th>
+          <th><a href="mp3redactor/#sources">ɯP3</a></th>
+          <th><a href="videoredactor/#sources">Ʌideo</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th scope="colgroup" colspan="5">Online sources</th></tr>
+        <tr><th scope="row">Comic Vine <span class="note">your own free key</span></th><td>✓</td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">Grand Comics Database <span class="note">web API; account optional</span></th><td>✓</td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">Bedetheque <span class="note">web pages, not an API</span></th><td>✓</td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">Google Books</th><td></td><td>✓</td><td></td><td></td></tr>
+        <tr><th scope="row">Open Library <span class="note">web API and cover images</span></th><td></td><td>✓</td><td></td><td></td></tr>
+        <tr><th scope="row">Calibre <span class="note">through your own install</span></th><td></td><td>✓</td><td></td><td></td></tr>
+        <tr><th scope="row">MusicBrainz</th><td></td><td></td><td>✓</td><td></td></tr>
+        <tr><th scope="row">AcoustID <span class="note">needs the free fpcalc tool</span></th><td></td><td></td><td>✓</td><td></td></tr>
+        <tr><th scope="row">Discogs <span class="note">your own free token</span></th><td></td><td></td><td>✓</td><td></td></tr>
+        <tr><th scope="row">Cover Art Archive</th><td></td><td></td><td>✓</td><td></td></tr>
+        <tr><th scope="row">LRCLIB lyrics</th><td></td><td></td><td>✓</td><td></td></tr>
+        <tr><th scope="row">TMDB <span class="note">your own key</span></th><td></td><td></td><td></td><td>✓</td></tr>
+        <tr><th scope="row">TheTVDB <span class="note">your own key</span></th><td></td><td></td><td></td><td>✓</td></tr>
+        <tr><th scope="row">OpenSubtitles <span class="note">your own key; subtitles</span></th><td></td><td></td><td></td><td>✓</td></tr>
+        <tr><th scope="colgroup" colspan="5">Local (offline) sources, built from files you supply</th></tr>
+        <tr><th scope="row">GCD data dump <span class="note">SQLite</span></th><td>✓</td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">ComicRack library <span class="note">from your own ComicDb.xml</span></th><td>✓</td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">Open Library data dumps</th><td></td><td>✓</td><td></td><td></td></tr>
+        <tr><th scope="row">MusicBrainz core-data dump</th><td></td><td></td><td>✓</td><td></td></tr>
+        <tr><th scope="row">IMDb datasets</th><td></td><td></td><td></td><td>✓</td></tr>
+        <tr><th scope="colgroup" colspan="5">From the file itself</th></tr>
+        <tr><th scope="row">Filename and folder path</th><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><th scope="row">The file&rsquo;s own text or tags</th><td></td><td>✓ <span class="note">front-matter scan</span></td><td>✓ <span class="note">tags</span></td><td></td></tr>
+        <tr><th scope="row">Folder image</th><td></td><td></td><td>✓</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">All of this is optional. With no key, no database and no network, every app still edits, checks and converts your files. Redact (above) uses a local database first when one is set up, then the online sources for whatever is still empty, and applies only matches above its confidence threshold.</p>
+
+  <h2 id="data-licences">Data and licences</h2>
+  <p>The data belongs to the services and projects below, not to these apps. Local databases are your own private copy, built from files you download under each source&rsquo;s own terms. Notices the sources ask for:</p>
+  <ul class="feature-list">
+    <li><strong>Grand Comics Database</strong> (ƆBZ): comics.org states that GCD data is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0</a> (CC BY-SA 4.0). Credit the <a href="https://www.comics.org/">Grand Comics Database</a>, link the licence and say if you changed anything; data derived from it that you share must carry the same licence. GCD data is the work of GCD&rsquo;s volunteers.</li>
+    <li><strong>Open Library</strong> (ƎPUB): Open Library says its catalogue was dedicated to the public domain by the libraries that donated it and that contributions are CC0 (<a href="https://openlibrary.org/help/faq/using">its FAQ</a>). No attribution is required.</li>
+    <li><strong>MusicBrainz</strong> (ɯP3): only the <a href="https://musicbrainz.org/doc/About/Data_License">core data, which is CC0</a> (public domain), is read from the dump. MusicBrainz&rsquo;s other data (tags and genres, ratings, annotations) is under a non-commercial licence and is never used, so the offline lookup gives no genre.</li>
+    <li><strong>Discogs</strong> (ɯP3): the app shows a &ldquo;Data from Discogs&rdquo; note on Discogs data. This application uses Discogs&rsquo; API but is not affiliated with, sponsored or endorsed by Discogs.</li>
+    <li><strong>IMDb</strong> (Ʌideo): Information courtesy of IMDb (<a href="https://www.imdb.com">https://www.imdb.com</a>). Used with permission. IMDb&rsquo;s datasets are for personal, non-commercial use only; you may keep a local copy for your own use, but they must not be altered, republished, resold or repurposed to make a database for others, and IMDb may withdraw permission at any time. See <a href="https://www.imdb.com/conditions">IMDb&rsquo;s conditions of use</a>.</li>
+    <li><strong>TMDB</strong> (Ʌideo): This product uses TMDB and the TMDB APIs but is not endorsed, certified, or otherwise approved by TMDB.</li>
+    <li><strong>TheTVDB</strong> (Ʌideo): Metadata provided by <a href="https://thetvdb.com/">TheTVDB</a>. Please consider contributing missing information there, or supporting them directly.</li>
+    <li><strong>Comic Vine, Bedetheque, Google Books, Open Library&rsquo;s web API, Calibre, AcoustID, Cover Art Archive, LRCLIB and OpenSubtitles</strong>: used through their public services under their own terms; you are bound by those terms when you use your own keys or run a lookup.</li>
+  </ul>
+
   <h2>Get the tools</h2>
   <p>All four are free, open-source, and run on Windows and Linux (each release has a standalone <code>.exe</code> and a Linux download). Each app's page below has its full feature list and a link to the latest release:</p>
   <ul class="feature-list">
