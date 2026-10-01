@@ -41,7 +41,9 @@
     "Resize Images and Tag Low-Res Scans",
     "Move into folders and metadata from the folder path",
     "Export and Import Settings",
-    "Comic Vine key and GCD password in the operating system's credential store"
+    "Comic Vine key and GCD password in the operating system's credential store",
+    "Online lookups: Comic Vine (your own key), Grand Comics Database, Bedetheque",
+    "Local lookups from files you supply: a GCD data dump and your own ComicRack library"
   ],
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" },
@@ -106,7 +108,7 @@
     <li><strong>CBR, CBT and CB7 support</strong>: list them unconverted and convert from the table, convert automatically on load, or be asked each time. An <strong>Ext</strong> column shows each file's real format, so a ZIP renamed to <code>.cbr</code> is caught (and converted by a simple copy). Every conversion is verified before anything else happens, and originals are kept or moved to the Recycle Bin — never permanently deleted.</li>
   </ul>
 
-  <h2>Redact, and everything since</h2>
+  <h2 id="redact">Redact, and everything since</h2>
   <p>Everything below is in the current release. Redact is the one-click path; the individual tools above remain available.</p>
   <p><strong>Redact steps:</strong> convert CBR/CB7/CBT to CBZ, clean up archive contents, fill empty fields from the filename, the folder path and a database (local GCD or ComicRack first, then Comic Vine when a key is saved), fix ComicInfo issues, tag low-res scans, and rename by pattern once you have used one. Optional, off by default: remove known credit pages, resize oversized pages to 1440 px, and move into folders.</p>
   <ul class="feature-list">
@@ -120,6 +122,68 @@
     <li><strong>Collection tools</strong> (Scan Collection Folder, Collection Report, Compare Library with GCD) live in a <strong>Collection</strong> submenu under Tools.</li>
     <li><strong>Safer saves</strong>: Save and Resize replace the original atomically, temp files are cleaned up after any failure, a failed conversion fails just that file instead of stopping the batch, and CBT archives are extracted without following <code>../</code> names, absolute paths or links.</li>
   </ul>
+
+  <h2 id="sources">Where the metadata comes from</h2>
+  <p>The ƆBZ Redactor works on its own: editing, Validate / Fix Issues, resizing and conversion need no outside source. Lookups are optional, and every one is a review-then-Apply step. Online sources are only asked when you run a lookup. Local databases are built from files <strong>you</strong> download or already own; the app never bundles or downloads them. <a href="#redact">Redact</a> uses a local database first when one is set up, then Comic Vine when a key is saved, and applies only matches at or above its confidence threshold. The <a href="../index.html#sources">hub</a> has all four apps side by side.</p>
+
+  <h3>Online sources</h3>
+  <div class="table-wrap">
+    <table class="format-table">
+      <thead>
+        <tr><th>Source</th><th>What it provides</th><th>What you need</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><a href="https://comicvine.gamespot.com/api/">Comic Vine</a></th>
+          <td>Series, issue title, summary, date, creator credits, characters / teams / locations, publisher; the issue&rsquo;s Comic Vine page goes in Web.</td>
+          <td>Your own free Comic Vine API key. You register for it yourself; it is stored in your operating system&rsquo;s credential store.</td>
+          <td>Metadata &gt; Look Up &gt; Comic Vine.</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="https://www.comics.org/api/">Grand Comics Database</a> (web API)</th>
+          <td>The same fields from GCD, with structured credits; the issue&rsquo;s GCD page goes in Web. Needs a series name and an issue number.</td>
+          <td>No key. An optional free GCD account raises GCD&rsquo;s hourly limit for anonymous use; the password is stored in your credential store.</td>
+          <td>Metadata &gt; Look Up &gt; Grand Comics Database. GCD data is under the licence described in <a href="../index.html#data-licences">Data and licences</a>.</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="https://www.bedetheque.com/">Bedetheque</a></th>
+          <td>Francophone comics (bande dessin&eacute;e): credits, publisher, date, ISBN, summary; the album&rsquo;s page goes in Web. Needs a series name and an issue number.</td>
+          <td>No key. Read from Bedetheque&rsquo;s web pages, one issue at a time, through a Cloudflare-passing helper (cloudscraper), not from an official API.</td>
+          <td>Because it reads web pages, it can stop working if the site changes.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Local (offline) sources</h3>
+  <div class="table-wrap">
+    <table class="format-table">
+      <thead>
+        <tr><th>Source</th><th>What it provides</th><th>What you need</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">GCD data dump (SQLite)</th>
+          <td>Series, title, date, genre, characters, publisher, language, structured credits (writer, penciller, inker, colorist, letterer, editor) and the issue&rsquo;s GCD page. No cover images.</td>
+          <td>You download GCD&rsquo;s SQLite dump yourself from comics.org (a free account is needed to download it; <code>current.zip</code> is about 2 GB and holds a database of about 7 GB) and point the app at the unzipped <code>.db</code> file. The app only reads it.</td>
+          <td>Milliseconds per file, no hourly limit. Settings &gt; GCD Local Database explains the steps.</td>
+        </tr>
+        <tr>
+          <th scope="row">Your ComicRack library</th>
+          <td>Series, issues, credits, characters, summaries and the Comic Vine link, from your own library. File paths, sizes and reading history are never copied.</td>
+          <td>Your own <code>ComicDb.xml</code> (plain or zipped); Settings &gt; ComicRack Library Database converts it once into a local database (about 30&ndash;40 seconds for 234,000 books on the author&rsquo;s library).</td>
+          <td>Also feeds <strong>Compare ComicRack Library with GCD</strong>, which saves what your library has that the GCD lacks (and the reverse) as spreadsheets.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>From the file itself</h3>
+  <ul class="feature-list">
+    <li>The <strong>filename</strong>: Read Filename Tags and Parse Filename read series, number, year and title, and sort scene-style bracketed tags (scan group, format, notes).</li>
+    <li>The <strong>folder path</strong>: a pattern with <code>/</code> reads the folders above the file, counted from your library root; Redact has a matching step that fills only empty fields.</li>
+  </ul>
+  <p class="note">Licences and required acknowledgements for these sources are collected under <a href="../index.html#data-licences">Data and licences</a> on the hub.</p>
 
   <h2>Requirements</h2>
   <p>Two downloads on each release: a standalone <code>.exe</code> for Windows, and <code>cbzredactor-linux-x86_64.tar.gz</code> for 64-bit Linux (Ubuntu 22.04+, Debian 12+, Fedora 36+, Mint 21+ and the like — unpack and run; settings live in <code>~/.config/cbzredactor/</code>). No separate Python install needed on either. Full details and the changelog are in the <a href="https://github.com/Erlbon/cbzredactor">GitHub repository</a>.</p>

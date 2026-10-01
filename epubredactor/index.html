@@ -41,7 +41,9 @@
     "Import to EPUB via Calibre",
     "Move into folders and metadata from the folder path",
     "Export and Import Settings",
-    "Send to Kobo"
+    "Send to Kobo",
+    "Online lookups: Google Books, Open Library and Calibre (through your own install); no keys needed",
+    "Offline lookup in a local Open Library database built from dumps you download"
   ],
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" },
@@ -94,7 +96,7 @@
     <li>Drag-to-reorder, hideable columns; a resizable cover-image panel; Genre and Language quick-pick lists — all persisted across restarts.</li>
   </ul>
 
-  <h2>Redact, and everything since</h2>
+  <h2 id="redact">Redact, and everything since</h2>
   <p>Everything below is in the current release. Redact is the one-click path; the individual tools above remain available.</p>
   <p><strong>Redact steps:</strong> fix validation issues, deduplicate manifest ids, rebuild the manifest, repair navigation, generate a table of contents (a real one from headings is applied; a generic &ldquo;Section N&rdquo; one goes to review), strip HTML from the description, detect a blank language, read ISBN, publisher, year and series from the front matter, fill empty fields online by ISBN (Google Books, Open Library), cover (by ISBN for a missing or junk-flagged one, else a generated cover when there is none), fill empty fields from the folder path, and rename by your latest pattern once you have used one. Optional, off by default: remove orphan files and move into folders. Each changed book is written to a temp file, checked (it reopens, nothing lost, no new errors) and only then swapped in.</p>
   <ul class="feature-list">
@@ -109,6 +111,68 @@
     <li><strong>DRM-aware and safer</strong>: a cover that is DRM-encrypted is kept (Replace Cover, Generate Cover and Compress Images skip it); manifests that use percent-encoded file names (<code>ch%201.xhtml</code>, accented names) are read correctly, so files are no longer wrongly reported missing or removed; saving replaces the original atomically and leaves no temp file after a failure; and one unreadable book cannot abort loading a batch.</li>
     <li><strong>Send to Kobo</strong> finds the reader on Linux (<code>/media/$USER</code>, <code>/run/media/$USER</code>) and macOS (<code>/Volumes</code>) as well as on Windows drives.</li>
   </ul>
+
+  <h2 id="sources">Where the metadata comes from</h2>
+  <p>The ƎPUB Redactor works on its own: editing, validation, covers generated from metadata and Table of Contents generation need no outside source, and it stores no keys or accounts. Lookups are optional and every one is a review-then-Apply step. Online sources are only asked when you run a lookup. The local database is built from files <strong>you</strong> download; the app never bundles or downloads them. In <a href="#redact">Redact</a>, the &ldquo;Fill empty fields online&rdquo; step asks the local Open Library database first when one is set up, then Google Books and Open Library online for whatever is still empty; it never changes a field that already has a value, and weaker matches go to Needs review. The <a href="../index.html#sources">hub</a> has all four apps side by side.</p>
+
+  <h3>Online sources</h3>
+  <div class="table-wrap">
+    <table class="format-table">
+      <thead>
+        <tr><th>Source</th><th>What it provides</th><th>What you need</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><a href="https://developers.google.com/books">Google Books</a></th>
+          <td>Title, authors, publisher, year, ISBN, genre, language, description and a cover, by title / author or ISBN.</td>
+          <td>Nothing: no key or account.</td>
+          <td>Metadata &gt; Look Up &gt; Google Books.</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="https://openlibrary.org/developers/api">Open Library</a> (web API)</th>
+          <td>Title, authors, publisher, year, ISBN, genre (subjects) and cover. Language is not imported.</td>
+          <td>Nothing: no key or account.</td>
+          <td>Metadata &gt; Look Up &gt; Open Library.</td>
+        </tr>
+        <tr>
+          <th scope="row">Open Library covers</th>
+          <td>A cover image fetched by ISBN or by Open Library cover id. <strong>Find Better Covers</strong> offers it only when it is larger than the current cover; Redact&rsquo;s cover step can use it too.</td>
+          <td>Nothing. Open Library limits cover lookups by ISBN per computer, and the app stops with a message when it refuses.</td>
+          <td>Nothing is fetched except by those actions.</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="https://calibre-ebook.com/">Calibre</a>, through your own install</th>
+          <td>Title, authors with sort names, series, publisher, date, tags, ISBN and description, as found by whichever metadata sources you have enabled in Calibre.</td>
+          <td>Calibre installed on your computer. The app runs Calibre&rsquo;s own <code>fetch-ebook-metadata</code> command; it does not load Calibre&rsquo;s plugins itself or bundle Calibre.</td>
+          <td>Metadata &gt; Look Up &gt; Calibre. Which sites are asked is decided by your Calibre settings, not by this app.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Local (offline) sources</h3>
+  <div class="table-wrap">
+    <table class="format-table">
+      <thead>
+        <tr><th>Source</th><th>What it provides</th><th>What you need</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Open Library data dumps</th>
+          <td>Title, authors, publisher, publication date, ISBN and language, by ISBN or by title and author, with no network and no rate limits. No genre or description. A local match also records Open Library&rsquo;s cover id.</td>
+          <td>You download the dumps yourself from openlibrary.org/developers/dumps: the editions dump, plus the authors dump for author names (or the single all-types dump), and optionally the works dump to give authors to editions that list none. Tools &gt; Open Library Database builds the database; Cancel is safe.</td>
+          <td>Only editions with a valid ISBN are kept, in the languages you tick (English, Norwegian, Italian, German and French by default, or all). Roughly 2.5 GB for 8 million editions in the default languages (an estimate from measured samples). The optional works dump adds roughly 10&ndash;15 minutes and about 1 GB of temporary disk (an estimate).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>From the file itself</h3>
+  <ul class="feature-list">
+    <li>The <strong>book&rsquo;s own text</strong>: Scan Content for Metadata reads the first and last few pages (title and copyright page, colophon) for ISBN, publisher, author, year, DDC classification, series and volume, and guesses the book&rsquo;s language (English, Norwegian, Italian, German or French). It is a best-guess tool; review the matches before applying.</li>
+    <li>The <strong>filename</strong> and the <strong>folder path</strong>: Parse Filename reads fields from a pattern such as <code>%authors%/%series%/%title%</code>, and Redact has a matching step that fills only empty fields.</li>
+  </ul>
+  <p class="note">Licences and required acknowledgements for these sources are collected under <a href="../index.html#data-licences">Data and licences</a> on the hub.</p>
 
   <h2>Requirements</h2>
   <p>Two downloads on each release: a standalone <code>.exe</code> for Windows, and <code>epubredactor-linux-x86_64.tar.gz</code> for 64-bit Linux (Ubuntu 22.04+, Debian 12+, Fedora 36+, Mint 21+ and the like — unpack and run; settings live in <code>~/.config/epubredactor/</code>). No separate Python install needed on either. Google Books / Open Library import and cover generation work standalone; format conversion via Import to EPUB requires a local <a href="https://calibre-ebook.com/">Calibre</a> installation (on Linux, found on PATH). Full details and the changelog are in the <a href="https://github.com/Erlbon/epubredactor">GitHub repository</a>.</p>
