@@ -327,3 +327,13 @@ code {
 [data-app="epub"]   { --card-accent: #1c7d78; }
 [data-app="mp3"]    { --card-accent: #e8e6df; }
 [data-app="video"]  { --card-accent: #57efc6; }
+
+/* TMDB attribution logo: official unmodified SVG, kept small and dim so it
+   stays less prominent than the site's own marks (TMDB's terms). */
+.tmdb-logo {
+  display: block;
+  height: 14px;
+  width: auto;
+  margin-top: 8px;
+  opacity: 0.85;
+}

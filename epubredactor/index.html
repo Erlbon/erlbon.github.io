@@ -28,7 +28,7 @@
   "downloadUrl": "https://github.com/Erlbon/epubredactor/releases/latest",
   "operatingSystem": "Windows, Linux",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "2026-09-30#17",
+  "softwareVersion": "2026-10-01#13",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
   "featureList": [
     "Bulk-edit EPUB metadata",
@@ -41,9 +41,14 @@
     "Import to EPUB via Calibre",
     "Move into folders and metadata from the folder path",
     "Export and Import Settings",
+    "Clean Up Authors: tidy Author(s) and Author Sort, spaced initials, sort-form names moved to Author Sort",
+    "Find Duplicates (Repair menu): review-only, with Identical, Possible and Weak match tiers",
+    "Preferences dialog (Tools > Preferences, Ctrl+,)",
     "Send to Kobo",
     "Online lookups: Google Books, Open Library and Calibre (through your own install); no keys needed",
-    "Offline lookup in a local Open Library database built from dumps you download"
+    "Offline lookup in a local Open Library database built from dumps you download (never bundled)",
+    "Local Open Library covers by cover id",
+    "Windows and Linux downloads"
   ],
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" },
@@ -93,12 +98,15 @@
     <li><strong>Cover quality</strong>: a Cover column shows each cover's size — yellow for low-resolution, red when missing — and <strong>Find Better Covers</strong> looks up Open Library's cover by ISBN, offering only larger ones, side by side before anything changes.</li>
     <li><strong>Change Case</strong> (UPPERCASE / lowercase / Title Case / Sentence case) and <strong>Number Series</strong> (sequential Series # across a batch, fractional steps supported), both with a live preview before applying.</li>
     <li><strong>Rename / Export / Move</strong> and <strong>Parse Filename → Metadata</strong>, pattern-based and previewed before committing. An optional <strong>ASCII-safe filenames</strong> option turns accented letters and typographic punctuation into plain ASCII (é→e, æ→ae, ß→ss). Renames can be taken back with <strong>File &gt; Undo Last Rename</strong>, even after a restart.</li>
+    <li><strong>Clean Up Authors</strong> (<strong>Repair &gt; Clean Up Authors&hellip;</strong>): reviews every loaded book&rsquo;s Author(s) and Author Sort and fixes the usual messes &mdash; stray spaces and punctuation, &ldquo;J.R.R.Tolkien&rdquo; to &ldquo;J. R. R. Tolkien&rdquo;, role suffixes and junk (&ldquo;(Editor)&rdquo;, &ldquo;Translated by&rdquo;, &ldquo;et al.&rdquo;, life dates), &ldquo;A; B&rdquo; and &ldquo;First Last &amp; First Last&rdquo; split into separate authors, ALL CAPS names, duplicate authors, and a missing or sloppy Author Sort generated or tidied. When Author(s) holds names written &ldquo;Last, First&rdquo;, that text is tidied and moved into <strong>Author Sort</strong>, and the display names are generated from it. Corporate authors (&ldquo;Simon &amp; Schuster&rdquo;), &ldquo;Anonymous&rdquo; and non-Latin names are left alone. The review lists each book before and after; the sure fixes are ticked, guesses are listed unticked, and nothing is written until Save All (one Undo reverts it). Initials are spaced everywhere an author is written, and in file and folder names built from <code>%authors%</code> or <code>%author_sort%</code> (&ldquo;J. R. R. Tolkien - The Hobbit.epub&rdquo;).</li>
+    <li><strong>Find Duplicates</strong> (<strong>Repair &gt; Find Duplicates&hellip;</strong>): review-only. Each group says why it matched &mdash; identical content (only the metadata differs), same title and author (maybe another edition), or same ISBN with a different title (the ISBN may be wrong). Nothing is selected or changed unless you choose an action; <strong>Not duplicates</strong> hides a group for good; moving files to the Recycle Bin refuses books with unsaved changes.</li>
+    <li><strong>Preferences</strong> (<strong>Tools &gt; Preferences&hellip;</strong>, Ctrl+,): the everyday settings in one dialog with four pages &mdash; <em>Filenames</em>, <em>Language</em> (the blank-language default), <em>Display</em> and <em>Tools and Paths</em> (Calibre folder, Sigil program, Open Library database and dump files). OK / Cancel / Apply, and Reset to Defaults for the page you are on. It is the same dialog the other three Redactors have; Export / Import Settings is unaffected.</li>
     <li>Drag-to-reorder, hideable columns; a resizable cover-image panel; Genre and Language quick-pick lists — all persisted across restarts.</li>
   </ul>
 
   <h2 id="redact">Redact, and everything since</h2>
   <p>Everything below is in the current release. Redact is the one-click path; the individual tools above remain available.</p>
-  <p><strong>Redact steps:</strong> fix validation issues, deduplicate manifest ids, rebuild the manifest, repair navigation, generate a table of contents (a real one from headings is applied; a generic &ldquo;Section N&rdquo; one goes to review), strip HTML from the description, detect a blank language, read ISBN, publisher, year and series from the front matter, fill empty fields online by ISBN (Google Books, Open Library), cover (by ISBN for a missing or junk-flagged one, else a generated cover when there is none), fill empty fields from the folder path, and rename by your latest pattern once you have used one. Optional, off by default: remove orphan files and move into folders. Each changed book is written to a temp file, checked (it reopens, nothing lost, no new errors) and only then swapped in.</p>
+  <p><strong>Redact steps:</strong> fix validation issues, deduplicate manifest ids, rebuild the manifest, repair navigation, generate a table of contents (a real one from headings is applied; a generic &ldquo;Section N&rdquo; one goes to review), strip HTML from the description, detect a blank language, read ISBN, publisher, year and series from the front matter, clean up authors (only the sure fixes are applied; guesses are named in the report), fill empty fields from lookups &mdash; the local Open Library database first when one is set up, then Google Books and Open Library online &mdash; cover (by ISBN for a missing or junk-flagged one, else a generated cover when there is none), fill empty fields from the folder path, and rename by your latest pattern once you have used one. Optional, off by default: remove orphan files and move into folders. Each changed book is written to a temp file, checked (it reopens, nothing lost, no new errors) and only then swapped in.</p>
   <ul class="feature-list">
     <li><strong>Redact</strong>: one click on the toolbar (or Edit &gt; Redact, Ctrl+Shift+E) runs an editable recipe of steps on the selected files, or on all loaded files after asking. Each changed file is saved in place and its original goes to the Recycle Bin, so the Recycle Bin is the undo. Guesses are applied only at or above a confidence threshold (90% by default); weaker ones are listed under <strong>Needs review</strong> and never written. Files with unsaved edits or that failed to load are skipped and named in the report. A saved recipe keeps the patterns it was saved with (the editor shows a <strong>pattern trail</strong> of where each pattern comes from), so changing the Rename / Export pattern later does not silently change what Redact does.</li>
     <li><strong>Move into folders</strong>: Rename / Export / Move has a third mode that files each item into a folder tree under a library root, using a pattern with <code>/</code> in it. The preview shows each new path, nothing is overwritten (a taken name gets &ldquo;(2)&rdquo;), and <strong>File &gt; Undo Last Rename</strong> puts everything back and offers to remove the folders the move created.</li>
@@ -113,7 +121,7 @@
   </ul>
 
   <h2 id="sources">Where the metadata comes from</h2>
-  <p>The ƎPUB Redactor works on its own: editing, validation, covers generated from metadata and Table of Contents generation need no outside source, and it stores no keys or accounts. Lookups are optional and every one is a review-then-Apply step. Online sources are only asked when you run a lookup. The local database is built from files <strong>you</strong> download; the app never bundles or downloads them. In <a href="#redact">Redact</a>, the &ldquo;Fill empty fields online&rdquo; step asks the local Open Library database first when one is set up, then Google Books and Open Library online for whatever is still empty; it never changes a field that already has a value, and weaker matches go to Needs review. The <a href="../index.html#sources">hub</a> has all four apps side by side.</p>
+  <p>The ƎPUB Redactor works on its own: editing, validation, covers generated from metadata and Table of Contents generation need no outside source, and it stores no keys or accounts. Lookups are optional and every one is a review-then-Apply step. Online sources are only asked when you run a lookup. The local database is built from files <strong>you</strong> download; the app never bundles or downloads them. In <a href="#redact">Redact</a>, the &ldquo;Fill empty fields from lookups (local database first)&rdquo; step asks the local Open Library database first when one is set up, then Google Books and Open Library online for whatever is still empty; it never changes a field that already has a value, and weaker matches go to Needs review. The <a href="../index.html#sources">hub</a> has all four apps side by side.</p>
 
   <h3>Online sources</h3>
   <div class="table-wrap">
@@ -159,8 +167,8 @@
       <tbody>
         <tr>
           <th scope="row">Open Library data dumps</th>
-          <td>Title, authors, publisher, publication date, ISBN and language, by ISBN or by title and author, with no network and no rate limits. No genre or description. A local match also records Open Library&rsquo;s cover id.</td>
-          <td>You download the dumps yourself from openlibrary.org/developers/dumps: the editions dump, plus the authors dump for author names (or the single all-types dump), and optionally the works dump to give authors to editions that list none. Tools &gt; Open Library Database builds the database; Cancel is safe.</td>
+          <td>Title, authors, publisher, publication date, ISBN and language, by ISBN or by title and author, with no network and no rate limits. No genre or description. A local match also records Open Library&rsquo;s cover id, and Find Better Covers and Redact&rsquo;s cover step fetch that cover directly by id.</td>
+          <td>You download the dumps yourself from openlibrary.org/developers/dumps: the editions dump, plus the authors dump for author names (or the single all-types dump), and optionally the works dump to give authors to editions that list none. Tools &gt; Open Library Database builds the database; Cancel is safe, and an existing database is never left half-built. Metadata &gt; Look Up &gt; Open Library (Local Database) then searches it by ISBN, else by title and author.</td>
           <td>Only editions with a valid ISBN are kept, in the languages you tick (English, Norwegian, Italian, German and French by default, or all). Roughly 2.5 GB for 8 million editions in the default languages (an estimate from measured samples). The optional works dump adds roughly 10&ndash;15 minutes and about 1 GB of temporary disk (an estimate).</td>
         </tr>
       </tbody>
