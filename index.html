@@ -69,7 +69,7 @@
       <img class="icon" src="assets/img/cbzredactor.png" alt="The ƆBZ Redactor icon" width="56" height="56">
       <div>
         <h3>The ƆBZ Redactor</h3>
-        <p>Edit <code>ComicInfo.xml</code> metadata in CBZ comic archives — title, series, credits, and more — plus lookups against Comic Vine, the Grand Comics Database, and Bedetheque, spotting and shrinking oversized scans, CBR/CBT/CB7 conversion, and a one-click Redact.</p>
+        <p>Edit <code>ComicInfo.xml</code> metadata in CBZ comic archives — title, series, credits, and more — plus lookups against Comic Vine, the Grand Comics Database, and Bedetheque or your own offline GCD and ComicRack databases, spotting and shrinking oversized scans, CBR/CBT/CB7 conversion, duplicate finding, and a one-click Redact.</p>
       </div>
     </a>
 
@@ -77,7 +77,7 @@
       <img class="icon" src="assets/img/epubredactor.png" alt="The ƎPUB Redactor icon" width="56" height="56">
       <div>
         <h3>The ƎPUB Redactor</h3>
-        <p>Bulk-edit EPUB ebook metadata for Kobo and other e-readers, with Google Books / Open Library lookups, cover generation, Table of Contents generation, and format conversion via Calibre.</p>
+        <p>Bulk-edit EPUB ebook metadata for Kobo and other e-readers, with Google Books / Open Library lookups (online, or from a local Open Library database you build), Clean Up Authors, duplicate finding, cover generation, Table of Contents generation, and format conversion via Calibre.</p>
       </div>
     </a>
 
@@ -85,7 +85,7 @@
       <img class="icon" src="assets/img/mp3redactor.png" alt="The ɯP3 Redactor icon" width="56" height="56">
       <div>
         <h3>The ɯP3 Redactor</h3>
-        <p>Check MP3 file integrity, detect BPM and musical key, measure loudness, look albums up on MusicBrainz and Discogs, and bulk-edit tags across a whole library at once.</p>
+        <p>Check MP3 file integrity, detect BPM and musical key, measure loudness, look albums up on MusicBrainz (online, or from a local database you build) and Discogs, find duplicate tracks, and bulk-edit tags across a whole library at once.</p>
       </div>
     </a>
 
@@ -93,7 +93,7 @@
       <img class="icon" src="assets/img/videoredactor.png" alt="The Ʌideo Redactor icon" width="56" height="56">
       <div>
         <h3>The Ʌideo Redactor</h3>
-        <p>Bulk-edit MKV/MP4 metadata with TMDB lookups, season/episode matching, subtitle fetching, file checks and repair, duplicate finding, and poster art — for movies, TV, and everything in between.</p>
+        <p>Bulk-edit MKV/MP4 metadata with TMDB lookups, offline lookups in a local IMDb database you build, season/episode matching, subtitle fetching, file checks and repair, duplicate finding, and poster art — for movies, TV, and everything in between.</p>
       </div>
     </a>
   </div>
@@ -156,9 +156,69 @@
     <li><strong>Redact</strong>: one click runs an editable recipe on the selected files. Each changed file is saved in place and its original goes to the Recycle Bin. Guesses are applied only above a confidence threshold; the rest is listed under Needs review.</li>
     <li><strong>Move into folders</strong> in Rename / Export / Move, under a library root, with undo; and <strong>metadata from the folder path</strong>, the same kind of pattern read in reverse.</li>
     <li><strong>Export / Import Settings</strong> to carry your setup to another computer. Secrets are never included.</li>
+    <li><strong>Preferences</strong> (Tools &gt; Preferences, Ctrl+,): one shared dialog for the everyday settings, with OK / Cancel / Apply and Reset to Defaults per page. Settings keep their old places, so Export / Import Settings is unaffected.</li>
+    <li><strong>Find Duplicates</strong>: in the ƎPUB (Repair menu), ɯP3 (Analyze menu) and Ʌideo (Media menu) Redactors it opens the same review dialog, which shows how strong each match is and why, selects nothing for you, remembers groups you mark &ldquo;Not duplicates&rdquo;, and never trashes every file of a group. The ƆBZ Redactor has its own duplicate finder, matching comics by their pages.</li>
     <li><strong>Command palette</strong> (Ctrl+K), one standard menu layout (File, Edit, View, the app&rsquo;s own menus, Tools, Help), Open in Default App, and Ctrl+S to save every changed file.</li>
     <li><strong>Keys and tokens in the credential store</strong>: where an app uses an online service key (Comic Vine and GCD in the ƆBZ Redactor; TMDB, TheTVDB and OpenSubtitles in the Ʌideo Redactor; a Discogs token in the ɯP3 Redactor), it is stored in your operating system&rsquo;s credential store, not in a settings file.</li>
     <li><strong>Safe in-place saves</strong>: a file is replaced only after the new copy is written and verified, so a failed save never loses the original.</li>
+    <li><strong>Windows and Linux</strong>: every release has a standalone <code>.exe</code> and a self-contained Linux download, and the tests run on Linux as part of each release build.</li>
+  </ul>
+
+  <h2 id="sources">Sources at a glance</h2>
+  <p>None of the four apps needs an outside source to edit, check or convert files. Where an app can look metadata up, it does so in three ways: from an <strong>online</strong> service, from a <strong>local</strong> database built from files you download yourself, or from the <strong>file itself</strong> (its name, folder, tags or text). Nothing is bundled and nothing is downloaded automatically; online sources are asked only when you run a lookup. Where a service needs a key or token, you register for it yourself and the app keeps it in your operating system&rsquo;s credential store. Each app&rsquo;s page has the full detail under &ldquo;Where the metadata comes from&rdquo;.</p>
+  <div class="table-wrap">
+    <table class="format-table">
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th><a href="cbzredactor/#sources">ƆBZ</a></th>
+          <th><a href="epubredactor/#sources">ƎPUB</a></th>
+          <th><a href="mp3redactor/#sources">ɯP3</a></th>
+          <th><a href="videoredactor/#sources">Ʌideo</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th scope="colgroup" colspan="5">Online sources</th></tr>
+        <tr><th scope="row">Comic Vine <span class="note">your own free key</span></th><td>✓</td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">Grand Comics Database <span class="note">web API; account optional</span></th><td>✓</td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">Bedetheque <span class="note">web pages, not an API</span></th><td>✓</td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">Google Books</th><td></td><td>✓</td><td></td><td></td></tr>
+        <tr><th scope="row">Open Library <span class="note">web API and cover images</span></th><td></td><td>✓</td><td></td><td></td></tr>
+        <tr><th scope="row">Calibre <span class="note">through your own install</span></th><td></td><td>✓</td><td></td><td></td></tr>
+        <tr><th scope="row">MusicBrainz</th><td></td><td></td><td>✓</td><td></td></tr>
+        <tr><th scope="row">AcoustID <span class="note">needs the free fpcalc tool</span></th><td></td><td></td><td>✓</td><td></td></tr>
+        <tr><th scope="row">Discogs <span class="note">your own free token</span></th><td></td><td></td><td>✓</td><td></td></tr>
+        <tr><th scope="row">Cover Art Archive</th><td></td><td></td><td>✓</td><td></td></tr>
+        <tr><th scope="row">LRCLIB lyrics</th><td></td><td></td><td>✓</td><td></td></tr>
+        <tr><th scope="row">TMDB <span class="note">your own key</span></th><td></td><td></td><td></td><td>✓</td></tr>
+        <tr><th scope="row">TheTVDB <span class="note">your own key</span></th><td></td><td></td><td></td><td>✓</td></tr>
+        <tr><th scope="row">OpenSubtitles <span class="note">your own key; subtitles</span></th><td></td><td></td><td></td><td>✓</td></tr>
+        <tr><th scope="colgroup" colspan="5">Local (offline) sources, built from files you supply</th></tr>
+        <tr><th scope="row">GCD data dump <span class="note">SQLite</span></th><td>✓</td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">ComicRack library <span class="note">from your own ComicDb.xml</span></th><td>✓</td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">Open Library data dumps</th><td></td><td>✓</td><td></td><td></td></tr>
+        <tr><th scope="row">MusicBrainz core-data dump</th><td></td><td></td><td>✓</td><td></td></tr>
+        <tr><th scope="row">IMDb datasets</th><td></td><td></td><td></td><td>✓</td></tr>
+        <tr><th scope="colgroup" colspan="5">From the file itself</th></tr>
+        <tr><th scope="row">Filename and folder path</th><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><th scope="row">The file&rsquo;s own text or tags</th><td></td><td>✓ <span class="note">front-matter scan</span></td><td>✓ <span class="note">tags</span></td><td></td></tr>
+        <tr><th scope="row">Folder image</th><td></td><td></td><td>✓</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">All of this is optional. With no key, no database and no network, every app still edits, checks and converts your files. Redact (above) uses a local database first when one is set up, then the online sources for whatever is still empty, and applies only matches above its confidence threshold.</p>
+
+  <h2 id="data-licences">Data and licences</h2>
+  <p>The data belongs to the services and projects below, not to these apps. Local databases are your own private copy, built from files you download under each source&rsquo;s own terms. Notices the sources ask for:</p>
+  <ul class="feature-list">
+    <li><strong>Grand Comics Database</strong> (ƆBZ): comics.org states that GCD data is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0</a> (CC BY-SA 4.0). Credit the <a href="https://www.comics.org/">Grand Comics Database</a>, link the licence and say if you changed anything; data derived from it that you share must carry the same licence. GCD data is the work of GCD&rsquo;s volunteers.</li>
+    <li><strong>Open Library</strong> (ƎPUB): Open Library says its catalogue was dedicated to the public domain by the libraries that donated it and that contributions are CC0 (<a href="https://openlibrary.org/help/faq/using">its FAQ</a>). No attribution is required.</li>
+    <li><strong>MusicBrainz</strong> (ɯP3): only the <a href="https://musicbrainz.org/doc/About/Data_License">core data, which is CC0</a> (public domain), is read from the dump. MusicBrainz&rsquo;s other data (tags and genres, ratings, annotations) is under a non-commercial licence and is never used, so the offline lookup gives no genre.</li>
+    <li><strong>Discogs</strong> (ɯP3): the app shows a &ldquo;Data from Discogs&rdquo; note on Discogs data. This application uses Discogs&rsquo; API but is not affiliated with, sponsored or endorsed by Discogs.</li>
+    <li><strong>IMDb</strong> (Ʌideo): Information courtesy of IMDb (<a href="https://www.imdb.com">https://www.imdb.com</a>). Used with permission. IMDb&rsquo;s datasets are for personal, non-commercial use only; you may keep a local copy for your own use, but they must not be altered, republished, resold or repurposed to make a database for others, and IMDb may withdraw permission at any time. See <a href="https://www.imdb.com/conditions">IMDb&rsquo;s conditions of use</a>.</li>
+    <li><strong>TMDB</strong> (Ʌideo): This website uses TMDB and the TMDB APIs but is not endorsed, certified, or otherwise approved by TMDB.<a href="https://www.themoviedb.org/"><img class="tmdb-logo" src="assets/img/tmdb-blue-short.svg" alt="TMDB logo" width="137" height="18"></a></li>
+    <li><strong>TheTVDB</strong> (Ʌideo): Metadata provided by <a href="https://thetvdb.com/">TheTVDB</a>. Please consider contributing missing information there, or supporting them directly.</li>
+    <li><strong>Comic Vine, Bedetheque, Google Books, Open Library&rsquo;s web API, Calibre, AcoustID, Cover Art Archive, LRCLIB and OpenSubtitles</strong>: used through their public services under their own terms; you are bound by those terms when you use your own keys or run a lookup.</li>
   </ul>
 
   <h2>Get the tools</h2>
