@@ -28,7 +28,7 @@
   "downloadUrl": "https://github.com/Erlbon/cbzredactor/releases/latest",
   "operatingSystem": "Windows, Linux",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "2026-10-01#04",
+  "softwareVersion": "2026-10-02#02",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
   "featureList": [
     "Edit ComicInfo.xml in CBZ archives in bulk",
@@ -39,6 +39,10 @@
     "Validate / Fix Issues with a validation stamp in the file",
     "Collection scan and report",
     "Resize Images and Tag Low-Res Scans",
+    "Resize pages while converting, in the same pass",
+    "Page turner in the cover preview",
+    "Apply panel edits to all loaded files when nothing is selected",
+    "Full right-click menu on the file list",
     "Move into folders and metadata from the folder path",
     "Export and Import Settings",
     "Preferences dialog (Tools > Preferences, Ctrl+,) with Filenames, Conversion, Resize defaults and Paths pages",
@@ -105,7 +109,9 @@
     <li><strong>Preferences</strong> (<strong>Tools &gt; Preferences&hellip;</strong>, Ctrl+,): the everyday settings in one dialog with four pages &mdash; <em>Filenames</em> (ASCII-safe filenames, zero-padding, Auto-Numbering padding), <em>Conversion</em> (what to do with CBR/CBT/CB7 files on load, originals to the Recycle Bin), <em>Resize defaults</em> and <em>Paths</em> (GCD local database, ComicRack library database, library root folder). OK / Cancel / Apply, and Reset to Defaults for the page you are on. It is the same dialog the other three Redactors have; settings keep their old places, so Export / Import Settings is unaffected.</li>
     <li>Genre and Language quick-pick lists, drag-to-reorder and hideable columns, and a resizable cover-image panel — all persisted across restarts.</li>
     <li><strong>Size column</strong>: each comic's typical page width, color-coded — yellow for low-res (under 1000px), green for acceptable (1000–1599px), orange for oversized (1600px and up). Double-page spreads and a single huge cover don't skew it. A File Size column is available too.</li>
-    <li><strong>Resize Images</strong>: shrink oversized pages to a target width (1440px by default), with double-page spreads kept at double width. Optional height limit, optional JPEG or WebP output, and a one-click "only oversized files" mode. Never upscales; export copies or resize in place.</li>
+    <li><strong>Resize Images</strong>: shrink oversized pages to a target width (1440px by default), with double-page spreads kept at double width. Optional height limit, optional JPEG or WebP output, and a one-click "only oversized files" mode. Never upscales; export copies or resize in place (the original goes to the Recycle Bin). Your choices are remembered between runs. When you convert a CBR, CB7 or CBT you are offered the same resize in the same pass, so the pages are only written once.</li>
+    <li><strong>Page preview</strong>: the cover panel can turn pages (arrow buttons, Left/Right keys or Ctrl+wheel) to look beyond the first page. Pages are read only when you ask for them.</li>
+    <li><strong>Apply with nothing selected</strong>: type tags in the left-hand panel with no file selected and <em>Apply to All Files</em> writes them to every loaded file (it asks first for larger batches), only for the fields you filled in.</li>
     <li><strong>Tag Low-Res Scans</strong>: marks low-res comics with a <code>Low-res scan</code> tag in ComicInfo.xml so you can find and replace them later — here, or in a comic server like Komga or Kavita.</li>
     <li><strong>Scanner credit pages</strong>: tick a "scanned by" page once and it's remembered; every file containing it is flagged and can have it removed — matched visually, so it's recognised even after resizing or re-encoding.</li>
     <li><strong>Find Duplicates</strong>: the same comic loaded more than once, matched by its pages rather than its name, with the best copy suggested (highest resolution, most pages, best-tagged).</li>
