@@ -197,6 +197,7 @@
         <tr><th scope="row">GCD data dump <span class="note">SQLite</span></th><td>✓</td><td></td><td></td><td></td></tr>
         <tr><th scope="row">ComicRack library <span class="note">from your own ComicDb.xml</span></th><td>✓</td><td></td><td></td><td></td></tr>
         <tr><th scope="row">Open Library data dumps</th><td></td><td>✓</td><td></td><td></td></tr>
+        <tr><th scope="row">ISFDB backup <span class="note">MySQL; adds series and series number</span></th><td></td><td>✓ <span class="note">next release</span></td><td></td><td></td></tr>
         <tr><th scope="row">MusicBrainz core-data dump</th><td></td><td></td><td>✓</td><td></td></tr>
         <tr><th scope="row">IMDb datasets</th><td></td><td></td><td></td><td>✓</td></tr>
         <tr><th scope="colgroup" colspan="5">From the file itself</th></tr>
@@ -206,6 +207,61 @@
       </tbody>
     </table>
   </div>
+  <h3 id="dumps">The local databases, one by one</h3>
+  <p>Six sources can be turned into an offline database. You download each file yourself, under the source&rsquo;s own terms; the apps never bundle or fetch them. Five of them are built into a compact database from a dialog in the app&rsquo;s Tools menu (with progress, and Cancel is safe); the GCD dump is read directly as it is.</p>
+  <div class="table-wrap">
+    <table class="format-table">
+      <thead>
+        <tr><th>Source</th><th>App</th><th>You download</th><th>In the app</th><th>Licence</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">GCD data dump</th>
+          <td><a href="cbzredactor/#sources">ƆBZ</a></td>
+          <td><code>current.zip</code>, GCD&rsquo;s SQLite dump from comics.org (a free account is needed; about 2 GB zipped, about 7 GB unzipped).</td>
+          <td>Tools &gt; GCD Local Database. Point the app at the unzipped <code>.db</code>; there is no build step.</td>
+          <td>CC BY-SA 4.0</td>
+        </tr>
+        <tr>
+          <th scope="row">ComicRack library</th>
+          <td><a href="cbzredactor/#sources">ƆBZ</a></td>
+          <td>Your own <code>ComicDb.xml</code>, plain or zipped.</td>
+          <td>Tools &gt; ComicRack Library Database converts it once (30&ndash;40 seconds for 234,000 books). File paths and reading history are never copied.</td>
+          <td>Your own data</td>
+        </tr>
+        <tr>
+          <th scope="row">Open Library data dumps</th>
+          <td><a href="epubredactor/#sources">ƎPUB</a></td>
+          <td>The editions dump and the authors dump (or the single all-types dump) from openlibrary.org/developers/dumps; the works dump is optional.</td>
+          <td>Tools &gt; Open Library Database. Only editions with a valid ISBN, in the languages you tick; about 2.5 GB for 8 million editions (an estimate).</td>
+          <td>CC0 (public domain)</td>
+        </tr>
+        <tr>
+          <th scope="row">ISFDB backup</th>
+          <td><a href="epubredactor/#sources">ƎPUB</a> <span class="note">next release</span></td>
+          <td><code>backup-MySQL-55-YYYY-MM-DD.zip</code>, the ISFDB&rsquo;s MySQL backup from isfdb.org (about 340 MB zipped, 1.5 GB of SQL); it needs no unpacking.</td>
+          <td>Tools &gt; ISFDB Database. On the 2025-12-27 backup the build took under two minutes and gave a 154 MB database: 425,000 books (211,000 in a series) and 638,000 editions with an ISBN. It is the source that knows a book&rsquo;s <strong>series and series number</strong>.</td>
+          <td>Creative Commons Attribution; credit the ISFDB</td>
+        </tr>
+        <tr>
+          <th scope="row">MusicBrainz core-data dump</th>
+          <td><a href="mp3redactor/#sources">ɯP3</a></td>
+          <td><code>mbdump.tar.bz2</code> from musicbrainz.org (about 7 GB; it needs no unpacking).</td>
+          <td>Tools &gt; MusicBrainz Database. About 5&ndash;6 GB on disk and roughly 12 GB free while it builds (estimates). Core tables only: no genre, no cover.</td>
+          <td>CC0 (core data only)</td>
+        </tr>
+        <tr>
+          <th scope="row">IMDb datasets</th>
+          <td><a href="videoredactor/#sources">Ʌideo</a></td>
+          <td><code>title.basics.tsv.gz</code> (required) and optionally <code>title.ratings</code>, <code>title.episode</code> and <code>title.akas</code>, from datasets.imdbws.com.</td>
+          <td>Tools &gt; IMDb Database. Roughly 0.6&ndash;1 GB with the default options (an estimate).</td>
+          <td>Personal, non-commercial use only</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">The ISFDB is new in the next ƎPUB release and cannot be downloaded in the current one. In Redact, the lookup step asks a local database first when one is set up (for ƎPUB: ISFDB, then Open Library), then the online sources for whatever is still empty.</p>
+
   <p class="note">All of this is optional. With no key, no database and no network, every app still edits, checks and converts your files. Redact (above) uses a local database first when one is set up, then the online sources for whatever is still empty, and applies only matches above its confidence threshold.</p>
 
   <h2 id="data-licences">Data and licences</h2>
@@ -213,6 +269,7 @@
   <ul class="feature-list">
     <li><strong>Grand Comics Database</strong> (ƆBZ): comics.org states that GCD data is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0</a> (CC BY-SA 4.0). Credit the <a href="https://www.comics.org/">Grand Comics Database</a>, link the licence and say if you changed anything; data derived from it that you share must carry the same licence. GCD data is the work of GCD&rsquo;s volunteers.</li>
     <li><strong>Open Library</strong> (ƎPUB): Open Library says its catalogue was dedicated to the public domain by the libraries that donated it and that contributions are CC0 (<a href="https://openlibrary.org/help/faq/using">its FAQ</a>). No attribution is required.</li>
+    <li><strong>ISFDB</strong> (ƎPUB, next release): the <a href="https://www.isfdb.org/">Internet Speculative Fiction Database</a> says its content is available under a Creative Commons Attribution licence. Credit the ISFDB and its contributors, whose work the series, series numbers and book data are; the app credits it under Help &gt; Credits. The local database is your own private copy of the backup you download.</li>
     <li><strong>MusicBrainz</strong> (ɯP3): only the <a href="https://musicbrainz.org/doc/About/Data_License">core data, which is CC0</a> (public domain), is read from the dump. MusicBrainz&rsquo;s other data (tags and genres, ratings, annotations) is under a non-commercial licence and is never used, so the offline lookup gives no genre.</li>
     <li><strong>Discogs</strong> (ɯP3): the app shows a &ldquo;Data from Discogs&rdquo; note on Discogs data. This application uses Discogs&rsquo; API but is not affiliated with, sponsored or endorsed by Discogs.</li>
     <li><strong>IMDb</strong> (Ʌideo): Information courtesy of IMDb (<a href="https://www.imdb.com">https://www.imdb.com</a>). Used with permission. IMDb&rsquo;s datasets are for personal, non-commercial use only; you may keep a local copy for your own use, but they must not be altered, republished, resold or repurposed to make a database for others, and IMDb may withdraw permission at any time. See <a href="https://www.imdb.com/conditions">IMDb&rsquo;s conditions of use</a>.</li>
