@@ -166,11 +166,13 @@
 
   <h2 id="sources">Sources at a glance</h2>
   <p>None of the four apps needs an outside source to edit, check or convert files. Where an app can look metadata up, it does so in three ways: from an <strong>online</strong> service, from a <strong>local</strong> database built from files you download yourself, or from the <strong>file itself</strong> (its name, folder, tags or text). Nothing is bundled and nothing is downloaded automatically; online sources are asked only when you run a lookup. Where a service needs a key or token, you register for it yourself and the app keeps it in your operating system&rsquo;s credential store. Each app&rsquo;s page has the full detail under &ldquo;Where the metadata comes from&rdquo;.</p>
+  <h3 id="online-sources">Online sources</h3>
+  <p>Asked only when you run a lookup. Some need a free key or token that you register for yourself.</p>
   <div class="table-wrap">
     <table class="format-table">
       <thead>
         <tr>
-          <th>Source</th>
+          <th>Online source</th>
           <th><a href="cbzredactor/#sources">ƆBZ</a></th>
           <th><a href="epubredactor/#sources">ƎPUB</a></th>
           <th><a href="mp3redactor/#sources">ɯP3</a></th>
@@ -178,7 +180,6 @@
         </tr>
       </thead>
       <tbody>
-        <tr><th scope="colgroup" colspan="5">Online sources</th></tr>
         <tr><th scope="row">Comic Vine <span class="note">your own free key</span></th><td>✓</td><td></td><td></td><td></td></tr>
         <tr><th scope="row">Grand Comics Database <span class="note">web API; account optional</span></th><td>✓</td><td></td><td></td><td></td></tr>
         <tr><th scope="row">Bedetheque <span class="note">web pages, not an API</span></th><td>✓</td><td></td><td></td><td></td></tr>
@@ -193,74 +194,52 @@
         <tr><th scope="row">TMDB <span class="note">your own key</span></th><td></td><td></td><td></td><td>✓</td></tr>
         <tr><th scope="row">TheTVDB <span class="note">your own key</span></th><td></td><td></td><td></td><td>✓</td></tr>
         <tr><th scope="row">OpenSubtitles <span class="note">your own key; subtitles</span></th><td></td><td></td><td></td><td>✓</td></tr>
-        <tr><th scope="colgroup" colspan="5">Local (offline) sources, built from files you supply</th></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3 id="offline-sources">Local (offline) sources</h3>
+  <p>Built from files you download and supply yourself; nothing is fetched for you. <a href="databases/">Details for each on its own page.</a></p>
+  <div class="table-wrap">
+    <table class="format-table">
+      <thead>
+        <tr>
+          <th>Local source</th>
+          <th><a href="cbzredactor/#sources">ƆBZ</a></th>
+          <th><a href="epubredactor/#sources">ƎPUB</a></th>
+          <th><a href="mp3redactor/#sources">ɯP3</a></th>
+          <th><a href="videoredactor/#sources">Ʌideo</a></th>
+        </tr>
+      </thead>
+      <tbody>
         <tr><th scope="row">GCD data dump <span class="note">SQLite</span></th><td>✓</td><td></td><td></td><td></td></tr>
         <tr><th scope="row">ComicRack library <span class="note">from your own ComicDb.xml</span></th><td>✓</td><td></td><td></td><td></td></tr>
         <tr><th scope="row">Open Library data dumps</th><td></td><td>✓</td><td></td><td></td></tr>
         <tr><th scope="row">ISFDB backup <span class="note">MySQL; adds series and series number</span></th><td></td><td>✓ <span class="note">next release</span></td><td></td><td></td></tr>
         <tr><th scope="row">MusicBrainz core-data dump</th><td></td><td></td><td>✓</td><td></td></tr>
         <tr><th scope="row">IMDb datasets</th><td></td><td></td><td></td><td>✓</td></tr>
-        <tr><th scope="colgroup" colspan="5">From the file itself</th></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3 id="file-sources">From the file itself</h3>
+  <div class="table-wrap">
+    <table class="format-table">
+      <thead>
+        <tr>
+          <th>Read from</th>
+          <th><a href="cbzredactor/#sources">ƆBZ</a></th>
+          <th><a href="epubredactor/#sources">ƎPUB</a></th>
+          <th><a href="mp3redactor/#sources">ɯP3</a></th>
+          <th><a href="videoredactor/#sources">Ʌideo</a></th>
+        </tr>
+      </thead>
+      <tbody>
         <tr><th scope="row">Filename and folder path</th><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
         <tr><th scope="row">The file&rsquo;s own text or tags</th><td></td><td>✓ <span class="note">front-matter scan</span></td><td>✓ <span class="note">tags</span></td><td></td></tr>
         <tr><th scope="row">Folder image</th><td></td><td></td><td>✓</td><td></td></tr>
       </tbody>
     </table>
   </div>
-  <h3 id="dumps">The local databases, one by one</h3>
-  <p>Six sources can be turned into an offline database. You download each file yourself, under the source&rsquo;s own terms; the apps never bundle or fetch them. Five of them are built into a compact database from a dialog in the app&rsquo;s Tools menu (with progress, and Cancel is safe); the GCD dump is read directly as it is.</p>
-  <div class="table-wrap">
-    <table class="format-table">
-      <thead>
-        <tr><th>Source</th><th>App</th><th>You download</th><th>In the app</th><th>Licence</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">GCD data dump</th>
-          <td><a href="cbzredactor/#sources">ƆBZ</a></td>
-          <td><code>current.zip</code>, GCD&rsquo;s SQLite dump from comics.org (a free account is needed; about 2 GB zipped, about 7 GB unzipped).</td>
-          <td>Tools &gt; GCD Local Database. Point the app at the unzipped <code>.db</code>; there is no build step.</td>
-          <td>CC BY-SA 4.0</td>
-        </tr>
-        <tr>
-          <th scope="row">ComicRack library</th>
-          <td><a href="cbzredactor/#sources">ƆBZ</a></td>
-          <td>Your own <code>ComicDb.xml</code>, plain or zipped.</td>
-          <td>Tools &gt; ComicRack Library Database converts it once (30&ndash;40 seconds for 234,000 books). File paths and reading history are never copied.</td>
-          <td>Your own data</td>
-        </tr>
-        <tr>
-          <th scope="row">Open Library data dumps</th>
-          <td><a href="epubredactor/#sources">ƎPUB</a></td>
-          <td>The editions dump and the authors dump (or the single all-types dump) from openlibrary.org/developers/dumps; the works dump is optional.</td>
-          <td>Tools &gt; Open Library Database. Only editions with a valid ISBN, in the languages you tick; about 2.5 GB for 8 million editions (an estimate).</td>
-          <td>CC0 (public domain)</td>
-        </tr>
-        <tr>
-          <th scope="row">ISFDB backup</th>
-          <td><a href="epubredactor/#sources">ƎPUB</a> <span class="note">next release</span></td>
-          <td><code>backup-MySQL-55-YYYY-MM-DD.zip</code>, the ISFDB&rsquo;s MySQL backup from isfdb.org (about 340 MB zipped, 1.5 GB of SQL); it needs no unpacking.</td>
-          <td>Tools &gt; ISFDB Database. On the 2025-12-27 backup the build took under two minutes and gave a 154 MB database: 425,000 books (211,000 in a series) and 638,000 editions with an ISBN. It is the source that knows a book&rsquo;s <strong>series and series number</strong>.</td>
-          <td>Creative Commons Attribution; credit the ISFDB</td>
-        </tr>
-        <tr>
-          <th scope="row">MusicBrainz core-data dump</th>
-          <td><a href="mp3redactor/#sources">ɯP3</a></td>
-          <td><code>mbdump.tar.bz2</code> from musicbrainz.org (about 7 GB; it needs no unpacking).</td>
-          <td>Tools &gt; MusicBrainz Database. About 5&ndash;6 GB on disk and roughly 12 GB free while it builds (estimates). Core tables only: no genre, no cover.</td>
-          <td>CC0 (core data only)</td>
-        </tr>
-        <tr>
-          <th scope="row">IMDb datasets</th>
-          <td><a href="videoredactor/#sources">Ʌideo</a></td>
-          <td><code>title.basics.tsv.gz</code> (required) and optionally <code>title.ratings</code>, <code>title.episode</code> and <code>title.akas</code>, from datasets.imdbws.com.</td>
-          <td>Tools &gt; IMDb Database. Roughly 0.6&ndash;1 GB with the default options (an estimate).</td>
-          <td>Personal, non-commercial use only</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="note">The ISFDB is new in the next ƎPUB release and cannot be downloaded in the current one. In Redact, the lookup step asks a local database first when one is set up (for ƎPUB: ISFDB, then Open Library), then the online sources for whatever is still empty.</p>
+  <p>Six of the sources can be turned into an offline database that you build yourself from a file you download. <a href="databases/">The local databases, one by one</a> lists the file each one needs, where it is used in the apps, how big it gets and its licence.</p>
 
   <p class="note">All of this is optional. With no key, no database and no network, every app still edits, checks and converts your files. Redact (above) uses a local database first when one is set up, then the online sources for whatever is still empty, and applies only matches above its confidence threshold.</p>
 

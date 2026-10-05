@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Local Databases for Offline Metadata Lookup — The Redactor Tools</title>
+<meta name="description" content="The offline databases the Redactor apps can build from files you download yourself: GCD, ComicRack, Open Library, ISFDB, MusicBrainz and IMDb, with what to download, where it is used, and each licence.">
+<link rel="canonical" href="https://erlbon.github.io/databases/">
+<link rel="icon" href="../assets/img/favicon.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Local Databases for Offline Metadata Lookup — The Redactor Tools">
+<meta property="og:description" content="Every offline database the Redactor apps can use, the file you download for each, and its licence.">
+<meta property="og:url" content="https://erlbon.github.io/databases/">
+<meta property="og:image" content="https://erlbon.github.io/assets/img/hero-logo.png">
+<meta name="twitter:card" content="summary">
+
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/"><span class="bar" aria-hidden="true"></span> The Redactor Tools</a>
+    <nav class="crumbs"><a href="/">Home</a> / Local databases</nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>The local databases, one by one</h1>
+  <p>Six sources can be turned into an offline database. You download each file yourself, under the source&rsquo;s own terms; the apps never bundle or fetch them. Five of them are built into a compact database from a dialog in the app&rsquo;s Tools menu (with progress, and Cancel is safe); the GCD dump is read directly as it is.</p>
+  <div class="table-wrap">
+    <table class="format-table">
+      <thead>
+        <tr><th>Source</th><th>App</th><th>You download</th><th>In the app</th><th>Licence</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">GCD data dump</th>
+          <td><a href="../cbzredactor/#sources">ƆBZ</a></td>
+          <td><code>current.zip</code>, GCD&rsquo;s SQLite dump from comics.org (a free account is needed; about 2 GB zipped, about 7 GB unzipped).</td>
+          <td>Tools &gt; GCD Local Database. Point the app at the unzipped <code>.db</code>; there is no build step.</td>
+          <td>CC BY-SA 4.0</td>
+        </tr>
+        <tr>
+          <th scope="row">ComicRack library</th>
+          <td><a href="../cbzredactor/#sources">ƆBZ</a></td>
+          <td>Your own <code>ComicDb.xml</code>, plain or zipped.</td>
+          <td>Tools &gt; ComicRack Library Database converts it once (30&ndash;40 seconds for 234,000 books). File paths and reading history are never copied.</td>
+          <td>Your own data</td>
+        </tr>
+        <tr>
+          <th scope="row">Open Library data dumps</th>
+          <td><a href="../epubredactor/#sources">ƎPUB</a></td>
+          <td>The editions dump and the authors dump (or the single all-types dump) from openlibrary.org/developers/dumps; the works dump is optional.</td>
+          <td>Tools &gt; Open Library Database. Only editions with a valid ISBN, in the languages you tick; about 2.5 GB for 8 million editions (an estimate).</td>
+          <td>CC0 (public domain)</td>
+        </tr>
+        <tr>
+          <th scope="row">ISFDB backup</th>
+          <td><a href="../epubredactor/#sources">ƎPUB</a> <span class="note">next release</span></td>
+          <td><code>backup-MySQL-55-YYYY-MM-DD.zip</code>, the ISFDB&rsquo;s MySQL backup from isfdb.org (about 340 MB zipped, 1.5 GB of SQL); it needs no unpacking.</td>
+          <td>Tools &gt; ISFDB Database. On the 2025-12-27 backup the build took under two minutes and gave a 154 MB database: 425,000 books (211,000 in a series) and 638,000 editions with an ISBN. It is the source that knows a book&rsquo;s <strong>series and series number</strong>.</td>
+          <td>Creative Commons Attribution; credit the ISFDB</td>
+        </tr>
+        <tr>
+          <th scope="row">MusicBrainz core-data dump</th>
+          <td><a href="../mp3redactor/#sources">ɯP3</a></td>
+          <td><code>mbdump.tar.bz2</code> from musicbrainz.org (about 7 GB; it needs no unpacking).</td>
+          <td>Tools &gt; MusicBrainz Database. About 5&ndash;6 GB on disk and roughly 12 GB free while it builds (estimates). Core tables only: no genre, no cover.</td>
+          <td>CC0 (core data only)</td>
+        </tr>
+        <tr>
+          <th scope="row">IMDb datasets</th>
+          <td><a href="../videoredactor/#sources">Ʌideo</a></td>
+          <td><code>title.basics.tsv.gz</code> (required) and optionally <code>title.ratings</code>, <code>title.episode</code> and <code>title.akas</code>, from datasets.imdbws.com.</td>
+          <td>Tools &gt; IMDb Database. Roughly 0.6&ndash;1 GB with the default options (an estimate).</td>
+          <td>Personal, non-commercial use only</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">The ISFDB is new in the next ƎPUB release and cannot be downloaded in the current one. In Redact, the lookup step asks a local database first when one is set up (for ƎPUB: ISFDB, then Open Library), then the online sources for whatever is still empty.</p>
+
+  <p class="note">All of this is optional. With no key, no database and no network, every app still edits, checks and converts your files. See <a href="../index.html#sources">all sources side by side</a> and <a href="../index.html#data-licences">the data notices and licences</a>.</p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><a href="/">← Back to The Redactor Tools</a> · Source on <a href="https://github.com/Erlbon">GitHub</a> · <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3.0-or-later</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
