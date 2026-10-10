@@ -28,9 +28,10 @@
   "downloadUrl": "https://github.com/Erlbon/videoredactor/releases/latest",
   "operatingSystem": "Windows, Linux",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "2026-10-01#11",
+  "softwareVersion": "2026-10-10#01",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
   "featureList": [
+    "Command line: the same program with a command name, for scripts and scheduled tasks (--json, --dry-run, exit codes)",
     "Bulk-edit MP4 and MKV metadata",
     "TMDB and TheTVDB lookups with season and episode matching",
     "Subtitle fetching from OpenSubtitles",
@@ -96,6 +97,8 @@
     <li><strong>Check &amp; repair files</strong> — a quick health check (seconds per file, nothing decoded) finds read errors, files that end early from an interrupted download or copy, MKVs without a seek index, MP4s that can't start playing until fully loaded, and default-audio-track mix-ups. Repair rewrites the file losslessly, keeps its tags and cover, checks the result, and sends the original to the Recycle Bin.</li>
     <li><strong>Poster art</strong> saved as a sidecar image, the convention Plex/Jellyfin/Kodi already expect, plus a <strong>thumbnail preview</strong> pulled from a real frame of the video.</li>
   </ul>
+
+  <p><strong>Scripting:</strong> info, set, rename, move, check and redact also run from the command line: see the <a href="#cli">command line guide</a> below.</p>
 
   <h2 id="redact">Redact, and everything since</h2>
   <p>Everything below is in the current release. Redact is the one-click path; the individual tools above remain available.</p>
@@ -176,6 +179,49 @@
   <p class="note">Licences and required acknowledgements for these sources are collected under <a href="../index.html#data-licences">Data and licences</a> on the hub.</p>
   <p class="note">Information courtesy of IMDb (<a href="https://www.imdb.com">https://www.imdb.com</a>). Used with permission.</p>
   <p class="note">This website uses TMDB and the TMDB APIs but is not endorsed, certified, or otherwise approved by TMDB.<a href="https://www.themoviedb.org/"><img class="tmdb-logo" src="../assets/img/tmdb-blue-short.svg" alt="TMDB logo" width="137" height="18"></a></p>
+
+  <h2 id="cli">Command line</h2>
+  <p>The Ʌideo Redactor can be driven from a terminal, a batch file or Task Scheduler. It is the <strong>same program</strong>: there is no second download. <code>videoredactor.exe</code> with a command name as its first argument runs that command and never opens a window; with no arguments, or with a file or folder, it opens the window as before. The commands use the same code as the window, so they give the same results, and not every window function has a command: these are the ones meant for scripting.</p>
+  <div class="table-wrap">
+    <table class="format-table">
+      <thead>
+        <tr><th>Command</th><th>What it does</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row"><code>info</code></th><td>Show each video's container, resolution, codecs, length, check result and tags.</td></tr>
+        <tr><th scope="row"><code>set</code></th><td>Set or clear tags (<code>-s show_title=Dune -s season=1</code>); only the tags are written, the video is not re-encoded, and the save is read back and compared.</td></tr>
+        <tr><th scope="row"><code>rename</code></th><td>Rename from the tags with a pattern such as <code>%show_title% - S%season_number%E%episode_number% - %title%</code>; poster and subtitle files go with the video.</td></tr>
+        <tr><th scope="row"><code>move</code></th><td>Move or copy into a folder tree under your library root, <code>%show_title%/Season %season_number%/%title%</code>.</td></tr>
+        <tr><th scope="row"><code>check</code></th><td>Check each file for damage; <code>--repair</code> fixes the ones a lossless remux can, <code>--stamp</code> records the result in the file.</td></tr>
+        <tr><th scope="row"><code>redact</code></th><td>Run the same Redact recipe as the window: check and repair, tags from the file name and path, TMDB / TheTVDB / IMDb lookups, subtitles, MKV to MP4, rename, move.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <pre class="cli-example"><code>videoredactor info "D:\Series\Dune" --fields title,season,episode
+videoredactor set "D:\Series\Dune" -s show_title=Dune -s season=1 -n
+videoredactor check "D:\Films" --repair --trash-dir "D:\Trash" --json -o check.json
+videoredactor rename "D:\Series\Dune" -p "%show_title% - S%season_number%E%episode_number% - %title%" --zero-pad 2
+videoredactor move "D:\Incoming" -p "%show_title%/Season %season_number%/%title%" --root "D:\Library"
+videoredactor redact "D:\Incoming" --disable lookup --disable subtitles --trash-dir "D:\Trash"</code></pre>
+  <p>Every command takes videos, folders (searched recursively; <code>-R</code> for the top level only) or wildcards. Every command that changes videos has <code>-n</code> / <code>--dry-run</code> to preview the result first. <code>--json</code> prints one JSON document instead of text, <code>-o FILE</code> writes the result to a file, and <code>-q</code> silences progress. The exit code says how it went: 0 done, 1 some videos failed, 2 bad arguments, 70 an internal error, 130 interrupted.</p>
+  <ul class="feature-list">
+    <li><strong>Nothing is overwritten</strong>: a taken name gets <code>(2)</code>, <code>(3)</code>, and a file the pattern gives no name for is skipped, not called &ldquo;untitled&rdquo;. A mistyped <code>%token%</code> is refused instead of silently rendering as nothing.</li>
+    <li><strong>Nothing is deleted for good</strong>: an original replaced by Redact or a conversion goes to the Recycle Bin, or to the folder you give with <code>--trash-dir</code>, for a machine that has none.</li>
+    <li><strong>No undo</strong>: unlike the window, the command line is not recorded in the app's rename log. Preview with <code>--dry-run</code>.</li>
+    <li><strong>Your settings apply</strong>: the saved Redact recipe, library root, offline databases, and the zero-pad and ASCII choices from the Rename window are what the commands use, unless a flag says otherwise (<code>--recipe FILE</code>, <code>--root</code>, <code>--zero-pad</code>, <code>--ascii</code>).</li>
+  </ul>
+  <p><code>check --repair</code> never touches a file that is damaged (a repair would drop its unreadable end); that stays a decision for Media &gt; Check Files in the window. API keys are read from the <code>TMDB_API_KEY</code>, <code>TVDB_API_KEY</code> and <code>OPENSUBTITLES_API_KEY</code> environment variables if set, else from the app's saved ones.</p>
+  <h3>Using it from scripts (Windows)</h3>
+  <p>The Windows program is a windowed one, so an interactive shell does not wait for it. For automation ask for the result in a file, wait for the process, and read the exit code:</p>
+  <pre class="cli-example"><code>videoredactor.exe check "D:\Films" --json --output "%TEMP%\check.json"
+if errorlevel 1 echo something failed
+
+start /wait videoredactor.exe redact "D:\Incoming" --quiet
+
+# PowerShell
+$p = Start-Process videoredactor.exe -ArgumentList 'redact','D:\Incoming','--json','-o','C:\Temp\redact.json' -Wait -PassThru
+$p.ExitCode</code></pre>
+  <p>In a batch file write <code>%%</code> for each <code>%</code> of a pattern (<code>-p "%%series%% %%title%%"</code>), as cmd expands a single <code>%name%</code> itself. On Linux the program behaves like any command-line tool. The full reference, with every option and JSON field, is in the <a href="https://github.com/Erlbon/videoredactor/blob/main/ABOUT.md">repository documentation</a>.</p>
 
   <h2>Requirements</h2>
   <p>Two downloads on each release: a standalone <code>.exe</code> for Windows, and <code>videoredactor-linux-x86_64.tar.gz</code> for 64-bit Linux (Ubuntu 22.04+, Debian 12+, Fedora 36+, Mint 21+ and the like — unpack and run; settings live in <code>~/.config/videoredactor/</code>). No separate Python install needed on either. Remuxing and thumbnail extraction need <code>ffmpeg</code>; MKV metadata read/write needs <a href="https://mkvtoolnix.download/">MKVToolNix</a> — the app warns on first launch if either is missing from PATH. Full details and the changelog are in the <a href="https://github.com/Erlbon/videoredactor">GitHub repository</a>.</p>

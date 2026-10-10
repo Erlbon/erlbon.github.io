@@ -28,9 +28,10 @@
   "downloadUrl": "https://github.com/Erlbon/epubredactor/releases/latest",
   "operatingSystem": "Windows, Linux",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "2026-10-01#13",
+  "softwareVersion": "2026-10-10#01",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
   "featureList": [
+    "Command line: the same program with a command name, for scripts and scheduled tasks (--json, --dry-run, exit codes)",
     "Bulk-edit EPUB metadata",
     "Lookups against Google Books and Open Library",
     "Redact: repair, fill in and file books in one click",
@@ -103,6 +104,8 @@
     <li><strong>Preferences</strong> (<strong>Tools &gt; Preferences&hellip;</strong>, Ctrl+,): the everyday settings in one dialog with four pages &mdash; <em>Filenames</em>, <em>Language</em> (the blank-language default), <em>Display</em> and <em>Tools and Paths</em> (Calibre folder, Sigil program, Open Library database and dump files). OK / Cancel / Apply, and Reset to Defaults for the page you are on. It is the same dialog the other three Redactors have; Export / Import Settings is unaffected.</li>
     <li>Drag-to-reorder, hideable columns; a resizable cover-image panel; Genre and Language quick-pick lists — all persisted across restarts.</li>
   </ul>
+
+  <p><strong>Scripting:</strong> info, set, rename, move, convert, validate and redact also run from the command line: see the <a href="#cli">command line guide</a> below.</p>
 
   <h2 id="redact">Redact, and everything since</h2>
   <p>Everything below is in the current release. Redact is the one-click path; the individual tools above remain available.</p>
@@ -187,6 +190,50 @@
     <li>The <strong>filename</strong> and the <strong>folder path</strong>: Parse Filename reads fields from a pattern such as <code>%authors%/%series%/%title%</code>, and Redact has a matching step that fills only empty fields.</li>
   </ul>
   <p class="note">Licences and required acknowledgements for these sources are collected under <a href="../index.html#data-licences">Data and licences</a> on the hub.</p>
+
+  <h2 id="cli">Command line</h2>
+  <p>The ƎPUB Redactor can be driven from a terminal, a batch file or Task Scheduler. It is the <strong>same program</strong>: there is no second download. <code>epubredactor.exe</code> with a command name as its first argument runs that command and never opens a window; with no arguments, or with a file or folder, it opens the window as before. The commands use the same code as the window, so they give the same results, and not every window function has a command: these are the ones meant for scripting.</p>
+  <div class="table-wrap">
+    <table class="format-table">
+      <thead>
+        <tr><th>Command</th><th>What it does</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row"><code>info</code></th><td>Show each book's validation status, whether it has a cover, and its metadata.</td></tr>
+        <tr><th scope="row"><code>set</code></th><td>Set or clear metadata (<code>-s Series=Dune -s series_index=2</code>); several authors or genres are separated by <code>;</code>. The saved file is read back, so a value the EPUB cannot hold is reported instead of claimed.</td></tr>
+        <tr><th scope="row"><code>rename</code></th><td>Rename from the metadata with a pattern such as <code>%series% %series_index% - %title%</code>.</td></tr>
+        <tr><th scope="row"><code>move</code></th><td>Move or copy into a folder tree under your library root, <code>%authors%/%series%/%title%</code>.</td></tr>
+        <tr><th scope="row"><code>convert</code></th><td>Turn MOBI, AZW3, DOCX, FB2 and the other formats Calibre reads into EPUB (needs Calibre); the original goes to the Recycle Bin only after the new EPUB opens.</td></tr>
+        <tr><th scope="row"><code>validate</code></th><td>List the structural problems of each book; <code>--fix</code> repairs the fixable ones and saves.</td></tr>
+        <tr><th scope="row"><code>redact</code></th><td>Run the same Redact recipe as the window: repair, clean up, tags from the path and file name, lookups, cover, rename, move.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <pre class="cli-example"><code>epubredactor info "D:\Books\Dune" --all
+epubredactor set "D:\Books\Dune" -s series=Dune -s series_index=1 -n
+epubredactor validate "D:\Books" --fix --json -o validate.json
+epubredactor convert "D:\Incoming" --trash-original
+epubredactor rename "D:\Books\Dune" -p "%series% %series_index% - %title%" --zero-pad 2
+epubredactor redact "D:\Incoming" --disable metadata_lookup --trash-dir "D:\Trash"</code></pre>
+  <p>Every command takes books, folders (searched recursively; <code>-R</code> for the top level only) or wildcards. Every command that changes books has <code>-n</code> / <code>--dry-run</code> to preview the result first. <code>--json</code> prints one JSON document instead of text, <code>-o FILE</code> writes the result to a file, and <code>-q</code> silences progress. The exit code says how it went: 0 done, 1 some books failed, 2 bad arguments, 70 an internal error, 130 interrupted.</p>
+  <ul class="feature-list">
+    <li><strong>Nothing is overwritten</strong>: a taken name gets <code>(2)</code>, <code>(3)</code>, and a file the pattern gives no name for is skipped, not called &ldquo;untitled&rdquo;. A mistyped <code>%token%</code> is refused instead of silently rendering as nothing.</li>
+    <li><strong>Nothing is deleted for good</strong>: an original replaced by Redact or a conversion goes to the Recycle Bin, or to the folder you give with <code>--trash-dir</code>, for a machine that has none.</li>
+    <li><strong>No undo</strong>: unlike the window, the command line is not recorded in the app's rename log. Preview with <code>--dry-run</code>.</li>
+    <li><strong>Your settings apply</strong>: the saved Redact recipe, library root, offline databases, and the zero-pad and ASCII choices from the Rename window are what the commands use, unless a flag says otherwise (<code>--recipe FILE</code>, <code>--root</code>, <code>--zero-pad</code>, <code>--ascii</code>).</li>
+  </ul>
+  <p>A DRM-protected book is left untouched by Redact; <code>set</code> and <code>validate --fix</code> will edit one, but print a warning first, since you named the change.</p>
+  <h3>Using it from scripts (Windows)</h3>
+  <p>The Windows program is a windowed one, so an interactive shell does not wait for it. For automation ask for the result in a file, wait for the process, and read the exit code:</p>
+  <pre class="cli-example"><code>epubredactor.exe validate "D:\Books" --json --output "%TEMP%\validate.json"
+if errorlevel 1 echo something failed
+
+start /wait epubredactor.exe redact "D:\Incoming" --quiet
+
+# PowerShell
+$p = Start-Process epubredactor.exe -ArgumentList 'redact','D:\Incoming','--json','-o','C:\Temp\redact.json' -Wait -PassThru
+$p.ExitCode</code></pre>
+  <p>In a batch file write <code>%%</code> for each <code>%</code> of a pattern (<code>-p "%%series%% %%title%%"</code>), as cmd expands a single <code>%name%</code> itself. On Linux the program behaves like any command-line tool. The full reference, with every option and JSON field, is in the <a href="https://github.com/Erlbon/epubredactor#command-line">repository README</a>.</p>
 
   <h2>Requirements</h2>
   <p>Two downloads on each release: a standalone <code>.exe</code> for Windows, and <code>epubredactor-linux-x86_64.tar.gz</code> for 64-bit Linux (Ubuntu 22.04+, Debian 12+, Fedora 36+, Mint 21+ and the like — unpack and run; settings live in <code>~/.config/epubredactor/</code>). No separate Python install needed on either. Google Books / Open Library import and cover generation work standalone; format conversion via Import to EPUB requires a local <a href="https://calibre-ebook.com/">Calibre</a> installation (on Linux, found on PATH). Full details and the changelog are in the <a href="https://github.com/Erlbon/epubredactor">GitHub repository</a>.</p>

@@ -337,3 +337,22 @@ code {
   margin-top: 8px;
   opacity: 0.85;
 }
+
+/* Command-line examples */
+pre.cli-example {
+  background: var(--bar);
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin: 16px 0;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+pre.cli-example code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+  white-space: pre;
+}

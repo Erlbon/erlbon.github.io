@@ -85,7 +85,7 @@
       <img class="icon" src="assets/img/mp3redactor.png" alt="The ɯP3 Redactor icon" width="56" height="56">
       <div>
         <h3>The ɯP3 Redactor</h3>
-        <p>Check MP3 file integrity, detect BPM and musical key, measure loudness, look albums up on MusicBrainz (online, or from a local database you build) and Discogs, find duplicate tracks, and bulk-edit tags across a whole library at once.</p>
+        <p>Check MP3 file integrity, detect BPM and musical key, measure loudness, look albums up on MusicBrainz (online, or from a local database you build) and Discogs, find duplicate tracks, make chaptered M4B audiobooks, and bulk-edit tags across a whole library at once.</p>
       </div>
     </a>
 
@@ -138,7 +138,7 @@
           <th scope="row"><a href="mp3redactor/">ɯP3 Redactor</a></th>
           <td>MP3 <span class="note">ID3v2 tags</span></td>
           <td>FLAC, WAV, OGG, M4A, AAC, WMA, Opus, AIFF</td>
-          <td>FFmpeg <span class="note">also mp3val, keyfinder-cli, aubio for integrity/key/BPM</span></td>
+          <td>FFmpeg <span class="note">also mp3val, keyfinder-cli, aubio for integrity/key/BPM</span><br>Also makes M4B audiobooks from MP3 files <span class="note">FFmpeg, AAC re-encode</span></td>
         </tr>
         <tr>
           <th scope="row"><a href="videoredactor/">Ʌideo Redactor</a></th>
@@ -158,6 +158,7 @@
     <li><strong>Export / Import Settings</strong> to carry your setup to another computer. Secrets are never included.</li>
     <li><strong>Preferences</strong> (Tools &gt; Preferences, Ctrl+,): one shared dialog for the everyday settings, with OK / Cancel / Apply and Reset to Defaults per page. Settings keep their old places, so Export / Import Settings is unaffected.</li>
     <li><strong>Find Duplicates</strong>: in the ƎPUB (Repair menu), ɯP3 (Analyze menu) and Ʌideo (Media menu) Redactors it opens the same review dialog, which shows how strong each match is and why, selects nothing for you, remembers groups you mark &ldquo;Not duplicates&rdquo;, and never trashes every file of a group. The ƆBZ Redactor has its own duplicate finder, matching comics by their pages.</li>
+    <li><strong>Command line, in the same program</strong>: every app runs commands from a terminal, a batch file or Task Scheduler (<code>info</code>, <code>set</code>, <code>rename</code>, <code>move</code>, <code>convert</code>, <code>redact</code>, and each app's own, such as <code>analyze</code>, <code>m4b</code>, <code>validate</code> and <code>check</code>), with <code>--dry-run</code> to preview, <code>--json</code> for scripts, and exit codes. There is no second download. Nothing is overwritten and nothing is deleted for good. Each app's page has a command line guide.</li>
     <li><strong>Command palette</strong> (Ctrl+K), one standard menu layout (File, Edit, View, the app&rsquo;s own menus, Tools, Help), Open in Default App, and Ctrl+S to save every changed file.</li>
     <li><strong>Keys and tokens in the credential store</strong>: where an app uses an online service key (Comic Vine and GCD in the ƆBZ Redactor; TMDB, TheTVDB and OpenSubtitles in the Ʌideo Redactor; a Discogs token in the ɯP3 Redactor), it is stored in your operating system&rsquo;s credential store, not in a settings file.</li>
     <li><strong>Safe in-place saves</strong>: a file is replaced only after the new copy is written and verified, so a failed save never loses the original.</li>
