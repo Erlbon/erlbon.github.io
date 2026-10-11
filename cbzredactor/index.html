@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CBZ Redactor — ComicInfo.xml Metadata Editor for Windows &amp; Linux</title>
-<meta name="description" content="The ƆBZ Redactor is a free Windows and Linux app for editing ComicInfo.xml metadata in CBZ comic archives, with lookups against Comic Vine, the Grand Comics Database, and Bedetheque.">
+<meta name="description" content="The ƆBZ Redactor is a free Windows and Linux app for editing ComicInfo.xml metadata in CBZ comic archives, with lookups against Comic Vine, the Grand Comics Database, Bedetheque, and AniList and MangaUpdates for manga.">
 <link rel="canonical" href="https://erlbon.github.io/cbzredactor/">
 <link rel="icon" href="../assets/img/cbzredactor.png" type="image/png">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="The ƆBZ Redactor — CBZ / ComicInfo.xml Metadata Editor">
-<meta property="og:description" content="Free Windows and Linux app for editing ComicInfo.xml metadata in CBZ comic archives, with Comic Vine, GCD, and Bedetheque lookups.">
+<meta property="og:description" content="Free Windows and Linux app for editing ComicInfo.xml metadata in CBZ comic archives, with Comic Vine, GCD, Bedetheque, and AniList and MangaUpdates (manga) lookups.">
 <meta property="og:url" content="https://erlbon.github.io/cbzredactor/">
 <meta property="og:image" content="https://erlbon.github.io/assets/img/screenshots/cbzredactor-1.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -23,17 +23,18 @@
   "@type": "SoftwareApplication",
   "name": "The ƆBZ Redactor",
   "alternateName": "CBZ Redactor",
-  "description": "A Windows and Linux desktop tool for viewing and editing the ComicInfo.xml metadata embedded in CBZ comic book archives, with lookups against Comic Vine, the Grand Comics Database, and Bedetheque.",
+  "description": "A Windows and Linux desktop tool for viewing and editing the ComicInfo.xml metadata embedded in CBZ comic book archives, with lookups against Comic Vine, the Grand Comics Database, Bedetheque, and AniList and MangaUpdates for manga.",
   "url": "https://erlbon.github.io/cbzredactor/",
   "downloadUrl": "https://github.com/Erlbon/cbzredactor/releases/latest",
   "operatingSystem": "Windows, Linux",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "2026-10-10#01",
+  "softwareVersion": "2026-10-11#01",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
   "featureList": [
     "Edit ComicInfo.xml in CBZ archives in bulk",
     "Command line: the same program with a command name, for scripts and scheduled tasks (--json, --dry-run, exit codes)",
     "Lookups against Comic Vine, the Grand Comics Database and Bedetheque",
+    "Manga lookup: AniList and MangaUpdates merged, no key needed (series-level: title, summary, genres, credits, publisher, count)",
     "Offline lookups in a local GCD database and a ComicRack library",
     "Redact: convert, clean, fill in and fix in one click",
     "Convert CBR, CB7 and CBT to CBZ",
@@ -51,7 +52,7 @@
     "Find Duplicates by page content",
     "Windows and Linux downloads",
     "Comic Vine key and GCD password in the operating system's credential store",
-    "Online lookups: Comic Vine (your own key), Grand Comics Database, Bedetheque",
+    "Online lookups: Comic Vine (your own key), Grand Comics Database, Bedetheque, AniList and MangaUpdates (no key)",
     "Local lookups from files you supply: a GCD data dump and your own ComicRack library"
   ],
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -98,6 +99,7 @@
     <li>Load one or many <code>.cbz</code> (or <code>.cbr</code>/<code>.cbt</code>/<code>.cb7</code>) files, or a whole folder, into a sortable, column-configurable table; multi-select for editing, saving, or looking up several issues at once.</li>
     <li><strong>Bulk edit</strong> the full ComicInfo.xml v2.0 field set, plus draft v2.1 fields already understood by ComicTagger and Kavita (Translator, Tags, StoryArcNumber, GTIN) — a field left blank is left untouched, not cleared.</li>
     <li><strong>Metadata lookups</strong> against Comic Vine, the Grand Comics Database, and Bedetheque, each with a cover preview and a confirm-before-write review step, and each matched issue's page recorded in <strong>Web</strong>.</li>
+    <li><strong>Manga lookup</strong> (<strong>Metadata &gt; Look Up &gt; Manga (AniList + MangaUpdates)&hellip;</strong>): searches <a href="https://anilist.co">AniList</a> and <a href="https://www.mangaupdates.com">MangaUpdates</a> together, pairs the two answers by title and start year, and merges them: series title, summary, start date, genres and best-rated tags, author and artist (as Writer and Penciller), the publisher (the English one when known), the volume count of a finished series, the community rating, <strong>Manga = YesAndRightToLeft</strong> for Japanese manga and an adults-only age rating where AniList flags it. No key needed. Both are <em>series</em> databases, so every volume of a series gets the same answer (one request pair per batch) and the volume number is never touched; they hold no per-volume ISBN, date or cover. Other matching series are under Other Matches, the cover is shown for confirmation only, and if one service is down the other still answers. Data from AniList and MangaUpdates.</li>
     <li><strong>Offline lookups</strong> in your own local copies: the GCD's downloadable database (milliseconds per file, no hourly limit), and your own <strong>ComicRack</strong> library, converted once from its <code>ComicDb.xml</code> — only descriptions of comics are copied, never file paths or reading history.</li>
     <li><strong>Compare your ComicRack library with the GCD</strong>: series and issues the GCD doesn't have, and GCD issues missing credits, characters or a summary your library has — saved as spreadsheets, ready to contribute back.</li>
     <li><strong>Read Filename Tags</strong>: scene-style filenames parsed into series, number, year and title, with bracketed tags sorted into Scan Information, Format and Notes — using pattern rules and a list of ~350 release groups. Only whole bracketed phrases count, so title words are never stripped.</li>
@@ -124,7 +126,7 @@
 
   <h2 id="redact">Redact, and everything since</h2>
   <p>Everything below is in the current release. Redact is the one-click path; the individual tools above remain available.</p>
-  <p><strong>Redact steps:</strong> convert CBR/CB7/CBT to CBZ, clean up archive contents, fill empty fields from the filename, the folder path and a database (local GCD or ComicRack first, then Comic Vine when a key is saved), fix ComicInfo issues, tag low-res scans, and rename by pattern once you have used one. Optional, off by default: remove known credit pages, resize oversized pages to 1440 px, and move into folders.</p>
+  <p><strong>Redact steps:</strong> convert CBR/CB7/CBT to CBZ, clean up archive contents, fill empty fields from the filename, the folder path and a database (local GCD or ComicRack first, then Comic Vine when a key is saved), fix ComicInfo issues, tag low-res scans, and rename by pattern once you have used one. Optional, off by default: fill empty fields from AniList and MangaUpdates (for a manga library), remove known credit pages, resize oversized pages to 1440 px, and move into folders.</p>
   <ul class="feature-list">
     <li><strong>Redact</strong>: one click on the toolbar (or Edit &gt; Redact, Ctrl+Shift+E) runs an editable recipe of steps on the selected files, or on all loaded files after asking. Each changed file is saved in place and its original goes to the Recycle Bin, so the Recycle Bin is the undo. Guesses are applied only at or above a confidence threshold (90% by default); weaker ones are listed under <strong>Needs review</strong> and never written. Files with unsaved edits or that failed to load are skipped and named in the report. A saved recipe keeps the patterns it was saved with (the editor shows a <strong>pattern trail</strong> of where each pattern comes from), so changing the Rename / Export pattern later does not silently change what Redact does.</li>
     <li><strong>Move into folders</strong>: Rename / Export / Move has a third mode that files each item into a folder tree under a library root, using a pattern with <code>/</code> in it. The preview shows each new path, nothing is overwritten (a taken name gets &ldquo;(2)&rdquo;), and <strong>File &gt; Undo Last Rename</strong> puts everything back and offers to remove the folders the move created.</li>
@@ -159,6 +161,12 @@
           <td>The same fields from GCD, with structured credits; the issue&rsquo;s GCD page goes in Web. Needs a series name and an issue number.</td>
           <td>No key. An optional free GCD account raises GCD&rsquo;s hourly limit for anonymous use; the password is stored in your credential store.</td>
           <td>Metadata &gt; Look Up &gt; Grand Comics Database. GCD data is under the licence described in <a href="../index.html#data-licences">Data and licences</a>.</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="https://anilist.co/">AniList</a> and <a href="https://www.mangaupdates.com/">MangaUpdates</a> (manga)</th>
+          <td>Series level only: title, summary, start date, genres and tags, author and artist, publisher (the English one when MangaUpdates has it), volume count of a finished series, rating, Manga flag and age rating; AniList&rsquo;s page goes in Web. Nothing per volume (no ISBN, date or cover).</td>
+          <td>No key. Two free public APIs; AniList&rsquo;s request limit is low, so requests are spaced and a series is asked about once per run.</td>
+          <td>Metadata &gt; Look Up &gt; Manga, and the Redact step &ldquo;Fill empty fields from AniList and MangaUpdates (manga)&rdquo; (off by default). Credit: data from AniList and MangaUpdates.</td>
         </tr>
         <tr>
           <th scope="row"><a href="https://www.bedetheque.com/">Bedetheque</a></th>
