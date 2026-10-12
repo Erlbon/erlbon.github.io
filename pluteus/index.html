@@ -32,7 +32,7 @@
   "featureList": [
     "OPDS feeds for reader apps, with page streaming for comics",
     "Web UI over the real folder tree; no library database and no rescans",
-    "EPUB, CBZ and PDF readers in the browser with reading progress per user",
+    "EPUB, comic (CBZ, CBR, CB7, CBT) and PDF readers in the browser with reading progress per user",
     "Viewers for images, audio, m4b audiobooks, video, text, Markdown, CSV and zip files",
     "Per-user logins, per-user folder access and personal upload folders",
     "Folder markers: .adult, .private (allow-list) and .hidden",
@@ -96,7 +96,7 @@
   <ul class="feature-list">
     <li><strong>OPDS feeds</strong> for reader apps (KOReader, Moon+ Reader, Librera, PocketBook and similar), including page streaming for comics, so a comic app need not download a whole CBZ first. Apps sign in with HTTP Basic.</li>
     <li><strong>A web UI over the real folder tree</strong>, with breadcrumbs, sorting, and an icon on every file. EPUBs show the title, author and series stored inside the file, read only for the books on the page and cached.</li>
-    <li><strong>Readers in the browser</strong> for EPUB, CBZ and PDF, with your place saved per user. The EPUB reader shows one centred page by default, with two pages as an option; the readers are skinnable.</li>
+    <li><strong>Readers in the browser</strong> for EPUB, comics (CBZ, CBR, CB7 and CBT) and PDF, with your place saved per user. The EPUB reader shows one centred page by default, with two pages as an option; the readers are skinnable.</li>
     <li><strong>Viewers</strong> for images, audio, video, text, Markdown, CSV and zip files. Small <strong>m4b audiobook</strong> support: 30-second skips, speed, a sleep timer and lock-screen controls.</li>
     <li><strong>Pick up where you left off</strong>: the home page lists what you were reading with a percentage, and you can remove an entry you are done with.</li>
     <li><strong>Per-user logins</strong> with their own progress, and per-user access to individual libraries. A personal <strong>upload folder</strong> for each user, kept apart from the libraries.</li>
@@ -140,7 +140,7 @@
   </div>
 
   <h2>What it deliberately does not do</h2>
-  <p>No library database, no search across the whole library, no &ldquo;recently added&rdquo; list, no duplicate detection, no cover images, no online metadata lookups, no CBR support and no sign-up. (It does read the title, author and series already written inside your EPUBs, for the books on the page you are looking at.) Anything that would need scanning the whole tree is left out on purpose, because that lightness is the point. Pluteus is not a replacement for Nextcloud, Calibre or Jellyfin.</p>
+  <p>No library database, no search across the whole library, no &ldquo;recently added&rdquo; list, no duplicate detection, no cover images, no online metadata lookups and no sign-up. (It does read the title, author and series already written inside your EPUBs, for the books on the page you are looking at.) Anything that would need scanning the whole tree is left out on purpose, because that lightness is the point. Pluteus is not a replacement for Nextcloud, Calibre or Jellyfin.</p>
 
   <h2 id="run-it">Run it</h2>
   <p>With Docker, from a clone of the repository:</p>
