@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pluteus vs Ubooquity, Komga and Kavita — Memory, Image Size and Scan Time Measured</title>
+<meta name="description" content="A measured comparison of Pluteus with Ubooquity, Komga and Kavita on the same library of 12,000 and 3,000 real comic and EPUB files: Docker image size, memory, scan time, disk use and OPDS browsing speed, with the method and its limits.">
+<link rel="canonical" href="https://erlbon.github.io/pluteus/compare/">
+<link rel="icon" href="../../assets/img/pluteus.png" type="image/png">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pluteus vs Ubooquity, Komga and Kavita — measured">
+<meta property="og:description" content="Same library, same machine: Docker image size, memory, scan time and browsing speed for four self-hosted comic and ebook servers.">
+<meta property="og:url" content="https://erlbon.github.io/pluteus/compare/">
+<meta property="og:image" content="https://erlbon.github.io/assets/img/screenshots/pluteus-home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+  .compare td, .compare th { white-space: nowrap; }
+  .compare td.good { color: var(--accent); font-weight: 600; }
+  .compare td.bad { color: #d77; }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Pluteus compared with Ubooquity, Komga and Kavita",
+  "description": "Memory, Docker image size, scan time, disk use and OPDS browsing speed of four self-hosted comic and ebook servers on the same library.",
+  "url": "https://erlbon.github.io/pluteus/compare/",
+  "dateModified": "2026-10-12",
+  "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" },
+  "isPartOf": { "@type": "WebSite", "name": "The Redactor Tools", "url": "https://erlbon.github.io/" }
+}
+</script>
+</head>
+<body data-app="pluteus">
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/"><span class="bar" aria-hidden="true"></span> The Redactor Tools</a>
+    <nav class="crumbs"><a href="/">Home</a> / <a href="../">Pluteus</a> / Compared</nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <img class="icon" src="../../assets/img/pluteus.png" alt="Pluteus icon" width="72" height="72">
+    <div>
+      <h1>Pluteus compared</h1>
+      <p class="tagline" style="margin-bottom:0">The same library, the same machine, four servers: Pluteus, Ubooquity, Komga and Kavita. Image size, memory, scan time, disk use and browsing speed, measured, with the method and where Pluteus loses.</p>
+    </div>
+  </div>
+
+  <h2>The short version</h2>
+  <ul class="feature-list">
+    <li><strong>Pluteus is the lightest by a wide margin.</strong> Its Docker image is 215 MB against 371 to 900 MB, and it idles at 29 MB against 169 to 615 MB. On the 12,000-file library its peak while browsing was 63 MB; Ubooquity peaked at 277 MB and Komga at 852 MB.</li>
+    <li><strong>It has no scan.</strong> Pluteus answers the first request about one second after it starts. On 12,000 files Ubooquity and Komga spent 12 and 14 minutes indexing before the whole library was browsable, and Kavita had not finished the EPUBs after 10.</li>
+    <li><strong>The price is the first look at a comic folder.</strong> Pluteus reads each comic's page list when you first open a folder, where the others did that work during their scan. In our crawl the median first request took about 700 ms, and 80 ms the second time. Ubooquity answered in about 15 ms and Komga in 200 to 340 ms.</li>
+    <li><strong>The others do more.</strong> Komga and Kavita have covers, metadata editing, reading lists, collections and richer user management. Pluteus deliberately has none of that. If you want those, it is not the tool.</li>
+  </ul>
+
+  <h2>12,000 files</h2>
+  <p>6,000 CBZ comics (60 series, each with a <code>ComicInfo.xml</code>) and 6,000 EPUBs (400 authors, with series metadata), 284 MB in all. All files are invented.</p>
+  <div class="table-wrap">
+    <table class="format-table compare">
+      <thead>
+        <tr><th></th><th>Pluteus 0.4.0</th><th>Ubooquity 3.1.0</th><th>Komga 26.04</th><th>Kavita</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Docker image</th><td class="good">215 MB</td><td>371 MB</td><td>809 MB</td><td class="bad">900 MB</td></tr>
+        <tr><th scope="row">Server answers after</th><td class="good">1.1 s</td><td>not timed</td><td>11.9 s</td><td>16.9 s</td></tr>
+        <tr><th scope="row">Whole library browsable after</th><td class="good">at once</td><td>12 min (721 s)</td><td>14 min (827 s)</td><td>cancelled after about 10 min<br><span class="note">comics indexed in 3.5 to 5.7 min; the EPUB library had not appeared</span></td></tr>
+        <tr><th scope="row">Memory at rest, no library yet</th><td class="good">29 MB</td><td>not measurable<br><span class="note">it scans at launch</span></td><td>605 MB</td><td>339 MB</td></tr>
+        <tr><th scope="row">Memory at rest, library loaded</th><td class="good">29 MB</td><td>203 MB</td><td>833 MB</td><td>&ndash;</td></tr>
+        <tr><th scope="row">Peak memory while an app browses</th><td class="good">63 MB</td><td>277 MB</td><td>852 MB</td><td>&ndash;</td></tr>
+        <tr><th scope="row">State kept on disk</th><td class="good">7 MB</td><td>31 MB</td><td>48 MB</td><td>111 MB<br><span class="note">comics only</span></td></tr>
+        <tr><th scope="row">OPDS browsing, first pass<br><span class="note">median / 95th percentile</span></th><td class="bad">695 ms / 2.5 s</td><td class="good">16 ms / 46 ms</td><td>197 ms / 346 ms</td><td>&ndash;</td></tr>
+        <tr><th scope="row">OPDS browsing, second pass</th><td>83 ms / 250 ms</td><td class="good">13 ms / 22 ms</td><td>191 ms / 326 ms</td><td>&ndash;</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3,000 files</h2>
+  <p>The same layout with a quarter of the files: 1,500 comics and 1,500 EPUBs, 71 MB. Run to see what changes when the library is smaller.</p>
+  <div class="table-wrap">
+    <table class="format-table compare">
+      <thead>
+        <tr><th></th><th>Pluteus 0.4.0</th><th>Ubooquity 3.1.0</th><th>Komga 26.04</th><th>Kavita</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Server answers after</th><td class="good">1.2 s</td><td>2.7 s</td><td>12.4 s</td><td>17.5 s</td></tr>
+        <tr><th scope="row">Whole library browsable after</th><td class="good">at once</td><td>3 min (173 s)</td><td>1.6 min (95 s) to list;<br>busy for 19 min after that</td><td>cancelled after 15 min<br><span class="note">comics indexed; the EPUB library had not appeared</span></td></tr>
+        <tr><th scope="row">Memory at rest, no library yet</th><td class="good">29 MB</td><td>not measurable<br><span class="note">it scans at launch</span></td><td>615 MB</td><td>360 MB</td></tr>
+        <tr><th scope="row">Memory at rest, library loaded</th><td class="good">29 MB</td><td>169 MB</td><td>839 MB</td><td>338 MB<br><span class="note">comics only</span></td></tr>
+        <tr><th scope="row">Peak memory while an app browses</th><td class="good">39 MB</td><td>187 MB</td><td>875 MB</td><td>&ndash;</td></tr>
+        <tr><th scope="row">State kept on disk</th><td class="good">5 MB</td><td>10 MB</td><td>37 MB</td><td>&ndash;</td></tr>
+        <tr><th scope="row">OPDS browsing, first pass<br><span class="note">median / 95th percentile</span></th><td class="bad">737 ms / 1.6 s</td><td class="good">20 ms / 66 ms</td><td>332 ms / 510 ms</td><td>&ndash;</td></tr>
+        <tr><th scope="row">OPDS browsing, second pass</th><td>85 ms / 134 ms</td><td class="good">13 ms / 24 ms</td><td>342 ms / 591 ms</td><td>&ndash;</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Memory barely moves with library size: Pluteus went from 29 to 63 MB peak and Ubooquity from 187 to 277 MB when the library quadrupled, while Komga stayed near 850 MB either way. What grows is scan time for the products that scan, and Pluteus does not scan.</p>
+
+  <h2>Why Pluteus is slow on a first visit</h2>
+  <p>Pluteus keeps no index. When you open a folder of comics it reads each archive's page list so that reader apps can stream pages, and it caches the answer. The other products read every file once during their scan, then answer from a database. So Pluteus pays at the first visit what they pay up front, spread over the folders you actually open. It is a fair trade for a library of tens of terabytes you mostly never browse in full, and a worse one if you want everything fast from the first tap. The numbers above show both sides: the first pass is slow, the second is not.</p>
+
+  <h2>How this was measured</h2>
+  <ul class="feature-list">
+    <li><strong>Machine:</strong> a Windows laptop running Docker Desktop (16 CPUs and 15.4 GB visible to Docker). The libraries were bind-mounted read-only from the Windows disk, which goes through Docker Desktop's slower file-sharing layer. Every product paid that equally.</li>
+    <li><strong>Images:</strong> Pluteus 0.4.0 built from its Dockerfile; <code>linuxserver/ubooquity</code> 3.1.0-ls95; <code>gotson/komga</code> 26.04; <code>jvmilazz0/kavita</code> (the latest tag, built 2 September 2026). Default settings throughout, no memory limits, one product running at a time, each from a fresh container.</li>
+    <li><strong>Memory</strong> is what <code>docker stats</code> reports for the container, sampled once a second while a reader app crawled the catalogue. Java products (Ubooquity, Komga, Kavita's .NET runtime) take whatever their runtime grabs by default, which is what a real user gets.</li>
+    <li><strong>Browsing</strong> is a script that does what a reader app does: it starts at the OPDS root and follows the catalogue links, 8 requests at a time, up to 600 requests. The feeds differ between products, so the number of requests differs too (Pluteus 536 and 170, Komga 541 and 470, Ubooquity 332 and 100). Treat the latencies as rough.</li>
+    <li><strong>One run each.</strong> A shared laptop is noisy: Komga's median browsing time was 197 ms in one run and 332 ms in the other. Differences of a few tens of percent mean nothing; differences of several times do.</li>
+    <li><strong>Small files.</strong> The comics are about 50 KB and the EPUBs about 5 KB. Real libraries have bigger files, which slows every scanning product, and not Pluteus's start-up.</li>
+  </ul>
+
+  <h2>What went wrong, and what we left out</h2>
+  <ul class="feature-list">
+    <li><strong>Kavita:</strong> we could not get its EPUB library indexed. After its comics were scanned (60 series, 6,000 files in 3.5 to 5.7 minutes) the book library stayed empty, and we stopped after about 10 minutes on the larger library and 15 on the smaller. That may be our setup: Kavita queued one scan at a time and the book library needed an explicit scan request, so we treat the Kavita column as incomplete, not as a verdict on the product. Its image size, memory at rest and comics-only figures are real.</li>
+    <li><strong>Ubooquity:</strong> OPDS is off by default, so we switched it on in its config file. Its "library loaded" memory is after that restart and a second, quiet scan.</li>
+    <li><strong>Komga</strong> kept working for a long time after every book was listed (thumbnails and similar). The "browsable" line gives the time to list; the settling time was 15 minutes at 12,000 files and 19 at 3,000.</li>
+    <li><strong>Not measured:</strong> a real library of your own files, a Linux host without Docker Desktop's file layer, many people using it at once, and the time to render pages in a browser.</li>
+  </ul>
+
+  <p class="note">Measured on 12 October 2026. The raw results are in the Pluteus repository, under <code>docs/benchmark</code>.</p>
+
+  <div class="btn-row">
+    <a class="btn primary" href="../">Back to Pluteus</a>
+    <a class="btn secondary" href="https://github.com/Erlbon/pluteus">Source on GitHub</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><a href="/">← Back to The Redactor Tools</a> · <a href="../">Pluteus</a> · <a href="https://opensource.org/license/mit">MIT</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
