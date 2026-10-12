@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pluteus — A Light Book &amp; Comic Server with OPDS, for Docker, Windows &amp; Linux</title>
+<meta name="description" content="Pluteus is a free, open-source, filesystem-first library server: OPDS feeds for reader apps, a web UI over your real folder tree, EPUB, CBZ and PDF readers, per-user logins and progress, and no library database to rebuild. A light Ubooquity alternative in Python.">
+<link rel="canonical" href="https://erlbon.github.io/pluteus/">
+<link rel="icon" href="../assets/img/pluteus.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pluteus — A Light Book &amp; Comic Server (OPDS, web readers, no database)">
+<meta property="og:description" content="Free, open-source library server for books and comics kept as plain folders: OPDS for reader apps, EPUB/CBZ/PDF readers in the browser, per-user logins. Runs in Docker or natively.">
+<meta property="og:url" content="https://erlbon.github.io/pluteus/">
+<meta property="og:image" content="https://erlbon.github.io/assets/img/screenshots/pluteus-home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Pluteus",
+  "description": "A small, filesystem-first book and comic server written in Python. It serves a library of plain folders over OPDS to reader apps and as a web UI with EPUB, CBZ and PDF readers, viewers for other file types, per-user logins and reading progress, and a personal upload folder per user. There is no library database: every folder is read live from disk. It runs in Docker or natively on Windows and Linux.",
+  "url": "https://erlbon.github.io/pluteus/",
+  "codeRepository": "https://github.com/Erlbon/pluteus",
+  "operatingSystem": "Docker, Windows, Linux",
+  "applicationCategory": "MultimediaApplication",
+  "softwareVersion": "0.3.0",
+  "license": "https://opensource.org/license/mit",
+  "featureList": [
+    "OPDS feeds for reader apps, with page streaming for comics",
+    "Web UI over the real folder tree; no library database and no rescans",
+    "EPUB, CBZ and PDF readers in the browser with reading progress per user",
+    "Viewers for images, audio, m4b audiobooks, video, text, Markdown, CSV and zip files",
+    "Per-user logins, per-user folder access and personal upload folders",
+    "Folder markers: .adult, .private (allow-list) and .hidden",
+    "Escalating login lockouts and known devices, for use behind HTTPS on the internet",
+    "Web admin page on a separate local-network port",
+    "Hardened Docker setup; libraries mounted read-only and never written",
+    "Skinnable themes, light and dark"
+  ],
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" },
+  "isPartOf": { "@type": "WebSite", "name": "The Redactor Tools", "url": "https://erlbon.github.io/" }
+}
+</script>
+</head>
+<body data-app="pluteus">
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/"><span class="bar" aria-hidden="true"></span> The Redactor Tools</a>
+    <nav class="crumbs"><a href="/">Home</a> / Pluteus</nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <img class="icon" src="../assets/img/pluteus.png" alt="Pluteus icon" width="72" height="72">
+    <div>
+      <h1>Pluteus</h1>
+      <p class="tagline" style="margin-bottom:0">A light library server for people who keep their books and comics as plain folders. Browse the real folder tree, read from any OPDS app, read in the browser, and never wait for a rescan.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn primary" href="https://github.com/Erlbon/pluteus">View source on GitHub</a>
+    <a class="btn secondary" href="#run-it">How to run it</a>
+  </div>
+
+  <div class="screenshots">
+    <figure>
+      <img src="../assets/img/screenshots/pluteus-home.jpg" alt="Pluteus home page in dark mode: a File Library heading, a 'Pick up where you left off' box listing two ebooks, an audiobook and a comic with reading percentages, and a Browse box with the books and comics libraries." width="1280" height="820">
+      <figcaption>The home page: pick up where you left off, then browse the folders. (Demo library with invented titles.)</figcaption>
+    </figure>
+  </div>
+
+  <h2>What it is</h2>
+  <p>Most library servers read everything into a database first, which flattens your folders and needs a long rescan whenever the library changes. Pluteus does the opposite: <strong>the folder tree is the catalogue</strong>. Every folder is one OPDS feed and one web page, read live from disk when you open it, so a file you have just added is there at once. It was written as a light replacement for Ubooquity, on a library of roughly ten terabytes of books and comics, and it is Python with a handful of dependencies, no Java and no scanning step.</p>
+  <p>Numbered folder names such as <code>3.23 - Vertigo</code> sort naturally (3.9 before 3.10) and the number is hidden in the display name. Your files are never written to: libraries are meant to be mounted read-only.</p>
+
+  <div class="screenshots pair">
+    <figure>
+      <img src="../assets/img/screenshots/pluteus-listing.jpg" alt="A folder listing of six comic archives with a download button, a comic icon, the size and date for each, and sort links for Name, Type, Size and Modified." width="1280" height="820" loading="lazy">
+      <figcaption>A folder: tap a title to open it, the left button downloads it. The percentage is your own progress.</figcaption>
+    </figure>
+    <figure>
+      <img src="../assets/img/screenshots/pluteus-reader-comic.jpg" alt="The comic reader showing one page of a comic fitted to the window, with a page slider and a page counter." width="1280" height="820" loading="lazy">
+      <figcaption>The comic reader (CBZ), page by page, with the position remembered.</figcaption>
+    </figure>
+  </div>
+
+  <h2>Features</h2>
+  <ul class="feature-list">
+    <li><strong>OPDS feeds</strong> for reader apps (KOReader, Moon+ Reader, Librera, PocketBook and similar), including page streaming for comics, so a comic app need not download a whole CBZ first. Apps sign in with HTTP Basic.</li>
+    <li><strong>A web UI over the real folder tree</strong>, with breadcrumbs, sorting, and an icon on every file.</li>
+    <li><strong>Readers in the browser</strong> for EPUB, CBZ and PDF, with your place saved per user. The EPUB reader shows one centred page by default, with two pages as an option; the readers are skinnable.</li>
+    <li><strong>Viewers</strong> for images, audio, video, text, Markdown, CSV and zip files. Small <strong>m4b audiobook</strong> support: 30-second skips, speed, a sleep timer and lock-screen controls.</li>
+    <li><strong>Pick up where you left off</strong>: the home page lists what you were reading with a percentage, and you can remove an entry you are done with.</li>
+    <li><strong>Per-user logins</strong> with their own progress, and per-user access to individual libraries. A personal <strong>upload folder</strong> for each user, kept apart from the libraries.</li>
+    <li><strong>Folder markers</strong>: an empty <code>.adult</code> file hides a folder and everything below it from users without adult access; <code>.private</code> lists the only users who may open it; <code>.hidden</code> leaves a folder out of listings while a direct link still works. A marker is a file on disk, so there is nothing to configure per folder.</li>
+    <li><strong>Themes</strong>: dark and light, a gold accent, and replaceable theme files that reload without a restart.</li>
+  </ul>
+
+  <div class="screenshots phones">
+    <figure>
+      <img src="../assets/img/screenshots/pluteus-phone-home.jpg" alt="Pluteus on a phone: the File Library home page with the Pick up where you left off box." width="585" height="1266" loading="lazy">
+      <figcaption>Home</figcaption>
+    </figure>
+    <figure>
+      <img src="../assets/img/screenshots/pluteus-phone-listing.jpg" alt="A folder of ebooks on a phone, each with a download button and the title and series." width="585" height="1266" loading="lazy">
+      <figcaption>A folder</figcaption>
+    </figure>
+    <figure>
+      <img src="../assets/img/screenshots/pluteus-phone-epub.jpg" alt="The EPUB reader on a phone showing one column of text, with a progress bar at the bottom." width="585" height="1266" loading="lazy">
+      <figcaption>EPUB reader</figcaption>
+    </figure>
+    <figure>
+      <img src="../assets/img/screenshots/pluteus-phone-comic.jpg" alt="The comic reader on a phone showing a full comic page." width="585" height="1266" loading="lazy">
+      <figcaption>Comic reader</figcaption>
+    </figure>
+  </div>
+
+  <h2>Made to be used from the internet</h2>
+  <p>Pluteus is meant to sit behind a reverse proxy such as Caddy, with HTTPS, and to be used from a phone anywhere. For that it has:</p>
+  <ul class="feature-list">
+    <li><strong>Login protection</strong>: wrong passwords lock a user name for longer each time (5 minutes, 30 minutes, 3 hours, 6 hours), while a device that has signed in before is not locked out. Passwords are hashed with scrypt and must be at least eight characters.</li>
+    <li><strong>Same-site checks</strong> on every change, a strict content security policy, and paths that cannot leave the library folder.</li>
+    <li><strong>A read-only view of your libraries</strong>: pluteus never writes to them. The only place it writes is the small state folder and the upload folder you give it.</li>
+    <li><strong>A hardened Docker setup</strong> in the repository: read-only root filesystem, no capabilities, and a non-root user.</li>
+    <li><strong>An admin page on its own port</strong>, meant for the local network only and never routed by the proxy: server status with traffic-light indicators, locked names and known devices, and user management. It is off until you set a port.</li>
+  </ul>
+  <div class="screenshots">
+    <figure>
+      <img src="../assets/img/screenshots/pluteus-admin.jpg" alt="The Pluteus admin page: server version and uptime, the number and names of users, sessions, known devices and locked names, and a libraries table with green status dots and free disk space." width="1280" height="820" loading="lazy">
+      <figcaption>The admin page (local network only): status at a glance, locks, devices and users.</figcaption>
+    </figure>
+  </div>
+
+  <h2>What it deliberately does not do</h2>
+  <p>No library database, no search across the whole library, no &ldquo;recently added&rdquo; list, no duplicate detection, no cover or metadata scraping, no CBR support and no sign-up. Anything that would need scanning the whole tree is left out on purpose, because that lightness is the point. Pluteus is not a replacement for Nextcloud, Calibre or Jellyfin.</p>
+
+  <h2 id="run-it">Run it</h2>
+  <p>With Docker, from a clone of the repository:</p>
+  <pre class="cli-example"><code>git clone https://github.com/Erlbon/pluteus
+cd pluteus
+cp config.example.toml config/config.toml     # edit: container paths, host = "0.0.0.0", data_dir = "/data"
+cp docker-compose.example.yml docker-compose.yml
+docker compose up -d --build</code></pre>
+  <p>Or natively with Python 3.11 or newer: <code>pip install .</code>, then <code>python -m pluteus serve --config config.toml</code>. The repository has a guide for both (<code>docs/running.md</code>), a Windows script that starts it at boot, and a walkthrough for putting it behind HTTPS and installing it on an Android phone. Open <code>http://&lt;host&gt;:8080/</code> in a browser, or add <code>http://&lt;host&gt;:8080/opds</code> as a catalogue in a reader app.</p>
+
+  <h2>Status</h2>
+  <p>Version 0.3.0, in daily use by its author, and young. The tested paths are Docker Desktop on Windows with the libraries on local drives, and PocketBook as the OPDS app. Other reader apps should work, since OPDS is a standard, but have not been tried yet. The test suite has several hundred tests and runs before every push.</p>
+
+  <h2>Licence</h2>
+  <p>MIT. The bundled third-party scripts (epub.js, JSZip, pdf.js) keep their own licences, shipped next to the files.</p>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><a href="/">← Back to The Redactor Tools</a> · Source on <a href="https://github.com/Erlbon/pluteus">GitHub</a> · <a href="https://opensource.org/license/mit">MIT</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

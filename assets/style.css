@@ -305,6 +305,12 @@ ul.feature-list li { margin-bottom: 10px; }
   text-align: center;
 }
 
+/* Phone screenshots: a row of narrow figures that wraps on small screens */
+.screenshots.phones { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 16px; }
+.screenshots.phones figure { flex: 1 1 0; min-width: 130px; max-width: 200px; }
+/* Two desktop screenshots side by side on wide screens */
+.screenshots.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
 footer {
   border-top: 1px solid var(--panel-border);
   padding: 28px 0 40px;
@@ -327,6 +333,7 @@ code {
 [data-app="epub"]   { --card-accent: #1c7d78; }
 [data-app="mp3"]    { --card-accent: #e8e6df; }
 [data-app="video"]  { --card-accent: #57efc6; }
+[data-app="pluteus"] { --card-accent: #d4a94f; }
 
 /* TMDB attribution logo: official unmodified SVG, kept small and dim so it
    stays less prominent than the site's own marks (TMDB's terms). */
