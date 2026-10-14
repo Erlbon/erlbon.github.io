@@ -77,7 +77,7 @@
       <img class="icon" src="assets/img/epubredactor.png" alt="The ƎPUB Redactor icon" width="56" height="56">
       <div>
         <h3>The ƎPUB Redactor</h3>
-        <p>Bulk-edit EPUB ebook metadata for Kobo and other e-readers, with Google Books / Open Library lookups (online, or from a local Open Library database you build), Clean Up Authors, duplicate finding, cover generation, Table of Contents generation, and format conversion via Calibre.</p>
+        <p>Bulk-edit EPUB ebook metadata for Kobo and other e-readers, with Google Books / Open Library lookups (online, or from local Open Library and ISFDB databases you build, the latter for series and series number), a read-only book reader, Clean Up Authors, duplicate finding, cover generation, Table of Contents generation, and format conversion via Calibre.</p>
       </div>
     </a>
 
@@ -93,7 +93,7 @@
       <img class="icon" src="assets/img/videoredactor.png" alt="The Ʌideo Redactor icon" width="56" height="56">
       <div>
         <h3>The Ʌideo Redactor</h3>
-        <p>Bulk-edit MKV/MP4 metadata with TMDB lookups, offline lookups in a local IMDb database you build, season/episode matching, subtitle fetching, file checks and repair, duplicate finding, and poster art — for movies, TV, and everything in between.</p>
+        <p>Bulk-edit MKV/MP4 metadata with TMDB lookups, offline lookups in a local IMDb database you build, season/episode matching, subtitle fetching and ingest, conversion of AVI and other formats to MP4/MKV, file checks and repair, duplicate finding, and poster art — for movies, TV, and everything in between.</p>
       </div>
     </a>
   </div>
@@ -170,7 +170,11 @@
     <li><strong>Preferences</strong> (Tools &gt; Preferences, Ctrl+,): one shared dialog for the everyday settings, with OK / Cancel / Apply and Reset to Defaults per page. Settings keep their old places, so Export / Import Settings is unaffected.</li>
     <li><strong>Find Duplicates</strong>: in the ƎPUB (Repair menu), ɯP3 (Analyze menu) and Ʌideo (Media menu) Redactors it opens the same review dialog, which shows how strong each match is and why, selects nothing for you, remembers groups you mark &ldquo;Not duplicates&rdquo;, and never trashes every file of a group. The ƆBZ Redactor has its own duplicate finder, matching comics by their pages.</li>
     <li><strong>Command line, in the same program</strong>: every app runs commands from a terminal, a batch file or Task Scheduler (<code>info</code>, <code>set</code>, <code>rename</code>, <code>move</code>, <code>convert</code>, <code>redact</code>, and each app's own, such as <code>analyze</code>, <code>m4b</code>, <code>validate</code> and <code>check</code>), with <code>--dry-run</code> to preview, <code>--json</code> for scripts, and exit codes. There is no second download. Nothing is overwritten and nothing is deleted for good. Each app's page has a command line guide.</li>
-    <li><strong>Command palette</strong> (Ctrl+K), one standard menu layout (File, Edit, View, the app&rsquo;s own menus, Tools, Help), Open in Default App, and Ctrl+S to save every changed file.</li>
+    <li><strong>Command palette</strong> (Ctrl+K), one standard menu layout (File, Edit, View, the app&rsquo;s own menus, Tools, Help), Open in Default App, and Ctrl+Shift+A to save every changed file.</li>
+    <li><strong>File &gt; Include Subfolders</strong>: one shared, remembered checkbox decides whether opening a folder, dropping one and Refresh List look in subfolders. When a folder holds no files of the app&rsquo;s own format but does hold ones it can convert (FLAC, MKV or AVI, CBR, MOBI and so on), the app says so and offers to convert them.</li>
+    <li><strong>History</strong> (Tools &gt; History, <strong>opt-in and off by default</strong>): when you turn it on under Tools &gt; Preferences &gt; History, every tag change the app writes to a file is recorded with the old and new value, so a Save or Redact can be undone even after the app was closed. It follows a file when it is renamed or moved, keeps no covers or images, and has a Delete History button. The on/off setting is part of Export / Import Settings.</li>
+    <li><strong>Progress for everything slow</strong>: scans, conversions, lookups and Redact run under a progress dialog with a working Cancel, so the window stays responsive.</li>
+    <li><strong>Preview</strong>: a read-only player or page reader window for one selected file, in the ɯP3 (File &gt; Preview), Ʌideo (Media &gt; Preview) and ƆBZ (File &gt; Preview) Redactors; the ƎPUB Redactor has a Read Book reader. None of them ever writes to the file.</li>
     <li><strong>Keys and tokens in the credential store</strong>: where an app uses an online service key (Comic Vine and GCD in the ƆBZ Redactor; TMDB, TheTVDB and OpenSubtitles in the Ʌideo Redactor; a Discogs token in the ɯP3 Redactor), it is stored in your operating system&rsquo;s credential store, not in a settings file.</li>
     <li><strong>Safe in-place saves</strong>: a file is replaced only after the new copy is written and verified, so a failed save never loses the original.</li>
     <li><strong>Windows and Linux</strong>: every release has a standalone <code>.exe</code> and a self-contained Linux download, and the tests run on Linux as part of each release build.</li>
@@ -228,7 +232,7 @@
         <tr><th scope="row">GCD data dump <span class="note">SQLite</span></th><td>✓</td><td></td><td></td><td></td></tr>
         <tr><th scope="row">ComicRack library <span class="note">from your own ComicDb.xml</span></th><td>✓</td><td></td><td></td><td></td></tr>
         <tr><th scope="row">Open Library data dumps</th><td></td><td>✓</td><td></td><td></td></tr>
-        <tr><th scope="row">ISFDB backup <span class="note">MySQL; adds series and series number</span></th><td></td><td>✓ <span class="note">next release</span></td><td></td><td></td></tr>
+        <tr><th scope="row">ISFDB backup <span class="note">MySQL; adds series and series number</span></th><td></td><td>✓</td><td></td><td></td></tr>
         <tr><th scope="row">MusicBrainz core-data dump</th><td></td><td></td><td>✓</td><td></td></tr>
         <tr><th scope="row">IMDb datasets</th><td></td><td></td><td></td><td>✓</td></tr>
       </tbody>
@@ -262,7 +266,7 @@
   <ul class="feature-list">
     <li><strong>Grand Comics Database</strong> (ƆBZ): comics.org states that GCD data is licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0</a> (CC BY-SA 4.0). Credit the <a href="https://www.comics.org/">Grand Comics Database</a>, link the licence and say if you changed anything; data derived from it that you share must carry the same licence. GCD data is the work of GCD&rsquo;s volunteers.</li>
     <li><strong>Open Library</strong> (ƎPUB): Open Library says its catalogue was dedicated to the public domain by the libraries that donated it and that contributions are CC0 (<a href="https://openlibrary.org/help/faq/using">its FAQ</a>). No attribution is required.</li>
-    <li><strong>ISFDB</strong> (ƎPUB, next release): the <a href="https://www.isfdb.org/">Internet Speculative Fiction Database</a> says its content is available under a Creative Commons Attribution licence. Credit the ISFDB and its contributors, whose work the series, series numbers and book data are; the app credits it under Help &gt; Credits. The local database is your own private copy of the backup you download.</li>
+    <li><strong>ISFDB</strong> (ƎPUB): the<a href="https://www.isfdb.org/">Internet Speculative Fiction Database</a> says its content is available under a Creative Commons Attribution licence. Credit the ISFDB and its contributors, whose work the series, series numbers and book data are; the app credits it under Help &gt; Credits. The local database is your own private copy of the backup you download.</li>
     <li><strong>MusicBrainz</strong> (ɯP3): only the <a href="https://musicbrainz.org/doc/About/Data_License">core data, which is CC0</a> (public domain), is read from the dump. MusicBrainz&rsquo;s other data (tags and genres, ratings, annotations) is under a non-commercial licence and is never used, so the offline lookup gives no genre.</li>
     <li><strong>Discogs</strong> (ɯP3): the app shows a &ldquo;Data from Discogs&rdquo; note on Discogs data. This application uses Discogs&rsquo; API but is not affiliated with, sponsored or endorsed by Discogs.</li>
     <li><strong>IMDb</strong> (Ʌideo): Information courtesy of IMDb (<a href="https://www.imdb.com">https://www.imdb.com</a>). Used with permission. IMDb&rsquo;s datasets are for personal, non-commercial use only; you may keep a local copy for your own use, but they must not be altered, republished, resold or repurposed to make a database for others, and IMDb may withdraw permission at any time. See <a href="https://www.imdb.com/conditions">IMDb&rsquo;s conditions of use</a>.</li>

@@ -28,7 +28,7 @@
   "downloadUrl": "https://github.com/Erlbon/mp3redactor/releases/latest",
   "operatingSystem": "Windows, Linux",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "2026-10-12#06",
+  "softwareVersion": "2026-10-14#08",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
   "featureList": [
     "Make chaptered M4B audiobooks from MP3 files, with Audible lookup and Audiobookshelf layout",
@@ -50,6 +50,12 @@
     "Discogs token in the operating system's credential store",
     "Online lookups: MusicBrainz, AcoustID fingerprints, Discogs (your own token), Cover Art Archive and LRCLIB lyrics",
     "Offline album lookup in a local MusicBrainz core-data database built from a dump you download (never bundled)",
+    "File > Preview: a read-only player window with play/pause, seek and volume",
+    "Offer to convert a folder of FLAC, WAV, OGG, M4A and other audio to MP3 when it holds no MP3 files",
+    "File > Include Subfolders, folder drops and a folder on the command line",
+    "Filter List (Ctrl+F) and Auto-Number with a Number Tracks preset",
+    "Opt-in History (off by default): tag changes recorded and undoable after the app was closed; included in Export / Import Settings",
+    "Progress dialog with Cancel for conversions, checks and M4B builds; Redact keeps the window responsive on a slow file",
     "Windows and Linux downloads"
   ],
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -106,6 +112,11 @@
     <li><strong>Search and Replace</strong> has a <strong>Filename</strong> column: the preview lists every old and new name, applying renames the files on disk (a taken name gets &ldquo;Name (2).mp3&rdquo;, nothing is overwritten) and <strong>File &gt; Undo Last Rename</strong> takes it back.</li>
     <li><strong>Preferences</strong> (<strong>Tools &gt; Preferences&hellip;</strong>, Ctrl+,): the family&rsquo;s shared Preferences dialog with four pages &mdash; <em>Filenames</em> (ASCII-safe filenames, zero-padding, Auto-Numbering padding), <em>Library</em>, <em>Fixing</em> (delete .bak backups after a successful fix) and <em>Tools</em> (where the external tools are). OK / Cancel / Apply, and Reset to Defaults for the page you are on; your stored settings are read and written exactly as before.</li>
     <li><strong>Create M4B Audiobook</strong> (File menu): joins the MP3 files of a folder into one chaptered <code>.m4b</code>, a chapter per file in disc / track / name order, re-encoded to AAC at 32 to 128 kbps (the MP3s are never touched). One book from a folder, or a batch with one book per folder, put beside the files or into an <a href="https://www.audiobookshelf.org/">Audiobookshelf</a> library as <code>Author/Series/Title/Title.m4b</code> with an optional <code>metadata.opf</code> and cover beside it. <strong>Look Up</strong> asks Audible (then Open Library) for narrator, series and number, publisher, year, language, description and cover. An older audiobook that is replaced goes to the Recycle Bin.</li>
+    <li><strong>Preview</strong> (<strong>File &gt; Preview&hellip;</strong>, Ctrl+P, also in the right-click menu): a small separate player window for the one selected file, with play/pause, a seek bar and volume, to check that it plays and the tail is intact without leaving the app. It only reads the file, and the main window stays usable.</li>
+    <li><strong>Opening a folder of FLAC, WAV, OGG, M4A or other audio</strong> that holds no MP3 files now says how many and which kinds, and offers to convert them to MP3 beside the originals (which are kept) and load the new files; the same bitrate question as Import &amp; Convert follows. <strong>File &gt; Include Subfolders</strong> (on by default, shared by all four apps) decides whether a folder, a dropped folder and Refresh List look in subfolders; a folder or file given on the command line (<code>mp3redactor.exe D:\Music</code>) or dropped on the window is opened too.</li>
+    <li><strong>Filter List</strong> (<strong>Edit &gt; Filter List</strong>, Ctrl+F) shows only the files whose filename, title, artist, album or path contains your text; selections and Select All reach only what is shown. <strong>Edit &gt; Auto-Number</strong> now has a <em>Preset</em> choice and its &ldquo;Number Tracks&rdquo; preset replaces the separate Metadata &gt; Number Tracks command.</li>
+    <li><strong>History</strong> (<strong>Tools &gt; History&hellip;</strong>, opt-in, <strong>off by default</strong>): once you turn it on under Tools &gt; Preferences &gt; History, every tag change the app writes (Save, Redact, the command line&rsquo;s <code>set</code>) is recorded with the old and new value, and <strong>Restore Old Values</strong> writes the old ones back, even after the app was closed. It follows a file when it is renamed or moved, keeps no covers, and Delete History sends the file to the Recycle Bin. The on/off setting is part of Export / Import Settings.</li>
+    <li><strong>Progress for everything slow</strong>: Redact runs each file on a worker thread, and Import &amp; Convert, the Analyze checks and Create M4B Audiobook run in the background under a progress dialog whose Cancel also stops the running conversion. Routine results go to the status bar instead of a box, and actions that do nothing now say why.</li>
     <li>Quick single-file rename by double-clicking a filename, without the full pattern tool.</li>
   </ul>
 
@@ -119,7 +130,7 @@
     <li><strong>Move into folders</strong>: Rename / Export / Move has a third mode that files each item into a folder tree under a library root, using a pattern with <code>/</code> in it. The preview shows each new path, nothing is overwritten (a taken name gets &ldquo;(2)&rdquo;), and <strong>File &gt; Undo Last Rename</strong> puts everything back and offers to remove the folders the move created.</li>
     <li><strong>Metadata from the folder path</strong>: Parse Filename also reads folders. A pattern containing <code>/</code> is matched against the file name and the folders above it, counted from your library root, with a confidence shown per file. Redact has a matching step that fills only empty fields.</li>
     <li><strong>Export / Import Settings</strong> (File menu): your recipe, pattern history, column layout and defaults in one JSON file for a new install or a second computer. Import shows every change before applying anything. Passwords, API keys and tokens are never included; tool paths and folders are offered unticked as &ldquo;this computer only&rdquo;.</li>
-    <li><strong>Command palette</strong> (Ctrl+K): type part of any menu command to find and run it. The menus follow one layout in all four apps: File, Edit, View, Metadata, Analyze, Tools, Help. <strong>Open in Default App</strong> is in the right-click menu, and <strong>Ctrl+S saves every changed file</strong> (Save All).</li>
+    <li><strong>Command palette</strong> (Ctrl+K): type part of any menu command to find and run it. The menus follow one layout in all four apps: File, Edit, View, Metadata, Analyze, Tools, Help. <strong>Open in Default App</strong> is in the right-click menu, and <strong>Ctrl+Shift+A saves every changed file</strong> (Save All).</li>
     <li><strong>Discogs lookup</strong> (Metadata &gt; Look Up &gt; Discogs, also in the right-click menu): finds the release each folder belongs to, shows its cover next to yours (and can save it to the files), lists other pressings (label, catalogue number, year, country) and sends every change through the per-field overwrite review. It needs <strong>your own free Discogs token</strong> (Tools &gt; API Keys), stored in your operating system&rsquo;s credential store, never in the settings file or a log. Publisher (label), Catalog Number and Release Country are editable fields, hidden in the table until you show them.</li>
     <li><strong>Scan results stay in the file</strong>: Integrity and Deep Check results are saved inside the MP3 as ID3 frames (<code>REDACTOR_INTEGRITY</code> and <code>REDACTOR_DEEP_CHECK</code>: the result and a UTC timestamp), written when you Save, so the record survives copying. The columns show <code>OK &middot; date time</code>; files never scanned still say UNCHECKED.</li>
     <li><strong>A failed tool is not a bad file</strong>: if mp3val or ffmpeg times out, crashes or cannot start, the status is <strong>TOOL ERROR</strong> (shown in orange), nothing is stamped and nothing is &ldquo;fixed&rdquo;. The same goes for BPM, key, loudness, the format probe and the lyrics fetch: a failure shows as TOOL ERROR with the reason in the tooltip and is never written to a tag, while genuine results such as &ldquo;no tempo found&rdquo; stay as they were.</li>
@@ -195,6 +206,7 @@
     <li>The <strong>filename</strong> and the <strong>folder path</strong>: Parse Filename reads fields from a pattern such as <code>%albumartist%/%album%/%track% - %title%</code>, and Redact has a matching step that fills only empty tags. An &ldquo;Artist - Album (Year)&rdquo; folder name also works as a search.</li>
     <li>A <strong>folder image</strong>: <code>cover.jpg</code>, <code>folder.jpg</code> or <code>front.jpg</code> next to the files becomes the embedded cover (Set from Folder Image, or Redact&rsquo;s cover step).</li>
   </ul>
+  <p class="note">Data from Discogs. This application uses Discogs&rsquo; API but is not affiliated with, sponsored or endorsed by Discogs.</p>
   <p class="note">Licences and required acknowledgements for these sources are collected under <a href="../index.html#data-licences">Data and licences</a> on the hub.</p>
 
   <h2 id="cli">Command line</h2>
