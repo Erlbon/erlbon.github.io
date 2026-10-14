@@ -27,7 +27,7 @@
   "codeRepository": "https://github.com/Erlbon/pluteus",
   "operatingSystem": "Docker, Windows, Linux",
   "applicationCategory": "MultimediaApplication",
-  "softwareVersion": "0.9.2",
+  "softwareVersion": "0.9.3",
   "license": "https://opensource.org/license/mit",
   "featureList": [
     "OPDS feeds for reader apps, with page streaming for comics",
@@ -159,7 +159,7 @@ docker compose up -d --build</code></pre>
   <p>Or natively with Python 3.11 or newer: <code>pip install .</code>, then <code>python -m pluteus serve --config config.toml</code>. The repository has a guide for both (<code>docs/running.md</code>), a Windows script that starts it at boot, and a walkthrough for putting it behind HTTPS. Open <code>http://&lt;host&gt;:8080/</code> in a browser, or add <code>http://&lt;host&gt;:8080/opds</code> as a catalogue in a reader app.</p>
 
   <h2>Status</h2>
-  <p>Version 0.9.2: feature complete, in daily use by its author, and being tested on real devices before 1.0. The tested paths are Docker Desktop on Windows with the libraries on local drives, and PocketBook as the OPDS app. The newer ways in (Subsonic and Android Auto, WebDAV, KOReader sync, OPDS 2.0) are tested against their specifications and with test clients, and will be tried on real devices before 1.0; until then only security and stability fixes are added. The test suite has about 650 tests and runs before every push, and the code has had an independent security review.</p>
+  <p>Version 0.9.3: feature complete, in daily use by its author, and being tested on real devices before 1.0. The tested paths are Docker Desktop on Windows with the libraries on local drives, and PocketBook as the OPDS app. The newer ways in (Subsonic and Android Auto, WebDAV, KOReader sync, OPDS 2.0) are tested against their specifications and with test clients, and will be tried on real devices before 1.0; until then only security and stability fixes are added. The test suite has about 650 tests and runs before every push, and the code has had an independent security review.</p>
 
   <h2>Licence</h2>
   <p>MIT. The bundled third-party scripts (epub.js, JSZip, pdf.js) keep their own licences, shipped next to the files.</p>
