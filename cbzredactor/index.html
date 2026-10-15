@@ -28,7 +28,7 @@
   "downloadUrl": "https://github.com/Erlbon/cbzredactor/releases/latest",
   "operatingSystem": "Windows, Linux",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "2026-10-14#09",
+  "softwareVersion": "2026-10-14#10",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
   "featureList": [
     "Edit ComicInfo.xml in CBZ archives in bulk",
@@ -148,6 +148,7 @@
     <li><strong>Collection tools</strong> (Scan Collection Folder, Collection Report, Compare Library with GCD) live in a <strong>Collection</strong> submenu under Tools.</li>
     <li><strong>Archives from older tools keep their names</strong>: page and folder names without the ZIP &ldquo;UTF-8&rdquo; flag are shown correctly when their bytes are really UTF-8 (and Save flags them, repairing the file for other readers); names in a local code page are kept byte for byte rather than guessed. The collection scan and the editor now use one rule for finding <code>ComicInfo.xml</code> (a root one wins, otherwise the shallowest nested one), and Save writes a nested one at the archive root.</li>
     <li><strong>Safer saves</strong>: Save, Remove Pages, Clean Up and Resize share one rewrite routine; the original is replaced only by a finished, checked copy, temp files are cleaned up after any failure, a failed conversion fails just that file instead of stopping the batch, and CBT archives are extracted without following <code>../</code> names, absolute paths or links.</li>
+    <li><strong>Progress box fix</strong>: a &ldquo;Scanning&hellip;&rdquo; (or similar) progress box could stay on screen for good after its work had finished, when the work took about a third of a second or more. It now closes together with its work.</li>
   </ul>
 
   <h2 id="sources">Where the metadata comes from</h2>

@@ -28,7 +28,7 @@
   "downloadUrl": "https://github.com/Erlbon/videoredactor/releases/latest",
   "operatingSystem": "Windows, Linux",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "2026-10-14#08",
+  "softwareVersion": "2026-10-15#01",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
   "featureList": [
     "Command line: the same program with a command name, for scripts and scheduled tasks (--json, --dry-run, exit codes)",
@@ -49,7 +49,7 @@
     "Subtitle ingest: external .srt files decoded to UTF-8, language-tagged and muxed in",
     "Original goes to the Recycle Bin by default; optional quarantine folder and optional delete-after-conversion",
     "Encoder Automatic: hevc_nvenc only where an NVIDIA card works, else libx265 in software",
-    "Media > Preview: a read-only player with audio and subtitle track pickers",
+    "Media > Play: a player that starts playing at once, with audio and subtitle track pickers; also a toolbar Play button and a large Play button under the thumbnail in the side panel",
     "Offer to convert AVI, WMV, MOV and other video formats when opening a folder; File > Include Subfolders",
     "Opt-in History (off by default): tag changes recorded and undoable after the app was closed; included in Export / Import Settings",
     "Progress dialog with Cancel for everything slow; Cancel stops a running ffmpeg",
@@ -105,7 +105,7 @@
     <li><strong>Subtitle ingest</strong>: external <code>.srt</code> files beside a video (<code>name.srt</code>, <code>name.en.srt</code>, <code>name - German.srt</code>) are decoded to UTF-8, tagged with their language, ordered, marked SDH where they are, skipped when they duplicate an embedded track, and muxed in (an MP4 becomes an MKV); the ingested files are then removed.</li>
     <li><strong>What happens to the original</strong>: it goes to the <strong>Recycle Bin</strong> by default (kept beside the result on a network share or removable drive, where the bin is not available). Optionally a <strong>quarantine folder</strong> with an undo log takes them instead, or <strong>delete after a verified conversion</strong> removes them (off by default). Settings are under Tools &gt; Preferences &gt; Library safety and Conversion.</li>
     <li><strong>Encoder Automatic</strong>: the re-encodes use hevc_nvenc only when ffmpeg lists it and a short test encode works, and libx265 in software otherwise; GPU decode and scaling is a separate option, off by default. No NVIDIA card is needed.</li>
-    <li><strong>Preview</strong> (<strong>Media &gt; Preview&hellip;</strong>, Ctrl+Shift+P, also in the right-click menu): the selected video in its own player window with play/pause, seek, volume and pickers for the audio and subtitle track. It only reads the file. A <strong>Bitrate</strong> column sits next to Size.</li>
+    <li><strong>Play</strong> (<strong>Media &gt; Play</strong>, Ctrl+Shift+P, a <strong>Play</strong> button on the toolbar, the right-click menu, and a large <strong>Play</strong> button under the thumbnail in the side panel): the selected video in its own player window, starting to play at once, with play/pause, seek, volume and pickers for the audio and subtitle track. Select exactly one file; the side-panel button is enabled only then, and only if the file loaded without error. It only reads the file. A <strong>Bitrate</strong> column sits next to Size.</li>
     <li><strong>Open Folder</strong> now says when the folder also holds video in other formats (AVI, WMV, MOV, FLV, MPG, WebM and more) and offers to convert them to MP4/MKV beside the originals, with a &ldquo;Dry run first&rdquo; box. <strong>File &gt; Include Subfolders</strong> (on by default, shared by all four apps) decides whether Open Folder, Refresh List and the offer look in subfolders.</li>
     <li><strong>History</strong> (<strong>Tools &gt; History&hellip;</strong>, opt-in, <strong>off by default</strong>): once you turn it on under Tools &gt; Preferences &gt; History, every tag change the app writes (Save, Redact, the command line&rsquo;s <code>set</code>) is recorded with the old and new value, and <strong>Restore Old Values</strong> writes them back even after the app was closed. It follows a file when it is renamed, moved or converted, keeps no covers, and Delete History sends the file to the Recycle Bin. The on/off setting is part of Export / Import Settings.</li>
     <li><strong>Progress for everything slow</strong>: Redact runs each file on a worker thread, and the conversions, the read-back of new files, online lookups, renames and exports show a progress dialog with a working Cancel that stops a running ffmpeg within about half a second.</li>
@@ -133,6 +133,7 @@
     <li><strong>Check stamp in the file</strong>: Check Files records the result and time inside the video (MKV global tag or MP4 freeform atom <code>REDACTOR_CHECK</code>), written when you Save, with a fingerprint so the Status column can say &ldquo;(changed since)&rdquo; after a truncation or re-encode.</li>
     <li><strong>API keys</strong> for TMDB, TheTVDB and OpenSubtitles are stored in your operating system&rsquo;s credential store, entered under <strong>Tools &gt; API Keys&hellip;</strong> with the stored value never shown. The environment variables (<code>TMDB_API_KEY</code> and so on) still take priority.</li>
     <li><strong>Open Files and Remove from List</strong>: add individual videos with Open Files, and drop files from the list (Delete key) without touching them on disk. Lookups run in the background instead of freezing the window.</li>
+    <li><strong>Progress box fix</strong>: a &ldquo;Scanning&hellip;&rdquo; (or similar) progress box could stay on screen for good after its work had finished, when the work took about a third of a second or more. It now closes together with its work.</li>
   </ul>
 
   <h2>Design principles</h2>

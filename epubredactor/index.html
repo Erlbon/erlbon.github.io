@@ -28,7 +28,7 @@
   "downloadUrl": "https://github.com/Erlbon/epubredactor/releases/latest",
   "operatingSystem": "Windows, Linux",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "2026-10-14#08",
+  "softwareVersion": "2026-10-14#09",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
   "featureList": [
     "Command line: the same program with a command name, for scripts and scheduled tasks (--json, --dry-run, exit codes)",
@@ -132,6 +132,7 @@
     <li><strong>Validation stamp</strong>: Validate / Fix Issues records when a book was checked and the result in the EPUB&rsquo;s OPF (<code>redactor:validation</code>), written when you Save, so it follows the file when you copy it. The Status column shows the time, and &ldquo;(changed since)&rdquo; if the book&rsquo;s files changed afterwards. DRM-protected and unreadable books are never stamped.</li>
     <li><strong>DRM-aware and safer</strong>: a cover that is DRM-encrypted is kept (Replace Cover, Generate Cover and Compress Images skip it); manifests that use percent-encoded file names (<code>ch%201.xhtml</code>, accented names) are read correctly, so files are no longer wrongly reported missing or removed; saving replaces the original atomically and leaves no temp file after a failure; and one unreadable book cannot abort loading a batch.</li>
     <li><strong>Send to Kobo</strong> finds the reader on Linux (<code>/media/$USER</code>, <code>/run/media/$USER</code>) and macOS (<code>/Volumes</code>) as well as on Windows drives.</li>
+    <li><strong>Progress box fix</strong>: a &ldquo;Scanning&hellip;&rdquo; (or similar) progress box could stay on screen for good after its work had finished, when the work took about a third of a second or more. It now closes together with its work.</li>
   </ul>
 
   <h2 id="sources">Where the metadata comes from</h2>

@@ -28,7 +28,7 @@
   "downloadUrl": "https://github.com/Erlbon/mp3redactor/releases/latest",
   "operatingSystem": "Windows, Linux",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "2026-10-14#08",
+  "softwareVersion": "2026-10-15#01",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
   "featureList": [
     "Make chaptered M4B audiobooks from MP3 files, with Audible lookup and Audiobookshelf layout",
@@ -50,7 +50,7 @@
     "Discogs token in the operating system's credential store",
     "Online lookups: MusicBrainz, AcoustID fingerprints, Discogs (your own token), Cover Art Archive and LRCLIB lyrics",
     "Offline album lookup in a local MusicBrainz core-data database built from a dump you download (never bundled)",
-    "File > Preview: a read-only player window with play/pause, seek and volume",
+    "File > Play: a player window that starts playing at once, with play/pause, seek and volume; also a toolbar Play button and a large Play button under the cover in the side panel",
     "Offer to convert a folder of FLAC, WAV, OGG, M4A and other audio to MP3 when it holds no MP3 files",
     "File > Include Subfolders, folder drops and a folder on the command line",
     "Filter List (Ctrl+F) and Auto-Number with a Number Tracks preset",
@@ -112,7 +112,7 @@
     <li><strong>Search and Replace</strong> has a <strong>Filename</strong> column: the preview lists every old and new name, applying renames the files on disk (a taken name gets &ldquo;Name (2).mp3&rdquo;, nothing is overwritten) and <strong>File &gt; Undo Last Rename</strong> takes it back.</li>
     <li><strong>Preferences</strong> (<strong>Tools &gt; Preferences&hellip;</strong>, Ctrl+,): the family&rsquo;s shared Preferences dialog with four pages &mdash; <em>Filenames</em> (ASCII-safe filenames, zero-padding, Auto-Numbering padding), <em>Library</em>, <em>Fixing</em> (delete .bak backups after a successful fix) and <em>Tools</em> (where the external tools are). OK / Cancel / Apply, and Reset to Defaults for the page you are on; your stored settings are read and written exactly as before.</li>
     <li><strong>Create M4B Audiobook</strong> (File menu): joins the MP3 files of a folder into one chaptered <code>.m4b</code>, a chapter per file in disc / track / name order, re-encoded to AAC at 32 to 128 kbps (the MP3s are never touched). One book from a folder, or a batch with one book per folder, put beside the files or into an <a href="https://www.audiobookshelf.org/">Audiobookshelf</a> library as <code>Author/Series/Title/Title.m4b</code> with an optional <code>metadata.opf</code> and cover beside it. <strong>Look Up</strong> asks Audible (then Open Library) for narrator, series and number, publisher, year, language, description and cover. An older audiobook that is replaced goes to the Recycle Bin.</li>
-    <li><strong>Preview</strong> (<strong>File &gt; Preview&hellip;</strong>, Ctrl+P, also in the right-click menu): a small separate player window for the one selected file, with play/pause, a seek bar and volume, to check that it plays and the tail is intact without leaving the app. It only reads the file, and the main window stays usable.</li>
+    <li><strong>Play</strong> (<strong>File &gt; Play</strong>, Ctrl+P, a <strong>Play</strong> button on the toolbar next to Open Folder, the right-click menu, and a large <strong>Play</strong> button under the cover in the side panel): a small separate player window for the one selected file that starts playing at once, with play/pause, a seek bar and volume, to check that it plays and the tail is intact without leaving the app. It only reads the file, and the main window stays usable. Select exactly one file; the side-panel button is enabled only then.</li>
     <li><strong>Opening a folder of FLAC, WAV, OGG, M4A or other audio</strong> that holds no MP3 files now says how many and which kinds, and offers to convert them to MP3 beside the originals (which are kept) and load the new files; the same bitrate question as Import &amp; Convert follows. <strong>File &gt; Include Subfolders</strong> (on by default, shared by all four apps) decides whether a folder, a dropped folder and Refresh List look in subfolders; a folder or file given on the command line (<code>mp3redactor.exe D:\Music</code>) or dropped on the window is opened too.</li>
     <li><strong>Filter List</strong> (<strong>Edit &gt; Filter List</strong>, Ctrl+F) shows only the files whose filename, title, artist, album or path contains your text; selections and Select All reach only what is shown. <strong>Edit &gt; Auto-Number</strong> now has a <em>Preset</em> choice and its &ldquo;Number Tracks&rdquo; preset replaces the separate Metadata &gt; Number Tracks command.</li>
     <li><strong>History</strong> (<strong>Tools &gt; History&hellip;</strong>, opt-in, <strong>off by default</strong>): once you turn it on under Tools &gt; Preferences &gt; History, every tag change the app writes (Save, Redact, the command line&rsquo;s <code>set</code>) is recorded with the old and new value, and <strong>Restore Old Values</strong> writes the old ones back, even after the app was closed. It follows a file when it is renamed or moved, keeps no covers, and Delete History sends the file to the Recycle Bin. The on/off setting is part of Export / Import Settings.</li>
@@ -137,6 +137,7 @@
     <li><strong>A failed lyrics fetch no longer wipes lyrics</strong>: when Look Up &gt; Lyrics finds nothing, or the search fails (for example offline), a file&rsquo;s existing lyrics are left alone. Previously they were blanked in memory and the next Save removed the lyrics tag.</li>
     <li><strong>Search and Replace</strong> (Ctrl+H) and <strong>Change Case</strong> work on the selected files in memory (Undo reverts, Save writes), and <strong>Remove from List</strong> drops files from the list without touching them on disk.</li>
     <li><strong>Saving no longer damages tags</strong>: only the fields you changed are rewritten, multi-valued frames are kept, the file&rsquo;s ID3v2.3 or v2.4 version is kept, and the write goes through a temporary copy that replaces the file.</li>
+    <li><strong>Progress box fix</strong>: a &ldquo;Scanning&hellip;&rdquo; (or similar) progress box could stay on screen for good after its work had finished, when the work took about a third of a second or more. It now closes together with its work.</li>
   </ul>
 
   <h2 id="sources">Where the metadata comes from</h2>
