@@ -60,7 +60,7 @@
   ],
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" },
-  "isPartOf": { "@type": "WebSite", "name": "The Redactor Tools", "url": "https://erlbon.github.io/" }
+  "isPartOf": { "@type": "WebSite", "name": "RIL HUMIN TOOLZ", "url": "https://erlbon.github.io/" }
 }
 </script>
 </head>
@@ -68,8 +68,8 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/"><span class="bar" aria-hidden="true"></span> The Redactor Tools</a>
-    <nav class="crumbs"><a href="/">Home</a> / The ɯP3 Redactor</nav>
+    <a class="wordmark" href="/"><span class="bar" aria-hidden="true"></span> RIL HUMIN TOOLZ</a>
+    <nav class="crumbs"><a href="/">Home</a> / <a href="/redactors/">The Redactor Tools</a> / The ɯP3 Redactor</nav>
   </div>
 </header>
 
@@ -141,7 +141,7 @@
   </ul>
 
   <h2 id="sources">Where the metadata comes from</h2>
-  <p>The ɯP3 Redactor works on its own: tag editing, integrity checks, BPM, key and loudness need no outside source. Lookups are optional and every one is a review step. Online sources are only asked when you run a lookup. The local database is built from a file <strong>you</strong> download; the app never bundles or downloads it. <a href="#redact">Redact</a> asks the local MusicBrainz database first when one is set up, then online MusicBrainz and AcoustID only for what is still missing, then Discogs when a token is stored. It fills empty tags only, and matches below the confidence threshold (90% by default) are listed under Needs review and not written. The <a href="../index.html#sources">hub</a> has all four apps side by side.</p>
+  <p>The ɯP3 Redactor works on its own: tag editing, integrity checks, BPM, key and loudness need no outside source. Lookups are optional and every one is a review step. Online sources are only asked when you run a lookup. The local database is built from a file <strong>you</strong> download; the app never bundles or downloads it. <a href="#redact">Redact</a> asks the local MusicBrainz database first when one is set up, then online MusicBrainz and AcoustID only for what is still missing, then Discogs when a token is stored. It fills empty tags only, and matches below the confidence threshold (90% by default) are listed under Needs review and not written. The <a href="../redactors/#sources">hub</a> has all four apps side by side.</p>
 
   <h3>Online sources</h3>
   <div class="table-wrap">
@@ -208,7 +208,7 @@
     <li>A <strong>folder image</strong>: <code>cover.jpg</code>, <code>folder.jpg</code> or <code>front.jpg</code> next to the files becomes the embedded cover (Set from Folder Image, or Redact&rsquo;s cover step).</li>
   </ul>
   <p class="note">Data from Discogs. This application uses Discogs&rsquo; API but is not affiliated with, sponsored or endorsed by Discogs.</p>
-  <p class="note">Licences and required acknowledgements for these sources are collected under <a href="../index.html#data-licences">Data and licences</a> on the hub.</p>
+  <p class="note">Licences and required acknowledgements for these sources are collected under <a href="../redactors/#data-licences">Data and licences</a> on the hub.</p>
 
   <h2 id="cli">Command line</h2>
   <p>The ɯP3 Redactor can be driven from a terminal, a batch file or Task Scheduler. It is the <strong>same program</strong>: there is no second download. <code>mp3redactor.exe</code> with a command name as its first argument runs that command and never opens a window; with no arguments, or with a file or folder, it opens the window as before. The commands use the same code as the window, so they give the same results, and not every window function has a command: these are the ones meant for scripting.</p>
@@ -265,11 +265,18 @@ $p.ExitCode</code></pre>
     <a href="../epubredactor/"><img src="../assets/img/epubredactor.png" alt="">The ƎPUB Redactor</a>
     <a href="../videoredactor/"><img src="../assets/img/videoredactor.png" alt="">The Ʌideo Redactor</a>
   </div>
+
+  <h2>More tools</h2>
+  <div class="sibling-list">
+    <a href="../dossier/"><img src="../assets/img/dossier.png" alt="">Dossier</a>
+    <a href="../pluteus/"><img src="../assets/img/pluteus.png" alt="">Pluteus</a>
+    <a href="../redactors/"><img src="../assets/img/hero-logo.png" alt="">All the Redactor Tools</a>
+  </div>
 </main>
 
 <footer>
   <div class="wrap">
-    <p><a href="/">← Back to The Redactor Tools</a> · Source on <a href="https://github.com/Erlbon/mp3redactor">GitHub</a> · <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3.0-or-later</a></p>
+    <p><a href="/redactors/">← Back to The Redactor Tools</a> · Source on <a href="https://github.com/Erlbon/mp3redactor">GitHub</a> · <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3.0-or-later</a></p>
   </div>
 </footer>
 

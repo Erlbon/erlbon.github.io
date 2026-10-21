@@ -62,7 +62,7 @@
   ],
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" },
-  "isPartOf": { "@type": "WebSite", "name": "The Redactor Tools", "url": "https://erlbon.github.io/" }
+  "isPartOf": { "@type": "WebSite", "name": "RIL HUMIN TOOLZ", "url": "https://erlbon.github.io/" }
 }
 </script>
 </head>
@@ -70,8 +70,8 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="wordmark" href="/"><span class="bar" aria-hidden="true"></span> The Redactor Tools</a>
-    <nav class="crumbs"><a href="/">Home</a> / The ƆBZ Redactor</nav>
+    <a class="wordmark" href="/"><span class="bar" aria-hidden="true"></span> RIL HUMIN TOOLZ</a>
+    <nav class="crumbs"><a href="/">Home</a> / <a href="/redactors/">The Redactor Tools</a> / The ƆBZ Redactor</nav>
   </div>
 </header>
 
@@ -152,7 +152,7 @@
   </ul>
 
   <h2 id="sources">Where the metadata comes from</h2>
-  <p>The ƆBZ Redactor works on its own: editing, Validate / Fix Issues, resizing and conversion need no outside source. Lookups are optional, and every one is a review-then-Apply step. Online sources are only asked when you run a lookup. Local databases are built from files <strong>you</strong> download or already own; the app never bundles or downloads them. <a href="#redact">Redact</a> uses a local database first when one is set up, then Comic Vine when a key is saved, and applies only matches at or above its confidence threshold. The <a href="../index.html#sources">hub</a> has all four apps side by side.</p>
+  <p>The ƆBZ Redactor works on its own: editing, Validate / Fix Issues, resizing and conversion need no outside source. Lookups are optional, and every one is a review-then-Apply step. Online sources are only asked when you run a lookup. Local databases are built from files <strong>you</strong> download or already own; the app never bundles or downloads them. <a href="#redact">Redact</a> uses a local database first when one is set up, then Comic Vine when a key is saved, and applies only matches at or above its confidence threshold. The <a href="../redactors/#sources">hub</a> has all four apps side by side.</p>
 
   <h3>Online sources</h3>
   <div class="table-wrap">
@@ -171,7 +171,7 @@
           <th scope="row"><a href="https://www.comics.org/api/">Grand Comics Database</a> (web API)</th>
           <td>The same fields from GCD, with structured credits; the issue&rsquo;s GCD page goes in Web. Needs a series name and an issue number.</td>
           <td>No key. An optional free GCD account raises GCD&rsquo;s hourly limit for anonymous use; the password is stored in your credential store.</td>
-          <td>Metadata &gt; Look Up &gt; Grand Comics Database. GCD data is under the licence described in <a href="../index.html#data-licences">Data and licences</a>.</td>
+          <td>Metadata &gt; Look Up &gt; Grand Comics Database. GCD data is under the licence described in <a href="../redactors/#data-licences">Data and licences</a>.</td>
         </tr>
         <tr>
           <th scope="row"><a href="https://anilist.co/">AniList</a> and <a href="https://www.mangaupdates.com/">MangaUpdates</a> (manga)</th>
@@ -217,7 +217,7 @@
     <li>The <strong>filename</strong>: Read Filename Tags and Parse Filename read series, number, year and title, and sort scene-style bracketed tags (scan group, format, notes).</li>
     <li>The <strong>folder path</strong>: a pattern with <code>/</code> reads the folders above the file, counted from your library root; Redact has a matching step that fills only empty fields.</li>
   </ul>
-  <p class="note">Licences and required acknowledgements for these sources are collected under <a href="../index.html#data-licences">Data and licences</a> on the hub.</p>
+  <p class="note">Licences and required acknowledgements for these sources are collected under <a href="../redactors/#data-licences">Data and licences</a> on the hub.</p>
 
   <h2 id="cli">Command line</h2>
   <p>The ƆBZ Redactor can be driven from a terminal, a batch file or Task Scheduler. It is the <strong>same program</strong>: there is no second download. <code>cbzredactor.exe</code> with a command name as its first argument runs that command and never opens a window; with no arguments, or with a file or folder, it opens the window as before. The commands use the same code as the window, so they give the same results, and not every window function has a command: these are the ones meant for scripting.</p>
@@ -279,11 +279,18 @@ $p.ExitCode</code></pre>
     <a href="../mp3redactor/"><img src="../assets/img/mp3redactor.png" alt="">The ɯP3 Redactor</a>
     <a href="../videoredactor/"><img src="../assets/img/videoredactor.png" alt="">The Ʌideo Redactor</a>
   </div>
+
+  <h2>More tools</h2>
+  <div class="sibling-list">
+    <a href="../dossier/"><img src="../assets/img/dossier.png" alt="">Dossier</a>
+    <a href="../pluteus/"><img src="../assets/img/pluteus.png" alt="">Pluteus</a>
+    <a href="../redactors/"><img src="../assets/img/hero-logo.png" alt="">All the Redactor Tools</a>
+  </div>
 </main>
 
 <footer>
   <div class="wrap">
-    <p><a href="/">← Back to The Redactor Tools</a> · Source on <a href="https://github.com/Erlbon/cbzredactor">GitHub</a> · <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3.0-or-later</a></p>
+    <p><a href="/redactors/">← Back to The Redactor Tools</a> · Source on <a href="https://github.com/Erlbon/cbzredactor">GitHub</a> · <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3.0-or-later</a></p>
   </div>
 </footer>
 

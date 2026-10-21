@@ -363,3 +363,21 @@ pre.cli-example code {
   font-size: inherit;
   white-space: pre;
 }
+
+/* Dossier gold, sampled from its icon */
+[data-app="dossier"] { --card-accent: #d4a94f; }
+
+/* The front page: a short lead, then the projects as cards */
+.lead { color: var(--text-dim); font-size: 1.15rem; margin: 0 0 32px; max-width: 46em; }
+body:not([data-app]) h1.front { text-align: left; font-size: 2.2rem; }
+.card .icon-row { display: flex; gap: 6px; margin-top: 12px; }
+.card .icon-row img { width: 28px; height: 28px; border-radius: 7px; }
+.card .kind { display: block; margin-bottom: 4px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-dim); }
+.grid.projects { grid-template-columns: 1fr; }
+.grid.projects .card { padding: 22px; }
+.grid.projects .card img.icon { width: 64px; height: 64px; border-radius: 14px; }
+
+@media (max-width: 520px) {
+  .grid { grid-template-columns: 1fr; }
+  .card { flex-direction: column; }
+}

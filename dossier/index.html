@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dossier — A Free Dual-Pane File Manager for Windows with SFTP, WebDAV, FTP and Archives as Folders</title>
+<meta name="description" content="Dossier is a free, open-source dual-pane file manager for Windows: two panels with tabs, one shared selection, safe planned copies and moves, archives and servers (SFTP, SCP, WebDAV, FTP, OPDS, Subsonic, Tailscale) shown as folders, a viewer, search, duplicates, compare and synchronize, and a command line.">
+<link rel="canonical" href="https://erlbon.github.io/dossier/">
+<link rel="icon" href="../assets/img/dossier.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dossier — A Free Dual-Pane File Manager for Windows">
+<meta property="og:description" content="Two panels, one selection, safe planned changes, and archives and servers as folders. Free and open source.">
+<meta property="og:url" content="https://erlbon.github.io/dossier/">
+<meta property="og:image" content="https://erlbon.github.io/assets/img/screenshots/dossier-main-dark.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Dossier",
+  "description": "A free, open-source dual-pane file manager for Windows. Two panels with tabs and one shared selection, planned and confirmed copies, moves and deletes, archives and servers shown as folders, a viewer and editor, search, duplicate finder, compare and synchronize, a command line and a local MCP server.",
+  "url": "https://erlbon.github.io/dossier/",
+  "downloadUrl": "https://github.com/Erlbon/dossier/releases/latest",
+  "codeRepository": "https://github.com/Erlbon/dossier",
+  "operatingSystem": "Windows 10, Windows 11",
+  "applicationCategory": "UtilitiesApplication",
+  "softwareVersion": "0.4",
+  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "screenshot": "https://erlbon.github.io/assets/img/screenshots/dossier-main-dark.jpg",
+  "featureList": [
+    "Two panels with tabs, one selection shared by both, F-key bar and command line",
+    "Every copy, move, rename and delete is planned and shown first; a name that is taken is asked about; copies can be verified",
+    "Archives (zip, 7z, RAR and more) shown as folders; change a zip in place, pack, unpack and convert",
+    "SFTP, SCP, WebDAV, FTP and FTPS servers as folders, read-only by default; OPDS book catalogues and Subsonic music servers (read-only)",
+    "Home page with drives, places, pinned folders, network shares, servers and the devices of a Tailscale network",
+    "Search, duplicate finder, compare and synchronize, batch rename, checksums, saved selections",
+    "Viewer for text, pictures with EXIF, hex and Markdown; editor; tags inside music, comic and video files shown as columns",
+    "Folder notes shown under the listing and folder layouts that remember how each folder is shown",
+    "Command line in the same program with --dry-run and --json, and a local MCP server for AI assistants that only proposes changes you approve",
+    "Light, dark or system colour scheme; the programs bar, the function key bar and the command line can be dragged where you want them"
+  ],
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" },
+  "isPartOf": { "@type": "WebSite", "name": "RIL HUMIN TOOLZ", "url": "https://erlbon.github.io/" }
+}
+</script>
+</head>
+<body data-app="dossier">
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/"><span class="bar" aria-hidden="true"></span> RIL HUMIN TOOLZ</a>
+    <nav class="crumbs"><a href="/">Home</a> / Dossier</nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <img class="icon" src="../assets/img/dossier.png" alt="Dossier icon" width="72" height="72">
+    <div>
+      <h1>Dossier</h1>
+      <p class="tagline" style="margin-bottom:0">A dual-pane file manager for Windows. Two panels, one shared selection, archives and servers shown as folders, and changes that are planned and shown before they happen.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn primary" href="https://github.com/Erlbon/dossier/releases/latest">Download for Windows</a>
+    <a class="btn secondary" href="https://github.com/Erlbon/dossier">Source on GitHub</a>
+    <a class="btn secondary" href="https://github.com/Erlbon/dossier/blob/main/CHANGELOG.md">What changed, build by build</a>
+  </div>
+  <p class="note">Version 0.4, the first release. One <code>dossier.exe</code>, about 47&nbsp;MB, nothing to install. Free, GPL-3.0-or-later.</p>
+
+  <div class="screenshots">
+    <figure>
+      <img src="../assets/img/screenshots/dossier-main-dark.jpg" alt="Dossier's main window in the dark scheme: two folder panels side by side, the left one showing a photo folder with two pictures marked and a folder note under the list, the programs bar above, the command line and the F2 to F8 key bar below." width="2415" height="1400">
+      <figcaption>Two panels, one selection (the marked pictures), a Markdown note under the listing, the programs bar and the F-key bar.</figcaption>
+    </figure>
+    <div class="screenshots pair">
+      <figure>
+        <img src="../assets/img/screenshots/dossier-main-light.jpg" alt="The same window in the light scheme." width="2415" height="1400" loading="lazy">
+        <figcaption>The light scheme (or follow the system).</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/img/screenshots/dossier-home-dark.jpg" alt="Dossier's Home page: local drives, places, pinned folders, network shares, servers and devices of a Tailscale network, each with a coloured light." width="2415" height="1750" loading="lazy">
+        <figcaption>The Home page: drives, places, pinned folders, servers and your Tailscale devices.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <h2>What it does</h2>
+  <ul class="feature-list">
+    <li><strong>Two panels, tabs, one selection.</strong> Mark files in either panel; a command works on the marks of the panel you start it from. F3 view, F4 edit, F5 copy, F6 move, F7 new folder, F8 delete, drag and drop, and the clipboard.</li>
+    <li><strong>Changes are planned first.</strong> Every copy, move, rename and delete is worked out and shown before it happens. A name that is already taken is asked about, per file. Copies can be read back and compared. Renames and same-drive moves can be undone; deletes go to the recycle bin (not on a network drive or a server, which say so).</li>
+    <li><strong>Archives as folders.</strong> Open a zip, 7z, RAR and most other archives like a folder; change a zip in place, pack, unpack, and convert other archives to zip.</li>
+    <li><strong>Servers as folders.</strong> SFTP, SCP (for servers with a shell but no SFTP), WebDAV (Nextcloud, a NAS), FTP and FTPS. Open <strong>OPDS book catalogues</strong> (Calibre, Calibre-Web, Kavita, Komga) and <strong>Subsonic music servers</strong> (Navidrome, Airsonic) as read-only folders and copy a book or a track out. Servers are read-only until you switch writing on; host keys and certificates are shown and pinned; passwords go to the system&rsquo;s password store only if you ask.</li>
+    <li><strong>A Home page</strong> with your drives (a light says whether each one answers), places, pinned folders, network shares, servers, and the devices of your <strong>Tailscale</strong> network, read from the Tailscale program you already run.</li>
+    <li><strong>Search, find duplicates, compare and synchronize, batch rename, checksums, saved selections, folder sizes.</strong></li>
+    <li><strong>A viewer</strong> for text (any size and encoding, column selection), pictures with their EXIF, hex, and rendered Markdown, with the mouse wheel stepping through the pictures of a folder; <strong>an editor</strong>; and <strong>columns and a Properties box</strong> that show the tags inside music, comic and video files, plus tags you put on files yourself.</li>
+    <li><strong>Folder notes</strong> (<code>README.md</code>, <code>about.md</code>) shown under the listing like a repository page, and <strong>folder layouts</strong> that remember how each folder is shown.</li>
+    <li><strong>Your look.</strong> Light, dark or the system&rsquo;s scheme, two icon sets or your own, fonts, bold on or off, and the programs bar, the function key bar and the command line can each be dragged to the top or the bottom.</li>
+  </ul>
+
+  <h2>Command line and AI assistants</h2>
+  <p>The same program runs from a terminal, a batch file or Task Scheduler. <code>--dry-run</code> shows what would happen, <code>--json</code> gives output for scripts, nothing is overwritten unless you say so, and what is deleted goes to the recycle bin.</p>
+  <pre class="cli-example"><code>dossier find D:\Photos --name "*.jpg" --min-size 5M --newer 2024-01-01 --json -o big.json
+dossier dups D:\Photos E:\Backup --keep oldest --delete --dry-run
+dossier compare D:\Music E:\Music --sync update_right --dry-run
+dossier copy D:\Music\*.flac E:\Music --on-conflict newer --verify
+dossier checksum D:\Archive\* &gt; sums.txt</code></pre>
+  <p>Commands: <code>ls</code>, <code>info</code>, <code>find</code>, <code>checksum</code>, <code>copy</code>, <code>move</code>, <code>delete</code>, <code>dups</code>, <code>compare</code>. See the <a href="https://github.com/Erlbon/dossier/blob/main/docs/cli.md">command line guide</a>.</p>
+  <p><code>dossier mcp</code> starts a local <strong>MCP server</strong> so an AI assistant such as Claude can look at the folders you list and propose changes. It is off until you switch it on in Settings, sees only the folders you allow, and every change it proposes is shown to you in words and runs only when you press Run in the window. See the <a href="https://github.com/Erlbon/dossier/blob/main/docs/assistant.md">assistant guide</a>.</p>
+
+  <h2>Install</h2>
+  <p>Download <code>dossier.exe</code> from the <a href="https://github.com/Erlbon/dossier/releases/latest">latest release</a> and start it. It keeps its settings in your user profile in a plain <code>dossier.ini</code>, never in the registry. Windows 10 or 11. The exe is not code-signed, so Windows SmartScreen may ask before it starts the first time.</p>
+  <p>To run it from source: <code>git clone https://github.com/Erlbon/dossier</code>, <code>python -m pip install -r requirements.txt</code>, <code>python -m dossier</code> (Python 3.10 or newer).</p>
+
+  <h2>Things to know</h2>
+  <ul class="feature-list">
+    <li>There is <strong>no Linux or Mac build yet</strong>. The program is written to be portable and a Linux build is planned; the Windows exe is the only supported way to run it today.</li>
+    <li>The servers (SFTP, SCP, WebDAV, FTP, OPDS, Subsonic) have been tested against test servers and Git&rsquo;s own <code>sftp-server</code>, not against many real ones. Please report what a real server does differently.</li>
+    <li>A file in a catalogue or an archive opens by being downloaded first and handed to the program Windows has for it; nothing streams.</li>
+    <li>7z, RAR and other archives besides zip need <a href="https://www.7-zip.org/">7-Zip</a> installed.</li>
+    <li>Dossier shows the tags inside music, comic and video files but does not change them; writing tags is not in this release. For that, see the <a href="../redactors/">Redactor Tools</a>.</li>
+  </ul>
+
+  <h2>Licence</h2>
+  <p>GPL-3.0-or-later. Dossier is free and open source and will not be sold. Its function list follows an older file manager (The Next Tool, discontinued 2007); no code, text, graphics or name of that program is used. Icons are from the Tabler and Lucide sets; the full credits are in <a href="https://github.com/Erlbon/dossier/blob/main/CREDITS.md">CREDITS.md</a>.</p>
+
+  <h2>More tools</h2>
+  <div class="sibling-list">
+    <a href="../redactors/"><img src="../assets/img/hero-logo.png" alt="">The Redactor Tools</a>
+    <a href="../pluteus/"><img src="../assets/img/pluteus.png" alt="">Pluteus</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><a href="/">← Back to RIL HUMIN TOOLZ</a> · Source on <a href="https://github.com/Erlbon/dossier">GitHub</a> · <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3.0-or-later</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
