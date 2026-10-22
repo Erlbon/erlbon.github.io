@@ -381,3 +381,4 @@ body:not([data-app]) h1.front { text-align: left; font-size: 2.2rem; }
   .grid { grid-template-columns: 1fr; }
   .card { flex-direction: column; }
 }
+[data-app="kinderkopje"] { --card-accent: #ff6a2b; }

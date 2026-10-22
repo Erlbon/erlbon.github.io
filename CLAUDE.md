@@ -1,6 +1,6 @@
 # erlbon.github.io
 
-Public landing/SEO site for Erlbon's projects: **Dossier** (a file manager), the **Redactor family** (cbzredactor, epubredactor, mp3redactor, videoredactor) and **Pluteus** (a library server). Plain static HTML/CSS, no build step, no JS framework — GitHub Pages serves it as-is from `main`. The front page is generic (a short intro and one card per project); the Redactor family has its own hub at `/redactors/`; every app has its own sub-page.
+Public landing/SEO site for Erlbon's projects: **Dossier** (a file manager), the **Redactor family** (cbzredactor, epubredactor, mp3redactor, videoredactor) **Pluteus** (a library server) and **Kinderkopje** (a cycling data tool, whose live app is the project repo's own Pages site at /kinderkopje/, so this repo has no page of its own for it: the front-page card links straight there). Plain static HTML/CSS, no build step, no JS framework — GitHub Pages serves it as-is from `main`. The front page is generic (a short intro and one card per project); the Redactor family has its own hub at `/redactors/`; every app has its own sub-page.
 
 ## Commands
 - Preview: open `index.html` (or any `<app>/index.html`) directly in a browser; no server/build needed
