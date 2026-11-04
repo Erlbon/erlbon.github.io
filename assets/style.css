@@ -382,3 +382,6 @@ body:not([data-app]) h1.front { text-align: left; font-size: 2.2rem; }
   .card { flex-direction: column; }
 }
 [data-app="kinderkopje"] { --card-accent: #ff6a2b; }
+
+/* Accipio blue: the progress-bar blue of the app; the icon's own #185fa5 is too dark under the dark button text */
+[data-app="accipio"] { --card-accent: #5aa0f0; }
