@@ -28,13 +28,13 @@
   "codeRepository": "https://github.com/Erlbon/accipio",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "2026-11-04#04",
+  "softwareVersion": "2026-11-04#06",
   "license": "https://opensource.org/license/mit",
   "screenshot": "https://erlbon.github.io/assets/img/screenshots/accipio-main-dark.jpg",
   "featureList": [
     "Named folders, file groups and site groups that rules point at, so one change moves every rule that uses them",
-    "An ordered list of rules, sorted by drag and drop, each stopping or letting the next rule add to it",
-    "Conditions: file group (with extensions left out per rule), site group matched on the page you clicked on, name (wildcards or regular expressions), size, time of day and weekday, and a video's channel, uploader, playlist or title",
+    "Rules written as one sentence: from these site groups, these file groups, to this folder; the first rule that fits wins",
+    "Conditions: file groups and site groups picked as chips (a site matched on the page you clicked on), and under More conditions name (wildcards or regular expressions), size, time of day and weekday, and a video's channel, uploader, playlist or title",
     "Folder templates with date tokens ({yyyy}, {MM}, {week}...) so folders rotate by the clock; missing folders are created",
     "A renamer at the end of a rule: regular-expression lines, the first that fits renames the file, with a try-it field",
     "Export and import of rules, folders and groups between PCs",
@@ -74,7 +74,7 @@
     <a class="btn secondary" href="https://github.com/Erlbon/accipio">Source on GitHub</a>
     <a class="btn secondary" href="https://github.com/Erlbon/accipio/blob/main/CHANGELOG.md">What changed, build by build</a>
   </div>
-  <p class="note">Build 2026-11-04#04. An installer of about 34&nbsp;MB that needs no admin rights, or a zip to run without installing. Free; the source is MIT-licensed.</p>
+  <p class="note">Build 2026-11-04#06. An installer of about 34&nbsp;MB that needs no admin rights, or a zip to run without installing. Free; the source is MIT-licensed.</p>
 
   <div class="screenshots">
     <figure>
@@ -82,8 +82,8 @@
       <figcaption>One table for everything: where each download went and which rule put it there. (Sample downloads.)</figcaption>
     </figure>
     <figure>
-      <img src="../assets/img/screenshots/accipio-rules-dark.jpg" alt="Accipio's Rules window with four tabs, Folders, File Groups, Site Groups and Rules. A rule named Comics from comic sites says: in file group Comics except cbt, from site group Comic sites; put it in the folder Comics inbox; and renames with a regular expression, shown turning saga 054 (2026) (digital).cbz into Saga #054.cbz. The test box below shows a file hosted on pixeldrain, clicked on getcomics.org, going to D:\Comics\_Inbox\2026-11." width="1925" height="1435" loading="lazy">
-      <figcaption>The Rules window: folders, file groups and site groups first, then the rules that use them, with the renamer last. (Sample rules.)</figcaption>
+      <img src="../assets/img/screenshots/accipio-rules-dark.jpg" alt="Accipio's Rules window with four tabs, Folders, File Groups, Site Groups and Rules. A narrow list of three rules on the left; the rule Comics reads as a sentence: if downloaded from Comic sites, files that are Comics, go to Comics inbox, then a rename line turning saga 054 (digital).cbz into Saga #054.cbz. The test box below shows a file hosted on pixeldrain, clicked on getcomics.org, going to D:\Comics\_Inbox\2026-11." width="1925" height="1120" loading="lazy">
+      <figcaption>A rule reads as one sentence: from these sites, these kinds of file, to this folder, renamed like this. (Sample rules.)</figcaption>
     </figure>
   </div>
 
@@ -93,7 +93,7 @@
     <li><strong>Folders.</strong> First Default, which you point anywhere. Then named places, under Default (<em>Comics</em> = <code>%default%\Comics</code>) or anywhere else (<em>Comics inbox</em> = <code>D:\Comics\_Inbox\{yyyy}-{MM}</code>). Tokens such as <code>{yyyy}</code>, <code>{MM}</code>, <code>{week}</code>, <code>{domain}</code> and <code>{uploader}</code> make folders rotate by the clock; missing folders are created when a download starts. Rules pick a folder by name, so moving it here moves every rule that uses it.</li>
     <li><strong>File groups:</strong> what a download is. Extensions (<code>cbz, cbr, cb7</code>) and name wildcards (<code>*invoice*</code>), any one of them enough. The built-in groups (Video, Audio, Images, Documents, Ebooks, Comics, Archives, Programs) can be edited, say to move <code>iso</code> out of Archives into a group of its own.</li>
     <li><strong>Site groups</strong> (optional): where a download comes from. A site matches the page you clicked the link on, the file&rsquo;s own address, or either, so a link site whose files sit on file hosters is still caught through its page.</li>
-    <li><strong>Rules, in your order.</strong> An ordered list you sort by dragging. A rule says when it applies (in a file group, with single extensions left out if you like; from a site group; the name, with wildcards or regular expressions; the size; the time of day and weekday; for videos the channel, uploader, playlist or title), which folder the download goes to, and then stops or lets the rules below add to it.</li>
+    <li><strong>Rules, each one sentence.</strong> <em>If downloaded from</em> these site groups, <em>files that are</em> these file groups <em>go to</em> this folder. Groups are picked from a list, several at once; none means anywhere or any file. Rarer conditions (the name, with wildcards or regular expressions; the size; the time of day and weekday; for videos the channel, uploader, playlist or title) are folded away under More conditions. Rules are tried in the order you drag them into, and the first rule that fits wins.</li>
     <li><strong>A renamer, last in a rule.</strong> Lines of &ldquo;if the name contains <em>this regular expression</em>, rename to <em>that</em>&rdquo;, with the pattern&rsquo;s pieces as <code>{1}</code>, <code>{2}</code> and filters such as <code>{1|dots|title}</code>. The first line that fits renames the file; with none, the name is kept. A try-it field shows the result as you type.</li>
     <li><strong>Export and import</strong> your rules, folders and groups, to set up a second PC the same way.</li>
     <li><strong>&ldquo;Why here?&rdquo;</strong> Hover a download, or use Downloads &gt; Why Here?, to see which rule placed it and why. The <strong>Add box</strong> checks pasted links first and shows where each one will go.</li>
