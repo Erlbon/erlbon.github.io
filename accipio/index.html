@@ -28,7 +28,7 @@
   "codeRepository": "https://github.com/Erlbon/accipio",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "2026-11-04#03",
+  "softwareVersion": "2026-11-04#04",
   "license": "https://opensource.org/license/mit",
   "screenshot": "https://erlbon.github.io/assets/img/screenshots/accipio-main-dark.jpg",
   "featureList": [
@@ -74,7 +74,7 @@
     <a class="btn secondary" href="https://github.com/Erlbon/accipio">Source on GitHub</a>
     <a class="btn secondary" href="https://github.com/Erlbon/accipio/blob/main/CHANGELOG.md">What changed, build by build</a>
   </div>
-  <p class="note">Build 2026-11-04#03. An installer of about 34&nbsp;MB that needs no admin rights, or a zip to run without installing. Free; the source is MIT-licensed.</p>
+  <p class="note">Build 2026-11-04#04. An installer of about 34&nbsp;MB that needs no admin rights, or a zip to run without installing. Free; the source is MIT-licensed.</p>
 
   <div class="screenshots">
     <figure>
@@ -88,9 +88,9 @@
   </div>
 
   <h2>What it does</h2>
-  <p>You set it up in four tabs, in this order:</p>
+  <p>It starts empty: one folder, Default, and no rules, so everything goes to Default until you say otherwise. You set it up in four tabs, in this order:</p>
   <ul class="feature-list">
-    <li><strong>Folders.</strong> Named places, such as <em>Comics inbox</em> = <code>D:\Comics\_Inbox\{yyyy}-{MM}</code>. Tokens such as <code>{yyyy}</code>, <code>{MM}</code>, <code>{week}</code>, <code>{domain}</code> and <code>{uploader}</code> make folders rotate by the clock; missing folders are created when a download starts. Rules pick a folder by name, so moving it here moves every rule that uses it.</li>
+    <li><strong>Folders.</strong> First Default, which you point anywhere. Then named places, under Default (<em>Comics</em> = <code>%default%\Comics</code>) or anywhere else (<em>Comics inbox</em> = <code>D:\Comics\_Inbox\{yyyy}-{MM}</code>). Tokens such as <code>{yyyy}</code>, <code>{MM}</code>, <code>{week}</code>, <code>{domain}</code> and <code>{uploader}</code> make folders rotate by the clock; missing folders are created when a download starts. Rules pick a folder by name, so moving it here moves every rule that uses it.</li>
     <li><strong>File groups:</strong> what a download is. Extensions (<code>cbz, cbr, cb7</code>) and name wildcards (<code>*invoice*</code>), any one of them enough. The built-in groups (Video, Audio, Images, Documents, Ebooks, Comics, Archives, Programs) can be edited, say to move <code>iso</code> out of Archives into a group of its own.</li>
     <li><strong>Site groups</strong> (optional): where a download comes from. A site matches the page you clicked the link on, the file&rsquo;s own address, or either, so a link site whose files sit on file hosters is still caught through its page.</li>
     <li><strong>Rules, in your order.</strong> An ordered list you sort by dragging. A rule says when it applies (in a file group, with single extensions left out if you like; from a site group; the name, with wildcards or regular expressions; the size; the time of day and weekday; for videos the channel, uploader, playlist or title), which folder the download goes to, and then stops or lets the rules below add to it.</li>
