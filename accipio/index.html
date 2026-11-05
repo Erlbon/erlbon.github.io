@@ -28,7 +28,7 @@
   "codeRepository": "https://github.com/Erlbon/accipio",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "2026-11-05#05",
+  "softwareVersion": "2026-11-05#06",
   "license": "https://opensource.org/license/mit",
   "screenshot": "https://erlbon.github.io/assets/img/screenshots/accipio-main-dark.jpg",
   "featureList": [
@@ -45,6 +45,7 @@
     "Archives (trial): a finished zip or tar shows what is inside and is unpacked as a folder, sorted by the rules, or kept packed, with Undo",
     "Downloaded files carry Windows' from-the-internet mark, as the browser's own downloads do",
     "Windows notifications when downloads are added, finish or fail",
+    "Progress on the taskbar button: one bar for all downloads, a badge with how many run, red when one failed",
     "A per-user Windows installer with no admin rights, or a zip to run without installing",
     "Help > Check for Updates downloads and installs a new version, checked against GitHub's checksum"
   ],
@@ -77,7 +78,7 @@
     <a class="btn secondary" href="https://github.com/Erlbon/accipio">Source on GitHub</a>
     <a class="btn secondary" href="https://github.com/Erlbon/accipio/blob/main/CHANGELOG.md">What changed, build by build</a>
   </div>
-  <p class="note">Build 2026-11-05#05. An installer of about 35&nbsp;MB that needs no admin rights, or a zip to run without installing. Free; the source is MIT-licensed.</p>
+  <p class="note">Build 2026-11-05#06. An installer of about 35&nbsp;MB that needs no admin rights, or a zip to run without installing. Free; the source is MIT-licensed.</p>
 
   <div class="screenshots">
     <figure>
@@ -105,6 +106,7 @@
     <li><strong>Direct downloads and video sites.</strong> Files come down with <a href="https://aria2.github.io/">aria2</a>; YouTube and other video sites with <a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a>, at best quality, up to 1080p or 720p, or as audio only (mp3). A video is fetched when you ask for it: the extension&rsquo;s toolbar button or a right-click on the page or on a link, or by pasting its address into Accipio. Tools &gt; Update yt-dlp keeps video sites working between Accipio releases.</li>
     <li><strong>A Chrome and Edge extension</strong> hands the downloads you click in the browser, with their cookies, straight to Accipio. Accipio says yes only once its own request has worked, so a download it cannot fetch stays with the browser instead of getting lost. Its toolbar button turns that off and on, and a link menu item lets the browser download one file itself. Like the browser&rsquo;s own downloads, every file carries Windows&rsquo; &ldquo;from the internet&rdquo; mark, so SmartScreen still warns before a downloaded program runs.</li>
     <li><strong>Windows notifications</strong> when downloads are added, finish or fail, grouped so a batch does not flood you; click a finished one to see the file in its folder.</li>
+    <li><strong>Progress on the taskbar button.</strong> One bar for all downloads together, a badge with how many are running, yellow when all are paused and red when one failed while you were away. Hover the button for the same in words.</li>
     <li><strong>Nothing kept that you did not ask for.</strong> A history of finished downloads is off unless you switch it on, and cookies are wiped from the queue when a download finishes.</li>
   </ul>
 
