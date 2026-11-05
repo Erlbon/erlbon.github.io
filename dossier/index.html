@@ -28,7 +28,7 @@
   "codeRepository": "https://github.com/Erlbon/dossier",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "0.4",
+  "softwareVersion": "0.6",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
   "screenshot": "https://erlbon.github.io/assets/img/screenshots/dossier-main-dark.jpg",
   "featureList": [
@@ -63,7 +63,7 @@
     <img class="icon" src="../assets/img/dossier.png" alt="Dossier icon" width="72" height="72">
     <div>
       <h1>Dossier</h1>
-      <p class="tagline" style="margin-bottom:0">A dual-pane file manager for Windows. Two panels, one shared selection, archives and servers shown as folders, and changes that are planned and shown before they happen.</p>
+      <p class="tagline" style="margin-bottom:0">A dual-pane file manager for Windows, for people with servers and a tailnet. A plan before every change, servers and your Tailscale devices as ordinary folders, notes inside folders, and an AI assistant that only proposes. Everything built in, no plugins.</p>
     </div>
   </div>
 
@@ -72,7 +72,7 @@
     <a class="btn secondary" href="https://github.com/Erlbon/dossier">Source on GitHub</a>
     <a class="btn secondary" href="https://github.com/Erlbon/dossier/blob/main/CHANGELOG.md">What changed, build by build</a>
   </div>
-  <p class="note">Version 0.4, the first release. One <code>dossier.exe</code>, about 47&nbsp;MB, nothing to install. Free, GPL-3.0-or-later.</p>
+  <p class="note">Version 0.6. <code>dossier-setup.exe</code> installs it for you alone and starts in under a second, or take the one-file <code>dossier.exe</code>, nothing to install. Free, GPL-3.0-or-later.</p>
 
   <div class="screenshots">
     <figure>
@@ -111,11 +111,11 @@ dossier dups D:\Photos E:\Backup --keep oldest --delete --dry-run
 dossier compare D:\Music E:\Music --sync update_right --dry-run
 dossier copy D:\Music\*.flac E:\Music --on-conflict newer --verify
 dossier checksum D:\Archive\* &gt; sums.txt</code></pre>
-  <p>Commands: <code>ls</code>, <code>info</code>, <code>find</code>, <code>checksum</code>, <code>copy</code>, <code>move</code>, <code>delete</code>, <code>dups</code>, <code>compare</code>. See the <a href="https://github.com/Erlbon/dossier/blob/main/docs/cli.md">command line guide</a>.</p>
-  <p><code>dossier mcp</code> starts a local <strong>MCP server</strong> so an AI assistant such as Claude can look at the folders you list and propose changes. It is off until you switch it on in Settings, sees only the folders you allow, and every change it proposes is shown to you in words and runs only when you press Run in the window. See the <a href="https://github.com/Erlbon/dossier/blob/main/docs/assistant.md">assistant guide</a>.</p>
+  <p>Commands: <code>ls</code>, <code>info</code>, <code>find</code>, <code>checksum</code>, <code>copy</code>, <code>move</code>, <code>delete</code>, <code>dups</code>, <code>compare</code>, <code>check</code>, <code>tag</code>, <code>touch</code>, <code>link</code>. See the <a href="https://github.com/Erlbon/dossier/blob/main/docs/cli.md">command line guide</a>.</p>
+  <p><code>dossier mcp</code> starts a local <strong>MCP server</strong> so an AI assistant such as Claude can look at the folders you list and propose changes. It is off until you switch it on in Settings, sees only the folders you allow, and every change it proposes is shown to you in words and runs only when you press Run in the window. If you allow it, it can also carry out its own plans while you are away (started from your phone, say): inside the folders you listed, never overwriting, never deleting for good, and listed for you afterwards. See the <a href="https://github.com/Erlbon/dossier/blob/main/docs/assistant.md">assistant guide</a>.</p>
 
   <h2>Install</h2>
-  <p>Download <code>dossier.exe</code> from the <a href="https://github.com/Erlbon/dossier/releases/latest">latest release</a> and start it. It keeps its settings in your user profile in a plain <code>dossier.ini</code>, never in the registry. Windows 10 or 11. The exe is not code-signed, so Windows SmartScreen may ask before it starts the first time.</p>
+  <p>From the <a href="https://github.com/Erlbon/dossier/releases/latest">latest release</a>: <code>dossier-setup.exe</code> installs Dossier for you alone (no administrator rights, a Start menu entry, a clean uninstall, <code>/VERYSILENT</code> for a silent install) and starts in under a second. <code>dossier.exe</code> is the same program as one file to put anywhere; it takes about three seconds to start. Either way it keeps its settings in your user profile in a plain <code>dossier.ini</code>, never in the registry, and Help &gt; Check for Updates keeps it up to date. Windows 10 or 11. Neither file is code-signed, so Windows SmartScreen may ask the first time.</p>
   <p>To run it from source: <code>git clone https://github.com/Erlbon/dossier</code>, <code>python -m pip install -r requirements.txt</code>, <code>python -m dossier</code> (Python 3.10 or newer).</p>
 
   <h2>Things to know</h2>
@@ -124,7 +124,7 @@ dossier checksum D:\Archive\* &gt; sums.txt</code></pre>
     <li>The servers (SFTP, SCP, WebDAV, FTP, OPDS, Subsonic) have been tested against test servers and Git&rsquo;s own <code>sftp-server</code>, not against many real ones. Please report what a real server does differently.</li>
     <li>A file in a catalogue or an archive opens by being downloaded first and handed to the program Windows has for it; nothing streams.</li>
     <li>7z, RAR and other archives besides zip need <a href="https://www.7-zip.org/">7-Zip</a> installed.</li>
-    <li>Dossier shows the tags inside music, comic and video files but does not change them; writing tags is not in this release. For that, see the <a href="../redactors/">Redactor Tools</a>.</li>
+    <li>Dossier writes the tags of mp3, flac, ogg, opus, m4a and cbz files; video files are read only. For work on many files at once, see the <a href="../redactors/">Redactor Tools</a>.</li>
   </ul>
 
   <h2>Licence</h2>
