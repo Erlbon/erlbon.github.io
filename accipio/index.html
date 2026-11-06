@@ -28,7 +28,7 @@
   "codeRepository": "https://github.com/Erlbon/accipio",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "2026-11-05#06",
+  "softwareVersion": "2026-11-06#04",
   "license": "https://opensource.org/license/mit",
   "screenshot": "https://erlbon.github.io/assets/img/screenshots/accipio-main-dark.jpg",
   "featureList": [
@@ -46,6 +46,7 @@
     "Downloaded files carry Windows' from-the-internet mark, as the browser's own downloads do",
     "Windows notifications when downloads are added, finish or fail",
     "Progress on the taskbar button: one bar for all downloads, a badge with how many run, red when one failed",
+    "Settings shows the ffmpeg in use for video sites and installs it with winget when there is none",
     "A per-user Windows installer with no admin rights, or a zip to run without installing",
     "Help > Check for Updates downloads and installs a new version, checked against GitHub's checksum"
   ],
@@ -78,7 +79,7 @@
     <a class="btn secondary" href="https://github.com/Erlbon/accipio">Source on GitHub</a>
     <a class="btn secondary" href="https://github.com/Erlbon/accipio/blob/main/CHANGELOG.md">What changed, build by build</a>
   </div>
-  <p class="note">Build 2026-11-05#06. An installer of about 35&nbsp;MB that needs no admin rights, or a zip to run without installing. Free; the source is MIT-licensed.</p>
+  <p class="note">Build 2026-11-06#04. An installer of about 35&nbsp;MB that needs no admin rights, or a zip to run without installing. Free; the source is MIT-licensed.</p>
 
   <div class="screenshots">
     <figure>
@@ -103,7 +104,7 @@
     <li><strong>&ldquo;Why here?&rdquo;</strong> Hover a download, or use Downloads &gt; Why Here?, to see which rule placed it and why. The <strong>Add box</strong> checks pasted links first and shows where each one will go.</li>
     <li><strong>A whole series as one link.</strong> Paste <code>saga-[001-150].cbz</code>, <code>page[1-20:2].jpg</code>, <code>[a-z].pdf</code> or <code>{intro,main}.mp3</code> and the Add box shows it as one folded row, every link checked first; links that do not exist are left out.</li>
     <li><strong>Archives, as a trial</strong> you switch on in Settings. A finished zip or tar shows what is inside and where each file would go, then is unpacked as a folder, sorted file by file through your rules, or kept packed, with a suggestion to start from. &ldquo;Do this every time&rdquo; makes the choice a rule, and Undo takes it back. Comic and ebook files that are zips underneath are never opened.</li>
-    <li><strong>Direct downloads and video sites.</strong> Files come down with <a href="https://aria2.github.io/">aria2</a>; YouTube and other video sites with <a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a>, at best quality, up to 1080p or 720p, or as audio only (mp3). A video is fetched when you ask for it: the extension&rsquo;s toolbar button or a right-click on the page or on a link, or by pasting its address into Accipio. Tools &gt; Update yt-dlp keeps video sites working between Accipio releases.</li>
+    <li><strong>Direct downloads and video sites.</strong> Files come down with <a href="https://aria2.github.io/">aria2</a>; YouTube and other video sites with <a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a>, at best quality, up to 1080p or 720p, or as audio only (mp3). A video is fetched when you ask for it: the extension&rsquo;s toolbar button or a right-click on the page or on a link, or by pasting its address into Accipio. Tools &gt; Update yt-dlp keeps video sites working between Accipio releases. Full quality needs ffmpeg: Settings shows which one Accipio uses, installs it with winget when there is none, or lets you pick your own.</li>
     <li><strong>A Chrome and Edge extension</strong> hands the downloads you click in the browser, with their cookies, straight to Accipio. Accipio says yes only once its own request has worked, so a download it cannot fetch stays with the browser instead of getting lost. Its toolbar button turns that off and on, and a link menu item lets the browser download one file itself. Like the browser&rsquo;s own downloads, every file carries Windows&rsquo; &ldquo;from the internet&rdquo; mark, so SmartScreen still warns before a downloaded program runs.</li>
     <li><strong>Windows notifications</strong> when downloads are added, finish or fail, grouped so a batch does not flood you; click a finished one to see the file in its folder.</li>
     <li><strong>Progress on the taskbar button.</strong> One bar for all downloads together, a badge with how many are running, yellow when all are paused and red when one failed while you were away. Hover the button for the same in words.</li>
