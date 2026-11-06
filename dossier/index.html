@@ -28,16 +28,17 @@
   "codeRepository": "https://github.com/Erlbon/dossier",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "0.6",
+  "softwareVersion": "0.7",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
   "screenshot": "https://erlbon.github.io/assets/img/screenshots/dossier-main-dark.jpg",
   "featureList": [
     "Two panels with tabs, one selection shared by both, F-key bar and command line",
     "Every copy, move, rename and delete is planned and shown first; a name that is taken is asked about; copies can be verified",
-    "Archives (zip, 7z, RAR and more) shown as folders; change a zip in place, pack, unpack and convert",
+    "Archives shown as folders: zip and 7z built in, RAR, ISO, tar and more through 7-Zip or NanaZip; change a zip in place, pack, unpack and convert",
     "SFTP, SCP, WebDAV, FTP and FTPS servers as folders, read-only by default; OPDS book catalogues and Subsonic music servers (read-only)",
     "Home page with drives, places, pinned folders, network shares, servers and the devices of a Tailscale network",
-    "Search, duplicate finder, compare and synchronize, batch rename, checksums, saved selections",
+    "Search, duplicate finder, compare and synchronize, batch rename, checksums, saved selections, folder sizes with each item's share",
+    "A stopped copy can be finished: only what is missing or changed is copied; a server connection that drops mid-copy is made again from the saved login",
     "Viewer for text, pictures with EXIF, hex and Markdown; editor; tags inside music, comic and video files shown as columns",
     "Folder notes shown under the listing and folder layouts that remember how each folder is shown",
     "Command line in the same program with --dry-run and --json, and a local MCP server for AI assistants that only proposes changes you approve",
@@ -72,7 +73,7 @@
     <a class="btn secondary" href="https://github.com/Erlbon/dossier">Source on GitHub</a>
     <a class="btn secondary" href="https://github.com/Erlbon/dossier/blob/main/CHANGELOG.md">What changed, build by build</a>
   </div>
-  <p class="note">Version 0.6. <code>dossier-setup.exe</code> installs it for you alone and starts in under a second, or take the one-file <code>dossier.exe</code>, nothing to install. Free, GPL-3.0-or-later.</p>
+  <p class="note">Version 0.7. <code>dossier-setup.exe</code> installs it for you alone and starts in under a second, or take the one-file <code>dossier.exe</code>, nothing to install. Free, GPL-3.0-or-later.</p>
 
   <div class="screenshots">
     <figure>
@@ -94,11 +95,11 @@
   <h2>What it does</h2>
   <ul class="feature-list">
     <li><strong>Two panels, tabs, one selection.</strong> Mark files in either panel; a command works on the marks of the panel you start it from. F3 view, F4 edit, F5 copy, F6 move, F7 new folder, F8 delete, drag and drop, and the clipboard.</li>
-    <li><strong>Changes are planned first.</strong> Every copy, move, rename and delete is worked out and shown before it happens. A name that is already taken is asked about, per file. Copies can be read back and compared. Renames and same-drive moves can be undone; deletes go to the recycle bin (not on a network drive or a server, which say so).</li>
-    <li><strong>Archives as folders.</strong> Open a zip, 7z, RAR and most other archives like a folder; change a zip in place, pack, unpack, and convert other archives to zip.</li>
-    <li><strong>Servers as folders.</strong> SFTP, SCP (for servers with a shell but no SFTP), WebDAV (Nextcloud, a NAS), FTP and FTPS. Open <strong>OPDS book catalogues</strong> (Calibre, Calibre-Web, Kavita, Komga) and <strong>Subsonic music servers</strong> (Navidrome, Airsonic) as read-only folders and copy a book or a track out. Servers are read-only until you switch writing on; host keys and certificates are shown and pinned; passwords go to the system&rsquo;s password store only if you ask.</li>
+    <li><strong>Changes are planned first.</strong> Every copy, move, rename and delete is worked out and shown before it happens. A name that is already taken is asked about, per file. Copies can be read back and compared, and a copy that stopped can be finished: only what is missing or changed is copied, with no questions. A big file goes on where it stopped, between disks and to or from SFTP, SCP and FTP servers. The copy box shows a bar for the file as well as for the whole job, with Pause and Cancel. Renames and same-drive moves can be undone; deletes go to the recycle bin (not on a network drive or a server, which say so).</li>
+    <li><strong>Archives as folders.</strong> Open a zip, 7z, RAR and most other archives like a folder (zip and 7z with nothing else installed); change a zip in place, pack, unpack, and convert other archives to zip.</li>
+    <li><strong>Servers as folders.</strong> SFTP, SCP (for servers with a shell but no SFTP), WebDAV (Nextcloud, a NAS), FTP and FTPS. Open <strong>OPDS book catalogues</strong> (Calibre, Calibre-Web, Kavita, Komga) and <strong>Subsonic music servers</strong> (Navidrome, Airsonic) as read-only folders and copy a book or a track out. Servers are read-only until you switch writing on; host keys and certificates are shown and pinned; passwords go to the system&rsquo;s password store only if you ask. A connection that drops in the middle of a copy is made again from the saved login, and the copy carries on.</li>
     <li><strong>A Home page</strong> with your drives (a light says whether each one answers), places, pinned folders, network shares, servers, and the devices of your <strong>Tailscale</strong> network, read from the Tailscale program you already run.</li>
-    <li><strong>Search, find duplicates, compare and synchronize, batch rename, checksums, saved selections, folder sizes.</strong></li>
+    <li><strong>Search, find duplicates, compare and synchronize, batch rename, checksums, saved selections, folder sizes</strong> (with each item&rsquo;s share of the folder), <strong>a folder tree</strong>, and a log of a big copy saved as a table when you ask for it.</li>
     <li><strong>A viewer</strong> for text (any size and encoding, column selection), pictures with their EXIF, hex, and rendered Markdown, with the mouse wheel stepping through the pictures of a folder; <strong>an editor</strong>; and <strong>columns and a Properties box</strong> that show the tags inside music, comic and video files, plus tags you put on files yourself.</li>
     <li><strong>Folder notes</strong> (<code>README.md</code>, <code>about.md</code>) shown under the listing like a repository page, and <strong>folder layouts</strong> that remember how each folder is shown.</li>
     <li><strong>Your look.</strong> Light, dark or the system&rsquo;s scheme, two icon sets or your own, fonts, bold on or off, and the programs bar, the function key bar and the command line can each be dragged to the top or the bottom.</li>
@@ -123,7 +124,7 @@ dossier checksum D:\Archive\* &gt; sums.txt</code></pre>
     <li>There is <strong>no Linux or Mac build yet</strong>. The program is written to be portable and a Linux build is planned; the Windows exe is the only supported way to run it today.</li>
     <li>The servers (SFTP, SCP, WebDAV, FTP, OPDS, Subsonic) have been tested against test servers and Git&rsquo;s own <code>sftp-server</code>, not against many real ones. Please report what a real server does differently.</li>
     <li>A file in a catalogue or an archive opens by being downloaded first and handed to the program Windows has for it; nothing streams.</li>
-    <li>7z, RAR and other archives besides zip need <a href="https://www.7-zip.org/">7-Zip</a> installed.</li>
+    <li>RAR, ISO, tar and other archives besides zip and 7z need <a href="https://www.7-zip.org/">7-Zip</a> or NanaZip installed.</li>
     <li>Dossier writes the tags of mp3, flac, ogg, opus, m4a and cbz files; video files are read only. For work on many files at once, see the <a href="../redactors/">Redactor Tools</a>.</li>
   </ul>
 
