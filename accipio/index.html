@@ -28,7 +28,7 @@
   "codeRepository": "https://github.com/Erlbon/accipio",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "2026-11-07#10",
+  "softwareVersion": "2026-11-07#12",
   "license": "https://opensource.org/license/mit",
   "screenshot": "https://erlbon.github.io/assets/img/screenshots/accipio-main-dark.jpg",
   "featureList": [
@@ -81,7 +81,7 @@
     <a class="btn secondary" href="https://github.com/Erlbon/accipio">Source on GitHub</a>
     <a class="btn secondary" href="https://github.com/Erlbon/accipio/blob/main/CHANGELOG.md">What changed, build by build</a>
   </div>
-  <p class="note">Build 2026-11-07#10. Copies of 2026-11-06-04 and -13 update once by hand: run this installer over them. An installer of about 35&nbsp;MB that needs no admin rights, or a zip to run without installing. Free; the source is MIT-licensed.</p>
+  <p class="note">Build 2026-11-07#12. Copies of 2026-11-06-04 and -13 update once by hand: run this installer over them. An installer of about 35&nbsp;MB that needs no admin rights, or a zip to run without installing. Free; the source is MIT-licensed.</p>
 
   <div class="screenshots">
     <figure>
@@ -107,7 +107,7 @@
     <li><strong>A whole series as one link.</strong> Paste <code>saga-[001-150].cbz</code>, <code>page[1-20:2].jpg</code>, <code>[a-z].pdf</code> or <code>{intro,main}.mp3</code> and the Add box shows it as one folded row, every link checked first; links that do not exist are left out.</li>
     <li><strong>Archives, as a trial</strong> you switch on in Settings. A finished zip or tar shows what is inside and where each file would go, then is unpacked as a folder, sorted file by file through your rules, or kept packed, with a suggestion to start from. &ldquo;Do this every time&rdquo; makes the choice a rule, and Undo takes it back. Comic and ebook files that are zips underneath are never opened.</li>
     <li><strong>Direct downloads and video sites.</strong> Files come down with <a href="https://aria2.github.io/">aria2</a>; YouTube and other video sites with <a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a>, at best quality, up to 1080p or 720p, or as audio only (mp3). A video is fetched when you ask for it: the extension&rsquo;s toolbar button or a right-click on the page or on a link, or by pasting its address into Accipio. Tools &gt; Update yt-dlp keeps video sites working between Accipio releases. Full quality needs ffmpeg: Settings shows which one Accipio uses, installs it with winget when there is none, or lets you pick your own. A playlist is never downloaded without your yes: a video link that comes from a playlist is just that video, and Accipio asks whether you want the rest.</li>
-    <li><strong>A Chrome and Edge extension</strong> hands the downloads you click in the browser, with their cookies, straight to Accipio. Accipio says yes only once its own request has worked, so a download it cannot fetch stays with the browser instead of getting lost. Its toolbar button turns that off and on, and a link menu item lets the browser download one file itself. Like the browser&rsquo;s own downloads, every file carries Windows&rsquo; &ldquo;from the internet&rdquo; mark, so SmartScreen still warns before a downloaded program runs.</li>
+    <li><strong>A Chrome and Edge extension</strong> hands the downloads you click in the browser, with their cookies, straight to Accipio. Accipio says yes only once its own request has worked, so a download it cannot fetch stays with the browser instead of getting lost. If the download engine drops the connection while a download is being added, Accipio checks whether it arrived and sends it again, instead of passing it back to the browser. Its toolbar button turns that off and on, and a link menu item lets the browser download one file itself. Like the browser&rsquo;s own downloads, every file carries Windows&rsquo; &ldquo;from the internet&rdquo; mark, so SmartScreen still warns before a downloaded program runs.</li>
     <li><strong>Windows notifications</strong> when downloads are added, finish or fail, grouped so a batch does not flood you; click a finished one to see the file in its folder. Each kind has its own sound: one of Windows&rsquo; notification sounds, none, or a .wav of your own, with a Play button to try it. Do not disturb keeps them quiet.</li>
     <li><strong>Progress on the taskbar button.</strong> One bar for all downloads together, a badge with how many are running, yellow when all are paused and red when one failed while you were away. Hover the button for the same in words. Closing the window keeps Accipio running in the tray; File &gt; Exit quits.</li>
     <li><strong>Nothing kept that you did not ask for.</strong> Finished downloads leave the list at the next start, a number of minutes after they finish, as soon as they finish, or only when you clear them: your choice. Cookies are wiped from the queue when a download finishes. A debug log, for a bug report, is off unless you switch it on, and never holds cookies.</li>
