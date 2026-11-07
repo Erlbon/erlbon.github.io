@@ -28,7 +28,7 @@
   "codeRepository": "https://github.com/Erlbon/dossier",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "0.7",
+  "softwareVersion": "0.8",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
   "screenshot": "https://erlbon.github.io/assets/img/screenshots/dossier-main-dark.jpg",
   "featureList": [
@@ -39,7 +39,7 @@
     "Home page with drives, places, pinned folders, network shares, servers and the devices of a Tailscale network",
     "Search, duplicate finder, compare and synchronize, batch rename, checksums, saved selections, folder sizes with each item's share",
     "A stopped copy can be finished: only what is missing or changed is copied; a server connection that drops mid-copy is made again from the saved login",
-    "Viewer for text, pictures with EXIF, hex and Markdown; editor; tags inside music, comic and video files shown as columns",
+    "Viewer for text, pictures with EXIF, SVG drawings, hex and Markdown; editor; thumbnails with the covers of comics, films and PDFs; tags inside music, comic and video files shown as columns",
     "Folder notes shown under the listing and folder layouts that remember how each folder is shown",
     "Command line in the same program with --dry-run and --json, and a local MCP server for AI assistants that only proposes changes you approve",
     "Light, dark or system colour scheme; the programs bar, the function key bar and the command line can be dragged where you want them"
@@ -73,7 +73,7 @@
     <a class="btn secondary" href="https://github.com/Erlbon/dossier">Source on GitHub</a>
     <a class="btn secondary" href="https://github.com/Erlbon/dossier/blob/main/CHANGELOG.md">What changed, build by build</a>
   </div>
-  <p class="note">Version 0.7. <code>dossier-setup.exe</code> installs it for you alone and starts in under a second, or take the one-file <code>dossier.exe</code>, nothing to install. Free, GPL-3.0-or-later.</p>
+  <p class="note">Version 0.8.<code>dossier-setup.exe</code> installs it for you alone and starts in under a second, or take the one-file <code>dossier.exe</code>, nothing to install. Free, GPL-3.0-or-later.</p>
 
   <div class="screenshots">
     <figure>
@@ -100,7 +100,7 @@
     <li><strong>Servers as folders.</strong> SFTP, SCP (for servers with a shell but no SFTP), WebDAV (Nextcloud, a NAS), FTP and FTPS. Open <strong>OPDS book catalogues</strong> (Calibre, Calibre-Web, Kavita, Komga) and <strong>Subsonic music servers</strong> (Navidrome, Airsonic) as read-only folders and copy a book or a track out. Servers are read-only until you switch writing on; host keys and certificates are shown and pinned; passwords go to the system&rsquo;s password store only if you ask. A connection that drops in the middle of a copy is made again from the saved login, and the copy carries on.</li>
     <li><strong>A Home page</strong> with your drives (a light says whether each one answers), places, pinned folders, network shares, servers, and the devices of your <strong>Tailscale</strong> network, read from the Tailscale program you already run.</li>
     <li><strong>Search, find duplicates, compare and synchronize, batch rename, checksums, saved selections, folder sizes</strong> (with each item&rsquo;s share of the folder), <strong>a folder tree</strong>, and a log of a big copy saved as a table when you ask for it.</li>
-    <li><strong>A viewer</strong> for text (any size and encoding, column selection), pictures with their EXIF, hex, and rendered Markdown, with the mouse wheel stepping through the pictures of a folder; <strong>an editor</strong>; and <strong>columns and a Properties box</strong> that show the tags inside music, comic and video files, plus tags you put on files yourself.</li>
+    <li><strong>A viewer</strong> for text (any size and encoding, column selection), pictures with their EXIF, SVG drawings (sharp at any zoom), hex, and rendered Markdown, with the mouse wheel stepping through the pictures of a folder; <strong>thumbnails</strong> that show the cover of a comic (zip, RAR, 7z or tar), a film (MKV or MP4) or a PDF; <strong>an editor</strong>; and <strong>columns and a Properties box</strong> that show the tags inside music, comic and video files, plus tags you put on files yourself.</li>
     <li><strong>Folder notes</strong> (<code>README.md</code>, <code>about.md</code>) shown under the listing like a repository page, and <strong>folder layouts</strong> that remember how each folder is shown.</li>
     <li><strong>Your look.</strong> Light, dark or the system&rsquo;s scheme, two icon sets or your own, fonts, bold on or off, and the programs bar, the function key bar and the command line can each be dragged to the top or the bottom.</li>
   </ul>
@@ -116,7 +116,7 @@ dossier checksum D:\Archive\* &gt; sums.txt</code></pre>
   <p><code>dossier mcp</code> starts a local <strong>MCP server</strong> so an AI assistant such as Claude can look at the folders you list and propose changes. It is off until you switch it on in Settings, sees only the folders you allow, and every change it proposes is shown to you in words and runs only when you press Run in the window. If you allow it, it can also carry out its own plans while you are away (started from your phone, say): inside the folders you listed, never overwriting, never deleting for good, and listed for you afterwards. See the <a href="https://github.com/Erlbon/dossier/blob/main/docs/assistant.md">assistant guide</a>.</p>
 
   <h2>Install</h2>
-  <p>From the <a href="https://github.com/Erlbon/dossier/releases/latest">latest release</a>: <code>dossier-setup.exe</code> installs Dossier for you alone (no administrator rights, a Start menu entry, a clean uninstall, <code>/VERYSILENT</code> for a silent install) and starts in under a second. <code>dossier.exe</code> is the same program as one file to put anywhere; it takes about three seconds to start. Either way it keeps its settings in your user profile in a plain <code>dossier.ini</code>, never in the registry, and Help &gt; Check for Updates keeps it up to date. Windows 10 or 11. Neither file is code-signed, so Windows SmartScreen may ask the first time.</p>
+  <p>From the <a href="https://github.com/Erlbon/dossier/releases/latest">latest release</a>: <code>dossier-setup.exe</code> installs Dossier for you alone (no administrator rights, a Start menu entry, a clean uninstall, <code>/VERYSILENT</code> for a silent install) and starts in under a second. <code>dossier.exe</code> is the same program as one file to put anywhere; it takes about three seconds to start. Either way it keeps its settings in your user profile in a plain <code>dossier.ini</code>, never in the registry, and Help &gt; Check for Updates keeps it up to date: every file is checked against the release&rsquo;s own list of sizes and checksums, and if a copy cannot update itself it says why. Windows 10 or 11. Neither file is code-signed, so Windows SmartScreen may ask the first time.</p>
   <p>To run it from source: <code>git clone https://github.com/Erlbon/dossier</code>, <code>python -m pip install -r requirements.txt</code>, <code>python -m dossier</code> (Python 3.10 or newer).</p>
 
   <h2>Things to know</h2>
