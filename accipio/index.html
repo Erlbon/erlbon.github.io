@@ -28,7 +28,7 @@
   "codeRepository": "https://github.com/Erlbon/accipio",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "2026-11-08#01",
+  "softwareVersion": "2026-11-08#02",
   "license": "https://opensource.org/license/mit",
   "screenshot": "https://erlbon.github.io/assets/img/screenshots/accipio-main-dark.jpg",
   "featureList": [
@@ -81,7 +81,7 @@
     <a class="btn secondary" href="https://github.com/Erlbon/accipio">Source on GitHub</a>
     <a class="btn secondary" href="https://github.com/Erlbon/accipio/blob/main/CHANGELOG.md">What changed, build by build</a>
   </div>
-  <p class="note">Build 2026-11-08#01. Copies of 2026-11-06-04 and -13 update once by hand: run this installer over them. An installer of about 35&nbsp;MB that needs no admin rights, or a zip to run without installing. Free; the source is MIT-licensed.</p>
+  <p class="note">Build 2026-11-08#02. Copies of 2026-11-06-04 and -13 update once by hand: run this installer over them. An installer of about 35&nbsp;MB that needs no admin rights, or a zip to run without installing. Free; the source is MIT-licensed.</p>
 
   <div class="screenshots">
     <figure>
@@ -114,7 +114,7 @@
   </ul>
 
   <h2>Install</h2>
-  <p>Download <code>Accipio-&lt;build&gt;-windows-x64-setup.exe</code> from the <a href="https://github.com/Erlbon/accipio/releases/latest">latest release</a> and run it. It installs for your user only, with no admin rights, connects Chrome and Edge to Accipio, and can start Accipio when you sign in and fetch ffmpeg (for full-quality video) with winget. To update, use Help &gt; Check for Updates: it downloads the new installer, checks it against GitHub&rsquo;s checksum and runs it, and Accipio starts again with your rules, settings and downloads as they were (Preferences can do the check once a day; it is off unless you switch it on). Windows 10 or 11. The installer is not code-signed, so Windows SmartScreen may ask before it starts.</p>
+  <p>Download <code>Accipio-&lt;build&gt;-windows-x64-setup.exe</code> from the <a href="https://github.com/Erlbon/accipio/releases/latest">latest release</a> and run it. It installs for your user only, with no admin rights, connects Chrome and Edge to Accipio, and can start Accipio when you sign in and fetch ffmpeg (for full-quality video) with winget. To update, use Help &gt; Check for Updates: it downloads the new installer, checks it against GitHub&rsquo;s checksum (fetching it through GitHub&rsquo;s API when its usual download address fails) and runs it, and Accipio starts again with your rules, settings and downloads as they were (Preferences can do the check once a day; it is off unless you switch it on). Windows 10 or 11. The installer is not code-signed, so Windows SmartScreen may ask before it starts.</p>
   <p>The browser extension is not in the Chrome Web Store yet, so it is loaded once by hand, which takes about a minute: open <code>chrome://extensions</code>, switch on Developer mode, choose Load unpacked and pick the extension folder. The installer&rsquo;s last page offers a help page with these steps and buttons that copy what to paste, and Accipio shows the same steps until the extension is in. If Free Download Manager or a similar program is installed, the installer says so: switch one of the two browser extensions off.</p>
   <p>Would rather not install? The release also has a zip with the same program: unzip it anywhere and start <code>Accipio.exe</code>.</p>
 
