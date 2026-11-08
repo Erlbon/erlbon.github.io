@@ -37,7 +37,8 @@
     { "@type": "ListItem", "position": 1, "url": "https://erlbon.github.io/cbzredactor/", "name": "The ƆBZ Redactor" },
     { "@type": "ListItem", "position": 2, "url": "https://erlbon.github.io/epubredactor/", "name": "The ƎPUB Redactor" },
     { "@type": "ListItem", "position": 3, "url": "https://erlbon.github.io/mp3redactor/", "name": "The ɯP3 Redactor" },
-    { "@type": "ListItem", "position": 4, "url": "https://erlbon.github.io/videoredactor/", "name": "The Ʌideo Redactor" }
+    { "@type": "ListItem", "position": 4, "url": "https://erlbon.github.io/videoredactor/", "name": "The Ʌideo Redactor" },
+    { "@type": "ListItem", "position": 5, "url": "https://erlbon.github.io/folderredactor/", "name": "The Ⅎolder Redactor" }
   ]
 }
 </script>
@@ -98,6 +99,14 @@
         <p>Bulk-edit MKV/MP4 metadata with TMDB lookups, offline lookups in a local IMDb database you build, season/episode matching, subtitle fetching and ingest, conversion of AVI and other formats to MP4/MKV, file checks and repair, duplicate finding, and poster art — for movies, TV, and everything in between.</p>
       </div>
     </a>
+
+    <a class="card" data-app="folder" href="../folderredactor/">
+      <img class="icon" src="../assets/img/folderredactor.png" alt="The Ⅎolder Redactor icon" width="56" height="56">
+      <div>
+        <h3>The Ⅎolder Redactor</h3>
+        <p>One level up from the files: drafts the Markdown folder notes of a music or video library (<code>artist.md</code>, <code>album.md</code>, <code>series.md</code>, <code>about.md</code>) from the files&rsquo; tags and from MusicBrainz, Discogs, TMDB and Wikipedia, for the Pluteus server to show. Every draft is reviewed yes/no; only <code>.md</code> notes are ever written. Windows.</p>
+      </div>
+    </a>
   </div>
 
   <h2>Why these exist</h2>
@@ -148,6 +157,12 @@
           <td>AVI, MOV, WMV, FLV, WebM, MPG/MPEG, M2TS/MTS, TS, 3GP, OGV, VOB</td>
           <td>FFmpeg, MKVToolNix <span class="note">FFmpeg: MKV → MP4 remux (stream copy), or any source → H.264/AAC MP4 (re-encode). MKVToolNix: MKV metadata only.</span></td>
         </tr>
+        <tr>
+          <th scope="row"><a href="../folderredactor/">Ⅎolder Redactor</a></th>
+          <td>Markdown folder notes <span class="note">.md, written into the library&rsquo;s folders</span></td>
+          <td>Reads the tags of MP3, FLAC, M4A, Ogg Vorbis and Opus; counts video files <span class="note">never opens or changes a media file</span></td>
+          <td>None</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -184,25 +199,27 @@
           <th><a href="../epubredactor/#sources">ƎPUB</a></th>
           <th><a href="../mp3redactor/#sources">ɯP3</a></th>
           <th><a href="../videoredactor/#sources">Ʌideo</a></th>
+          <th><a href="../folderredactor/#sources">Ⅎolder</a></th>
         </tr>
       </thead>
       <tbody>
-        <tr><th scope="row">Comic Vine <span class="note">your own free key</span></th><td>✓</td><td></td><td></td><td></td></tr>
-        <tr><th scope="row">Grand Comics Database <span class="note">web API; account optional</span></th><td>✓</td><td></td><td></td><td></td></tr>
-        <tr><th scope="row">Bedetheque <span class="note">web pages, not an API</span></th><td>✓</td><td></td><td></td><td></td></tr>
-        <tr><th scope="row">AniList <span class="note">manga; no key</span></th><td>✓</td><td></td><td></td><td></td></tr>
-        <tr><th scope="row">MangaUpdates <span class="note">manga; no key</span></th><td>✓</td><td></td><td></td><td></td></tr>
-        <tr><th scope="row">Google Books</th><td></td><td>✓</td><td></td><td></td></tr>
-        <tr><th scope="row">Open Library <span class="note">web API and cover images</span></th><td></td><td>✓</td><td></td><td></td></tr>
-        <tr><th scope="row">Calibre <span class="note">through your own install</span></th><td></td><td>✓</td><td></td><td></td></tr>
-        <tr><th scope="row">MusicBrainz</th><td></td><td></td><td>✓</td><td></td></tr>
-        <tr><th scope="row">AcoustID <span class="note">needs the free fpcalc tool</span></th><td></td><td></td><td>✓</td><td></td></tr>
-        <tr><th scope="row">Discogs <span class="note">your own free token</span></th><td></td><td></td><td>✓</td><td></td></tr>
-        <tr><th scope="row">Cover Art Archive</th><td></td><td></td><td>✓</td><td></td></tr>
-        <tr><th scope="row">LRCLIB lyrics</th><td></td><td></td><td>✓</td><td></td></tr>
-        <tr><th scope="row">TMDB <span class="note">your own key</span></th><td></td><td></td><td></td><td>✓</td></tr>
-        <tr><th scope="row">TheTVDB <span class="note">your own key</span></th><td></td><td></td><td></td><td>✓</td></tr>
-        <tr><th scope="row">OpenSubtitles <span class="note">your own key; subtitles</span></th><td></td><td></td><td></td><td>✓</td></tr>
+        <tr><th scope="row">Comic Vine <span class="note">your own free key</span></th><td>✓</td><td></td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">Grand Comics Database <span class="note">web API; account optional</span></th><td>✓</td><td></td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">Bedetheque <span class="note">web pages, not an API</span></th><td>✓</td><td></td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">AniList <span class="note">manga; no key</span></th><td>✓</td><td></td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">MangaUpdates <span class="note">manga; no key</span></th><td>✓</td><td></td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">Google Books</th><td></td><td>✓</td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">Open Library <span class="note">web API and cover images</span></th><td></td><td>✓</td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">Calibre <span class="note">through your own install</span></th><td></td><td>✓</td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">MusicBrainz</th><td></td><td></td><td>✓</td><td></td><td>✓</td></tr>
+        <tr><th scope="row">AcoustID <span class="note">needs the free fpcalc tool</span></th><td></td><td></td><td>✓</td><td></td><td></td></tr>
+        <tr><th scope="row">Discogs <span class="note">your own free token</span></th><td></td><td></td><td>✓</td><td></td><td>✓</td></tr>
+        <tr><th scope="row">Cover Art Archive</th><td></td><td></td><td>✓</td><td></td><td>✓</td></tr>
+        <tr><th scope="row">LRCLIB lyrics</th><td></td><td></td><td>✓</td><td></td><td></td></tr>
+        <tr><th scope="row">TMDB <span class="note">your own key</span></th><td></td><td></td><td></td><td>✓</td><td>✓</td></tr>
+        <tr><th scope="row">Wikipedia and Wikidata <span class="note">introductions in folder notes</span></th><td></td><td></td><td></td><td></td><td>✓</td></tr>
+        <tr><th scope="row">TheTVDB <span class="note">your own key</span></th><td></td><td></td><td></td><td>✓</td><td></td></tr>
+        <tr><th scope="row">OpenSubtitles <span class="note">your own key; subtitles</span></th><td></td><td></td><td></td><td>✓</td><td></td></tr>
       </tbody>
     </table>
   </div>
@@ -217,15 +234,16 @@
           <th><a href="../epubredactor/#sources">ƎPUB</a></th>
           <th><a href="../mp3redactor/#sources">ɯP3</a></th>
           <th><a href="../videoredactor/#sources">Ʌideo</a></th>
+          <th><a href="../folderredactor/#sources">Ⅎolder</a></th>
         </tr>
       </thead>
       <tbody>
-        <tr><th scope="row">GCD data dump <span class="note">SQLite</span></th><td>✓</td><td></td><td></td><td></td></tr>
-        <tr><th scope="row">ComicRack library <span class="note">from your own ComicDb.xml</span></th><td>✓</td><td></td><td></td><td></td></tr>
-        <tr><th scope="row">Open Library data dumps</th><td></td><td>✓</td><td></td><td></td></tr>
-        <tr><th scope="row">ISFDB backup <span class="note">MySQL; adds series and series number</span></th><td></td><td>✓</td><td></td><td></td></tr>
-        <tr><th scope="row">MusicBrainz core-data dump</th><td></td><td></td><td>✓</td><td></td></tr>
-        <tr><th scope="row">IMDb datasets</th><td></td><td></td><td></td><td>✓</td></tr>
+        <tr><th scope="row">GCD data dump <span class="note">SQLite</span></th><td>✓</td><td></td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">ComicRack library <span class="note">from your own ComicDb.xml</span></th><td>✓</td><td></td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">Open Library data dumps</th><td></td><td>✓</td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">ISFDB backup <span class="note">MySQL; adds series and series number</span></th><td></td><td>✓</td><td></td><td></td><td></td></tr>
+        <tr><th scope="row">MusicBrainz core-data dump</th><td></td><td></td><td>✓</td><td></td><td></td></tr>
+        <tr><th scope="row">IMDb datasets</th><td></td><td></td><td></td><td>✓</td><td></td></tr>
       </tbody>
     </table>
   </div>
@@ -239,12 +257,13 @@
           <th><a href="../epubredactor/#sources">ƎPUB</a></th>
           <th><a href="../mp3redactor/#sources">ɯP3</a></th>
           <th><a href="../videoredactor/#sources">Ʌideo</a></th>
+          <th><a href="../folderredactor/#sources">Ⅎolder</a></th>
         </tr>
       </thead>
       <tbody>
-        <tr><th scope="row">Filename and folder path</th><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
-        <tr><th scope="row">The file&rsquo;s own text or tags</th><td></td><td>✓ <span class="note">front-matter scan</span></td><td>✓ <span class="note">tags</span></td><td></td></tr>
-        <tr><th scope="row">Folder image</th><td></td><td></td><td>✓</td><td></td></tr>
+        <tr><th scope="row">Filename and folder path</th><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><th scope="row">The file&rsquo;s own text or tags</th><td></td><td>✓ <span class="note">front-matter scan</span></td><td>✓ <span class="note">tags</span></td><td></td><td>✓ <span class="note">tags</span></td></tr>
+        <tr><th scope="row">Folder image</th><td></td><td></td><td>✓</td><td></td><td></td></tr>
       </tbody>
     </table>
   </div>
@@ -263,17 +282,19 @@
     <li><strong>IMDb</strong> (Ʌideo): Information courtesy of IMDb (<a href="https://www.imdb.com">https://www.imdb.com</a>). Used with permission. IMDb&rsquo;s datasets are for personal, non-commercial use only; you may keep a local copy for your own use, but they must not be altered, republished, resold or repurposed to make a database for others, and IMDb may withdraw permission at any time. See <a href="https://www.imdb.com/conditions">IMDb&rsquo;s conditions of use</a>.</li>
     <li><strong>TMDB</strong> (Ʌideo): This website uses TMDB and the TMDB APIs but is not endorsed, certified, or otherwise approved by TMDB.<a href="https://www.themoviedb.org/"><img class="tmdb-logo" src="../assets/img/tmdb-blue-short.svg" alt="TMDB logo" width="137" height="18"></a></li>
     <li><strong>TheTVDB</strong> (Ʌideo): Metadata provided by <a href="https://thetvdb.com/">TheTVDB</a>. Please consider contributing missing information there, or supporting them directly.</li>
+    <li><strong>The Ⅎolder Redactor</strong> (Ⅎolder) reads MusicBrainz&rsquo;s <a href="https://musicbrainz.org/doc/About/Data_License">CC0 core data</a> through its web service, quotes Wikipedia introductions under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike License</a> with a link to each article (Wikidata is CC0), credits Discogs data in the note it went into (&ldquo;Facts from Discogs&rdquo;; Data provided by Discogs, not affiliated with, sponsored or endorsed by Discogs), and uses TMDB under the notice above.</li>
     <li><strong>AniList and MangaUpdates</strong> (ƆBZ): data from <a href="https://anilist.co">AniList</a> and <a href="https://www.mangaupdates.com">MangaUpdates</a>, credited as MangaUpdates&rsquo; API terms ask. Both are read through their public APIs, with requests spaced; the lookup uses series-level data only and never writes a fetched cover into a file.</li>
     <li><strong>Comic Vine, Bedetheque, Google Books, Open Library&rsquo;s web API, Calibre, AcoustID, Cover Art Archive, LRCLIB and OpenSubtitles</strong>: used through their public services under their own terms; you are bound by those terms when you use your own keys or run a lookup.</li>
   </ul>
 
   <h2>Get the tools</h2>
-  <p>All four are free, open-source, and run on Windows and Linux (each release has a standalone <code>.exe</code> and a Linux download). Each app's page below has its full feature list and a link to the latest release:</p>
+  <p>All five are free and open-source. The four metadata editors run on Windows and Linux (each release has a standalone <code>.exe</code> and a Linux download); the Ⅎolder Redactor is Windows only for now (an installer and a standalone <code>.exe</code>). Each app's page below has its full feature list and a link to the latest release:</p>
   <ul class="feature-list">
     <li><a href="../cbzredactor/">The ƆBZ Redactor</a> — CBZ / ComicInfo.xml metadata editor</li>
     <li><a href="../epubredactor/">The ƎPUB Redactor</a> — EPUB ebook metadata editor</li>
     <li><a href="../mp3redactor/">The ɯP3 Redactor</a> — MP3 tag &amp; integrity tool</li>
     <li><a href="../videoredactor/">The Ʌideo Redactor</a> — MKV/MP4 metadata editor</li>
+    <li><a href="../folderredactor/">The Ⅎolder Redactor</a> — Markdown folder notes for music and video libraries</li>
   </ul>
 
   <h2>Credits</h2>

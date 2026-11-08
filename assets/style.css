@@ -333,6 +333,7 @@ code {
 [data-app="epub"]   { --card-accent: #1c7d78; }
 [data-app="mp3"]    { --card-accent: #e8e6df; }
 [data-app="video"]  { --card-accent: #57efc6; }
+[data-app="folder"] { --card-accent: #f2b225; }
 [data-app="pluteus"] { --card-accent: #d4a94f; }
 
 /* TMDB attribution logo: official unmodified SVG, kept small and dim so it

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folder Redactor — Markdown Folder Notes for Music &amp; Video Libraries (Windows)</title>
+<meta name="description" content="The Ⅎolder Redactor is a free Windows app that drafts Markdown folder notes (artist.md, album.md, series.md, about.md) for music and video libraries from MusicBrainz, Discogs, TMDB and Wikipedia, reviewed yes/no before anything is written.">
+<link rel="canonical" href="https://erlbon.github.io/folderredactor/">
+<link rel="icon" href="../assets/img/folderredactor.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Ⅎolder Redactor — Markdown Folder Notes for Media Libraries">
+<meta property="og:description" content="Free Windows app that drafts the folder notes of a music or video library from MusicBrainz, Discogs, TMDB and Wikipedia, reviewed before anything is written.">
+<meta property="og:url" content="https://erlbon.github.io/folderredactor/">
+<meta property="og:image" content="https://erlbon.github.io/assets/img/folderredactor.png">
+<meta name="twitter:card" content="summary">
+
+<link rel="stylesheet" href="../assets/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "The Ⅎolder Redactor",
+  "alternateName": "Folder Redactor",
+  "description": "A Windows tool for the folders of a music or video library: it drafts the Markdown folder notes the Pluteus media server shows, from the files' own tags and from MusicBrainz, Discogs, TMDB and Wikipedia, and writes only what you say yes to.",
+  "url": "https://erlbon.github.io/folderredactor/",
+  "downloadUrl": "https://github.com/Erlbon/folderredactor/releases/latest",
+  "operatingSystem": "Windows",
+  "applicationCategory": "UtilitiesApplication",
+  "softwareVersion": "2026-11-08#05",
+  "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  "featureList": [
+    "Music folder notes: artist.md, album.md, and about.md for genres and collections",
+    "Video folder notes: series.md for a series, about.md for a film",
+    "Tags read from MP3, FLAC, M4A, Ogg Vorbis and Opus files",
+    "Lookups on MusicBrainz, Discogs, TMDB and Wikipedia, checked against the albums really in the folder",
+    "Every draft reviewed yes/no; a note a person edited is never replaced",
+    "A layout line in genre and collection notes, so Pluteus finds the artists without scanning",
+    "Undo from Tools > History (opt-in); replaced notes go to the Recycle Bin",
+    "Command line: the notes command in the same program, for scripts",
+    "Per-user installer and a portable exe, both updating themselves"
+  ],
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "Erlbon", "url": "https://github.com/Erlbon" },
+  "isPartOf": { "@type": "WebSite", "name": "Erlbon", "url": "https://erlbon.github.io/" }
+}
+</script>
+</head>
+<body data-app="folder">
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="wordmark" href="/"><span class="bar" aria-hidden="true"></span> Erlbon</a>
+    <nav class="crumbs"><a href="/">Home</a> / <a href="/redactors/">The Redactor Tools</a> / The Ⅎolder Redactor</nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <img class="icon" src="../assets/img/folderredactor.png" alt="The Ⅎolder Redactor icon" width="72" height="72">
+    <div>
+      <h1>The Ⅎolder Redactor</h1>
+      <p class="tagline" style="margin-bottom:0">A free tool for the folders of a music or video library: it drafts the short Markdown folder notes a media server shows, and writes only what you say yes to.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn primary" href="https://github.com/Erlbon/folderredactor/releases/latest">Download latest release</a>
+    <a class="btn secondary" href="https://github.com/Erlbon/folderredactor">View source on GitHub</a>
+  </div>
+
+  <h2>What it does</h2>
+  <p>The other Redactors edit what is written inside your files. The Ⅎolder Redactor works one level up, on the folders: it writes a small Markdown note into a folder that says what is in it (an artist&rsquo;s introduction, an album&rsquo;s release, a series&rsquo; overview), the notes the <a href="../pluteus/">Pluteus</a> library server shows. It is the first release (v0.1, build 2026-11-08#05): folder notes for music and video libraries. The second job, checking a library&rsquo;s folder tree against its own conventions and proposing renames, is not built yet; its Clean Up menu is shown greyed.</p>
+  <p>Into a library it writes <code>.md</code> folder notes and nothing else. Its settings, caches and history live next to the program.</p>
+
+  <h2>Features</h2>
+  <ul class="feature-list">
+    <li><strong>Music notes</strong> (moved here from the <a href="../mp3redactor/">ɯP3 Redactor</a>): <code>artist.md</code> in an artist&rsquo;s folder, <code>album.md</code> in an album&rsquo;s, and <code>about.md</code> in a genre or collection folder (compilations, soundtracks). The tags are read from MP3, FLAC, M4A (AAC and ALAC), Ogg Vorbis and Opus files; MusicBrainz, Discogs and Wikipedia fill in the rest, and a match is checked against the albums really in the folder.</li>
+    <li><strong>Video notes</strong> (moved here from the <a href="../videoredactor/">Ʌideo Redactor</a>): <code>series.md</code> in a series folder and <code>about.md</code> in a film&rsquo;s, from TMDB, with a Wikipedia introduction only when Wikidata links the article to the title. Films in any common container count (MP4, MKV, AVI, MOV, WMV, WebM, MPG, TS and more); the program only counts them, it never opens one.</li>
+    <li><strong>Reviewed yes/no</strong>: Notes &gt; Create Notes shows every draft on one review page, with the sources and the reasons for each, and a Before / After view for a note that is already there. Nothing is written without a tick. A note a person edited, or one this program did not write, is never replaced.</li>
+    <li><strong>Where the artists are</strong>: a genre or collection <code>about.md</code> says how the folders below it are laid out (<code>layout: letter/artist/album</code>, <code>country/artist/album</code>, <code>album</code>), so Pluteus finds the artists and albums without building an index. A box set whose albums sit in disc folders gets one <code>album.md</code>.</li>
+    <li><strong>Undo</strong>: a replaced note goes to the Recycle Bin, and <strong>Tools &gt; History</strong> (opt-in, off by default) can take every written note back, even after the program was closed.</li>
+    <li><strong>From the old apps</strong>: File &gt; Import takes over the ɯP3 and Ʌideo Redactors&rsquo; notes settings and lookup answers. API keys (a Discogs token, a TMDB key) are the Redactor family&rsquo;s shared ones, kept in your operating system&rsquo;s credential store (Tools &gt; API Keys).</li>
+    <li><strong>Progress for everything slow</strong>: folder scans and lookups show a progress dialog.</li>
+  </ul>
+
+  <h2 id="sources">Where the notes come from</h2>
+  <p>First from your files: their names, folders and tags. Online sources are asked only when you create notes, and every result is reviewed before it is written. With the lookup cache switched on (Tools &gt; Preferences), an answer is kept so the next run does not ask again.</p>
+  <div class="table-wrap">
+    <table class="format-table">
+      <thead>
+        <tr><th>Source</th><th>What it provides</th><th>What you need</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><a href="https://musicbrainz.org/">MusicBrainz</a></th>
+          <td>Artists and releases: names, years, release groups; covers from the <a href="https://coverartarchive.org/">Cover Art Archive</a>.</td>
+          <td>Nothing.</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="https://www.discogs.com/">Discogs</a></th>
+          <td>Releases MusicBrainz does not know, and artist profiles.</td>
+          <td>Your own free Discogs token (optional).</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="https://www.wikipedia.org/">Wikipedia</a> and <a href="https://www.wikidata.org/">Wikidata</a></th>
+          <td>The introductions of artist, genre, series and film notes; each note links to its article. Wikidata ties the articles to the other sources.</td>
+          <td>Nothing.</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="https://www.themoviedb.org/">TMDB</a></th>
+          <td>Series and films: title, year, overview, genres.</td>
+          <td>Your own TMDB API key (needed for video notes).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Data from MusicBrainz is <a href="https://musicbrainz.org/doc/About/Data_License">CC0</a>. Wikipedia text is available under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike License</a>; every note that quotes an article links to it. Wikidata is CC0.</p>
+  <p class="note">Data from Discogs: a note built on Discogs data says so (&ldquo;Facts from Discogs&rdquo;, linked to the release or artist). This application uses Discogs&rsquo; API but is not affiliated with, sponsored or endorsed by Discogs.</p>
+  <p class="note">This website uses TMDB and the TMDB APIs but is not endorsed, certified, or otherwise approved by TMDB.<a href="https://www.themoviedb.org/"><img class="tmdb-logo" src="../assets/img/tmdb-blue-short.svg" alt="TMDB logo" width="137" height="18"></a></p>
+
+  <h2 id="cli">Command line</h2>
+  <p>The same program runs from a terminal or a script: <code>folderredactor.exe notes PATH</code> drafts the notes of a music or video library and, with <code>--write</code>, writes them (the review is then yours to do first, with the report). Without <code>--write</code> it only reports. <code>--json</code>, <code>--output FILE</code> and <code>--quiet</code> work as in the other Redactors; <code>--update</code> also lists notes made by an older version.</p>
+  <pre class="cli-example"><code>folderredactor.exe notes "D:\Music\0 - Bands" --kind artist
+folderredactor.exe notes "D:\Films" --json --output "%TEMP%\notes.json"</code></pre>
+  <p>The program is a windowed one, so an interactive shell does not wait for it; for scripts ask for the result in a file and wait for the process, as the <a href="https://github.com/Erlbon/folderredactor/blob/main/ABOUT.md">full reference</a> shows.</p>
+
+  <h2>Requirements</h2>
+  <p>Windows, 64-bit. Two downloads on each release: <code>folderredactor-setup.exe</code> installs it for you alone (no administrator rights, a Start menu entry), and <code>folderredactor.exe</code> is one file to run from anywhere. Both update themselves through Help &gt; Check for Updates. No Python install needed. There is no Linux download yet. The changelog is in the <a href="https://github.com/Erlbon/folderredactor">GitHub repository</a>.</p>
+
+  <h2>The rest of the family</h2>
+  <p>The Ⅎolder Redactor shares its window, review page and lookup clients with the other Redactors, via <a href="https://github.com/Erlbon/redactor_common">redactor_common</a>:</p>
+  <div class="sibling-list">
+    <a href="../cbzredactor/"><img src="../assets/img/cbzredactor.png" alt="">The ƆBZ Redactor</a>
+    <a href="../epubredactor/"><img src="../assets/img/epubredactor.png" alt="">The ƎPUB Redactor</a>
+    <a href="../mp3redactor/"><img src="../assets/img/mp3redactor.png" alt="">The ɯP3 Redactor</a>
+    <a href="../videoredactor/"><img src="../assets/img/videoredactor.png" alt="">The Ʌideo Redactor</a>
+  </div>
+
+  <h2>More tools</h2>
+  <div class="sibling-list">
+    <a href="../dossier/"><img src="../assets/img/dossier.png" alt="">Dossier</a>
+    <a href="../pluteus/"><img src="../assets/img/pluteus.png" alt="">Pluteus</a>
+    <a href="../redactors/"><img src="../assets/img/hero-logo.png" alt="">All the Redactor Tools</a>
+    <a href="../accipio/"><img src="../assets/img/accipio.png" alt="">Accipio</a>
+    <a href="../kinderkopje/"><img src="../assets/img/kinderkopje.svg" alt="">Kinderkopje</a>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><a href="/redactors/">← Back to The Redactor Tools</a> · Source on <a href="https://github.com/Erlbon/folderredactor">GitHub</a> · <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3.0-or-later</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
