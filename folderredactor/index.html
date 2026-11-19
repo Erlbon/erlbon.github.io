@@ -28,7 +28,7 @@
   "downloadUrl": "https://github.com/Erlbon/folderredactor/releases/latest",
   "operatingSystem": "Windows",
   "applicationCategory": "UtilitiesApplication",
-  "softwareVersion": "2026-11-08#05",
+  "softwareVersion": "2026-11-19#01",
   "license": "https://www.gnu.org/licenses/gpl-3.0.html",
   "featureList": [
     "Music folder notes: artist.md, album.md, and about.md for genres and collections",
@@ -78,15 +78,16 @@
   <ul class="feature-list">
     <li><strong>Music notes</strong> (moved here from the <a href="../mp3redactor/">ɯP3 Redactor</a>): <code>artist.md</code> in an artist&rsquo;s folder, <code>album.md</code> in an album&rsquo;s, and <code>about.md</code> in a genre or collection folder (compilations, soundtracks). The tags are read from MP3, FLAC, M4A (AAC and ALAC), Ogg Vorbis and Opus files; MusicBrainz, Discogs and Wikipedia fill in the rest, and a match is checked against the albums really in the folder.</li>
     <li><strong>Video notes</strong> (moved here from the <a href="../videoredactor/">Ʌideo Redactor</a>): <code>series.md</code> in a series folder and <code>about.md</code> in a film&rsquo;s, from TMDB, with a Wikipedia introduction only when Wikidata links the article to the title. Films in any common container count (MP4, MKV, AVI, MOV, WMV, WebM, MPG, TS and more); the program only counts them, it never opens one.</li>
-    <li><strong>Reviewed yes/no</strong>: Notes &gt; Create Notes shows every draft on one review page, with the sources and the reasons for each, and a Before / After view for a note that is already there. Nothing is written without a tick. A note a person edited, or one this program did not write, is never replaced.</li>
+    <li><strong>One window</strong>: the library is a tree on the left, and the note of the selected folder is always open on the right (Preview, Raw, or Before / After for a note that is already there). A light on every folder shows its state: a note, a draft waiting, a note you edited, or none.</li>
+    <li><strong>Reviewed yes/no</strong>: Look Up (Ctrl+L) drafts notes for the selected folder, or for it and the folders below. Each draft lands in the tree as soon as it is ready and can be judged while the rest are looked up, with its sources and reasons. Nothing is written without a tick (Ctrl+Enter writes the ticked ones). A note a person edited, or one this program did not write, is never replaced. A note can also be edited in the pane (F4).</li>
     <li><strong>Where the artists are</strong>: a genre or collection <code>about.md</code> says how the folders below it are laid out (<code>layout: letter/artist/album</code>, <code>country/artist/album</code>, <code>album</code>), so Pluteus finds the artists and albums without building an index. A box set whose albums sit in disc folders gets one <code>album.md</code>.</li>
     <li><strong>Undo</strong>: a replaced note goes to the Recycle Bin, and <strong>Tools &gt; History</strong> (opt-in, off by default) can take every written note back, even after the program was closed.</li>
     <li><strong>From the old apps</strong>: File &gt; Import takes over the ɯP3 and Ʌideo Redactors&rsquo; notes settings and lookup answers. API keys (a Discogs token, a TMDB key) are the Redactor family&rsquo;s shared ones, kept in your operating system&rsquo;s credential store (Tools &gt; API Keys).</li>
-    <li><strong>Progress for everything slow</strong>: folder scans and lookups show a progress dialog.</li>
+    <li><strong>Never blocks the window</strong>: Look Up runs in the background, with how far it is and a Cancel on the bottom line. A service that is down is skipped for that run only, and the other sources are still used.</li>
   </ul>
 
   <h2 id="sources">Where the notes come from</h2>
-  <p>First from your files: their names, folders and tags. Online sources are asked only when you create notes, and every result is reviewed before it is written. With the lookup cache switched on (Tools &gt; Preferences), an answer is kept so the next run does not ask again.</p>
+  <p>First from your files: their names, folders and tags. Online sources are asked only when you run Look Up, and every result is reviewed before it is written. With the lookup cache switched on (Tools &gt; Preferences), an answer is kept so the next run does not ask again.</p>
   <div class="table-wrap">
     <table class="format-table">
       <thead>
@@ -130,7 +131,7 @@ folderredactor.exe notes "D:\Films" --json --output "%TEMP%\notes.json"</code></
   <p>Windows, 64-bit. Two downloads on each release: <code>folderredactor-setup.exe</code> installs it for you alone (no administrator rights, a Start menu entry), and <code>folderredactor.exe</code> is one file to run from anywhere. Both update themselves through Help &gt; Check for Updates. No Python install needed. There is no Linux download yet. The changelog is in the <a href="https://github.com/Erlbon/folderredactor">GitHub repository</a>.</p>
 
   <h2>The rest of the family</h2>
-  <p>The Ⅎolder Redactor shares its window, review page and lookup clients with the other Redactors, via <a href="https://github.com/Erlbon/redactor_common">redactor_common</a>:</p>
+  <p>The Ⅎolder Redactor shares its window parts and lookup clients with the other Redactors, via <a href="https://github.com/Erlbon/redactor_common">redactor_common</a>:</p>
   <div class="sibling-list">
     <a href="../cbzredactor/"><img src="../assets/img/cbzredactor.png" alt="">The ƆBZ Redactor</a>
     <a href="../epubredactor/"><img src="../assets/img/epubredactor.png" alt="">The ƎPUB Redactor</a>
